@@ -64,10 +64,10 @@ export function Header() {
             ) : (
               <>
                 <Button variant="ghost" size="sm">
-                  <Link href="/auth/signin">Sign In</Link>
+                  <Link href="/auth/signin">लग इन</Link>
                 </Button>
                 <Button size="sm">
-                  <Link href="/auth/signup">Get Started</Link>
+                  <Link href="/auth/signup">सुरु गर्नुहोस्</Link>
                 </Button>
               </>
             )}
