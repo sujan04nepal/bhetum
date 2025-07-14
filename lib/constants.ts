@@ -553,8 +553,40 @@ export const DAYS_OF_WEEK = [
   "sunday",
 ];
 
-export const CURRENCY_SYMBOL = "$";
-export const DEFAULT_CURRENCY = "USD";
+export const CURRENCY_SYMBOL = "रू";
+export const DEFAULT_CURRENCY = "NPR";
+
+// Nepal-specific constants
+export const NEPAL_PROVINCES = [
+  "Province 1",
+  "Madhesh Province",
+  "Bagmati Province",
+  "Gandaki Province",
+  "Lumbini Province",
+  "Karnali Province",
+  "Sudurpashchim Province",
+];
+
+export const MAJOR_CITIES = [
+  "Kathmandu",
+  "Pokhara",
+  "Lalitpur",
+  "Biratnagar",
+  "Bharatpur",
+  "Janakpur",
+  "Dharan",
+  "Butwal",
+  "Hetauda",
+  "Nepalgunj",
+  "Dhangadhi",
+  "Itahari",
+];
+
+export const NEPALI_GREETINGS = [
+  "नमस्ते! स्वागत छ!",
+  "तपाईंलाई हाम्रो सेवामा स्वागत छ!",
+  "आज कस्तो सेवा चाह���नुहुन्छ?",
+];
 
 // Vibrant color themes for categories
 export const CATEGORY_COLORS = {
