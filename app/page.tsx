@@ -139,9 +139,9 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {categories.map((category, index) => (
-              <div
+              <Card
                 key={index}
-                className="card text-center hover:shadow-md transition-shadow cursor-pointer"
+                className="text-center hover:shadow-md transition-shadow cursor-pointer"
               >
                 <div className="text-4xl mb-3">{category.icon}</div>
                 <h3 className="font-semibold text-gray-900 mb-1">
@@ -150,7 +150,7 @@ export default function HomePage() {
                 <p className="text-sm text-gray-500">
                   {category.count} providers
                 </p>
-              </div>
+              </Card>
             ))}
           </div>
         </div>
