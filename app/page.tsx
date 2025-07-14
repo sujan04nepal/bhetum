@@ -81,28 +81,28 @@ export default function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                  <input
+                  <Input
                     type="text"
                     placeholder="What service do you need?"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="input-field pl-10"
+                    className="pl-10"
                   />
                 </div>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                  <input
+                  <Input
                     type="text"
                     placeholder="Your location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="input-field pl-10"
+                    className="pl-10"
                   />
                 </div>
-                <button className="btn-primary flex items-center justify-center">
+                <Button className="flex items-center justify-center">
                   <Search className="h-5 w-5 mr-2" />
                   Search Services
-                </button>
+                </Button>
               </div>
             </div>
 
