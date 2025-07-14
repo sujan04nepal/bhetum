@@ -162,7 +162,7 @@ export default function SeekerDashboard() {
   };
 
   const navigationTabs = [
-    { id: "home", label: "Home", icon: Grid3X3 },
+    { id: "home", label: "Home", icon: Grid },
     { id: "bookings", label: "My Bookings", icon: Calendar },
     { id: "messages", label: "Messages", icon: MessageCircle },
     { id: "more", label: "More", icon: ChevronDown },
@@ -222,7 +222,7 @@ export default function SeekerDashboard() {
                 className="md:hidden p-2"
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
               >
-                <Grid3X3 className="h-5 w-5" />
+                <Grid className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -331,7 +331,7 @@ export default function SeekerDashboard() {
                     onClick={() => setViewMode("grid")}
                     className={`p-2 rounded ${viewMode === "grid" ? "bg-white shadow" : ""}`}
                   >
-                    <Grid3X3 className="h-4 w-4" />
+                    <Grid className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => setViewMode("list")}
