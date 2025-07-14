@@ -168,9 +168,9 @@ export default function HomePage() {
                 Meet some of our highest-rated service providers
               </p>
             </div>
-            <button className="btn-secondary flex items-center">
+            <Button variant="secondary" className="flex items-center">
               View All <ArrowRight className="ml-2 h-4 w-4" />
-            </button>
+            </Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
