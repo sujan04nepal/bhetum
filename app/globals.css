@@ -25,7 +25,7 @@
   }
 
   .card {
-    @apply bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:scale-102;
+    @apply bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 transition-all duration-300 hover:shadow-xl hover:transform hover:scale-105;
   }
 
   .card-vibrant {
