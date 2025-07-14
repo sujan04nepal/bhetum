@@ -13,7 +13,7 @@ import {
   User,
   Bell,
   ChevronDown,
-  Grid3x3,
+  Grid,
   List,
   Plus,
   Eye,
