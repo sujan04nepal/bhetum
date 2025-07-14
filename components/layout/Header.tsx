@@ -21,8 +21,12 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-primary-600">
-              ServiceConnect
+            <Link
+              href="/"
+              className="text-2xl font-bold text-primary-600 flex items-center"
+            >
+              <span className="mr-2">🇳🇵</span>
+              सेवा खोज
             </Link>
           </div>
 
