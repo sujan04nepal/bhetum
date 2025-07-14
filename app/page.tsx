@@ -10,6 +10,11 @@ import {
   Users,
   ArrowRight,
 } from "lucide-react";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Card } from "@/components/ui/Card";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -56,33 +61,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-primary-600">
-                ServiceConnect
-              </h1>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <a href="#" className="text-gray-600 hover:text-primary-600">
-                Find Services
-              </a>
-              <a href="#" className="text-gray-600 hover:text-primary-600">
-                Become a Provider
-              </a>
-              <a href="#" className="text-gray-600 hover:text-primary-600">
-                How it Works
-              </a>
-            </nav>
-            <div className="flex items-center space-x-4">
-              <button className="btn-secondary">Sign In</button>
-              <button className="btn-primary">Get Started</button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-primary-100 py-20">
