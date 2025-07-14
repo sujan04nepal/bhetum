@@ -3,304 +3,332 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
+  ArrowLeft,
+  ArrowRight,
+  Users,
+  UserCheck,
   Eye,
   EyeOff,
   Mail,
   Lock,
   User,
-  ArrowLeft,
-  Users,
-  Briefcase,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Card } from "@/components/ui/Card";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+type UserRole = "seeker" | "provider" | null;
 
 export default function SignUpPage() {
-  const [step, setStep] = useState(1); // 1: Role Selection, 2: Account Details
-  const [selectedRole, setSelectedRole] = useState<
-    "seeker" | "provider" | null
-  >(null);
+  const [step, setStep] = useState(1);
+  const [role, setRole] = useState<UserRole>(null);
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
+    agreeTerms: false,
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const { t } = useLanguage();
 
-  const handleRoleSelect = (role: "seeker" | "provider") => {
-    setSelectedRole(role);
-    setStep(2);
+  const handleRoleSelect = (selectedRole: UserRole) => {
+    setRole(selectedRole);
+  };
+
+  const handleNext = () => {
+    if (step === 1 && role) {
+      setStep(2);
+    }
+  };
+
+  const handleBack = () => {
+    if (step === 2) {
+      setStep(1);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
     // Handle sign up logic here
-    console.log("Sign up:", { ...formData, role: selectedRole, agreeToTerms });
+    console.log("Sign up:", { role, ...formData });
   };
 
-  const updateFormData = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  if (step === 1) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
-        </div>
-
-        <div className="relative w-full max-w-4xl">
-          <Link
-            href="/"
-            className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-8 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to ServiceConnect
-          </Link>
-
-          <Card className="p-8 backdrop-blur-sm border-white/50">
-            <div className="text-center mb-8">
-              <h1 className="text-4xl font-bold gradient-text mb-4">
-                Join ServiceConnect! 🚀
-              </h1>
-              <p className="text-xl text-gray-600">
-                Choose how you'd like to get started
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Service Seeker */}
-              <div
-                className="relative p-8 rounded-2xl border-2 border-transparent bg-gradient-to-br from-blue-50 to-indigo-50 hover:border-blue-300 cursor-pointer transition-all duration-300 hover:scale-105 group"
-                onClick={() => handleRoleSelect("seeker")}
-              >
-                <div className="text-center">
-                  <div className="bg-blue-500 p-4 rounded-full w-20 h-20 mx-auto mb-6 group-hover:scale-110 transition-transform">
-                    <Users className="h-12 w-12 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-blue-700 mb-4">
-                    I'm looking for services
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Find trusted professionals for home services, tutoring,
-                    creative work, and more!
-                  </p>
-                  <ul className="text-left space-y-2 text-gray-600">
-                    <li>✅ Browse thousands of verified providers</li>
-                    <li>✅ Read reviews and compare prices</li>
-                    <li>✅ Book services instantly</li>
-                    <li>✅ Secure payment protection</li>
-                    <li>✅ 24/7 customer support</li>
-                  </ul>
-                  <Button className="w-full mt-6 bg-blue-500 hover:bg-blue-600">
-                    Join as Service Seeker 🔍
-                  </Button>
-                </div>
-              </div>
-
-              {/* Service Provider */}
-              <div
-                className="relative p-8 rounded-2xl border-2 border-transparent bg-gradient-to-br from-purple-50 to-pink-50 hover:border-purple-300 cursor-pointer transition-all duration-300 hover:scale-105 group"
-                onClick={() => handleRoleSelect("provider")}
-              >
-                <div className="text-center">
-                  <div className="bg-purple-500 p-4 rounded-full w-20 h-20 mx-auto mb-6 group-hover:scale-110 transition-transform">
-                    <Briefcase className="h-12 w-12 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-purple-700 mb-4">
-                    I want to offer services
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Start earning by offering your skills and expertise to
-                    customers in your area!
-                  </p>
-                  <ul className="text-left space-y-2 text-gray-600">
-                    <li>✅ Set your own rates and schedule</li>
-                    <li>✅ Connect with local customers</li>
-                    <li>✅ Build your professional reputation</li>
-                    <li>✅ Fast and secure payments</li>
-                    <li>✅ Marketing tools and support</li>
-                  </ul>
-                  <Button className="w-full mt-6 bg-purple-500 hover:bg-purple-600">
-                    Join as Service Provider 💼
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            <p className="mt-8 text-center text-sm text-gray-600">
-              Already have an account?{" "}
-              <Link
-                href="/auth/signin"
-                className="text-primary-600 hover:text-primary-700 font-medium"
-              >
-                Sign in here
-              </Link>
-            </p>
-          </Card>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
+      {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
       </div>
 
       <div className="relative w-full max-w-md">
-        <button
-          onClick={() => setStep(1)}
-          className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-8 transition-colors"
+        {/* Back to Home */}
+        <Link
+          href="/"
+          className="inline-flex items-center text-gray-600 hover:text-primary-600 mb-8 transition-colors"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to role selection
-        </button>
+          {t("auth.signin.backToHome")}
+        </Link>
 
-        <Card className="p-8 backdrop-blur-sm border-white/50">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold gradient-text mb-2">
-              Create Account
-            </h1>
-            <p className="text-gray-600">
-              Joining as a{" "}
-              {selectedRole === "seeker"
-                ? "Service Seeker"
-                : "Service Provider"}
-              {selectedRole === "seeker" ? " 🔍" : " 💼"}
-            </p>
+        <Card>
+          <div className="p-8">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center mb-4">
+                <span className="text-3xl mr-2">🇳🇵</span>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  {t("auth.signup.title")}
+                </h1>
+              </div>
+              <p className="text-gray-600">{t("auth.signup.subtitle")}</p>
+            </div>
+
+            {/* Step 1: Role Selection */}
+            {step === 1 && (
+              <div className="space-y-6">
+                <div className="text-center">
+                  <h2 className="text-lg font-semibold text-gray-900 mb-6">
+                    {t("auth.signup.chooseRole")}
+                  </h2>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Service Seeker Option */}
+                  <div
+                    onClick={() => handleRoleSelect("seeker")}
+                    className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                      role === "seeker"
+                        ? "border-primary-500 bg-primary-50"
+                        : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0">
+                        <div
+                          className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                            role === "seeker"
+                              ? "bg-primary-500 text-white"
+                              : "bg-gray-100 text-gray-600"
+                          }`}
+                        >
+                          <Users className="h-6 w-6" />
+                        </div>
+                      </div>
+                      <div className="ml-4 flex-1">
+                        <h3 className="text-lg font-medium text-gray-900">
+                          {t("auth.signup.roleSeeker")}
+                        </h3>
+                        <p className="mt-1 text-sm text-gray-600">
+                          {t("auth.signup.seekerDesc")}
+                        </p>
+                        <p className="mt-2 text-sm font-medium text-primary-600">
+                          {t("auth.signup.findServices")}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Service Provider Option */}
+                  <div
+                    onClick={() => handleRoleSelect("provider")}
+                    className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
+                      role === "provider"
+                        ? "border-primary-500 bg-primary-50"
+                        : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    <div className="flex items-start">
+                      <div className="flex-shrink-0">
+                        <div
+                          className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                            role === "provider"
+                              ? "bg-primary-500 text-white"
+                              : "bg-gray-100 text-gray-600"
+                          }`}
+                        >
+                          <UserCheck className="h-6 w-6" />
+                        </div>
+                      </div>
+                      <div className="ml-4 flex-1">
+                        <h3 className="text-lg font-medium text-gray-900">
+                          {t("auth.signup.roleProvider")}
+                        </h3>
+                        <p className="mt-1 text-sm text-gray-600">
+                          {t("auth.signup.providerDesc")}
+                        </p>
+                        <p className="mt-2 text-sm font-medium text-primary-600">
+                          {t("auth.signup.provideServices")}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Button
+                  onClick={handleNext}
+                  disabled={!role}
+                  className="w-full"
+                  size="lg"
+                >
+                  {t("auth.signup.continue")}
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </div>
+            )}
+
+            {/* Step 2: Account Details */}
+            {step === 2 && (
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={handleBack}
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    <ArrowLeft className="h-5 w-5" />
+                  </button>
+                  <div className="text-sm text-gray-500">
+                    {role === "seeker"
+                      ? t("auth.signup.roleSeeker")
+                      : t("auth.signup.roleProvider")}
+                  </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Full Name */}
+                  <div>
+                    <Input
+                      label={t("auth.signup.fullName")}
+                      type="text"
+                      value={formData.fullName}
+                      onChange={(e) =>
+                        handleInputChange("fullName", e.target.value)
+                      }
+                      required
+                      icon={<User className="h-5 w-5" />}
+                      placeholder={t("auth.signup.fullName")}
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <Input
+                      label={t("auth.signin.email")}
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      required
+                      icon={<Mail className="h-5 w-5" />}
+                      placeholder={t("auth.signin.email")}
+                    />
+                  </div>
+
+                  {/* Password */}
+                  <div>
+                    <Input
+                      label={t("auth.signin.password")}
+                      type={showPassword ? "text" : "password"}
+                      value={formData.password}
+                      onChange={(e) =>
+                        handleInputChange("password", e.target.value)
+                      }
+                      required
+                      icon={<Lock className="h-5 w-5" />}
+                      placeholder={t("auth.signin.password")}
+                      rightIcon={
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="text-gray-400 hover:text-gray-600"
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-5 w-5" />
+                          ) : (
+                            <Eye className="h-5 w-5" />
+                          )}
+                        </button>
+                      }
+                    />
+                  </div>
+
+                  {/* Confirm Password */}
+                  <div>
+                    <Input
+                      label={t("auth.signup.confirmPassword")}
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={formData.confirmPassword}
+                      onChange={(e) =>
+                        handleInputChange("confirmPassword", e.target.value)
+                      }
+                      required
+                      icon={<Lock className="h-5 w-5" />}
+                      placeholder={t("auth.signup.confirmPassword")}
+                      rightIcon={
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setShowConfirmPassword(!showConfirmPassword)
+                          }
+                          className="text-gray-400 hover:text-gray-600"
+                        >
+                          {showConfirmPassword ? (
+                            <EyeOff className="h-5 w-5" />
+                          ) : (
+                            <Eye className="h-5 w-5" />
+                          )}
+                        </button>
+                      }
+                    />
+                  </div>
+
+                  {/* Terms Agreement */}
+                  <div className="flex items-start">
+                    <input
+                      type="checkbox"
+                      checked={formData.agreeTerms}
+                      onChange={(e) =>
+                        handleInputChange("agreeTerms", e.target.checked)
+                      }
+                      className="mt-1 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                      required
+                    />
+                    <div className="ml-2 text-sm text-gray-600">
+                      {t("auth.signup.agreeTerms")}
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    size="lg"
+                    disabled={!formData.agreeTerms}
+                  >
+                    {t("auth.signup.createAccount")}
+                  </Button>
+                </form>
+
+                {/* Sign in link */}
+                <p className="text-center text-sm text-gray-600">
+                  {t("auth.signup.alreadyHaveAccount")}{" "}
+                  <Link
+                    href="/auth/signin"
+                    className="font-medium text-primary-600 hover:text-primary-500"
+                  >
+                    {t("auth.signup.signIn")}
+                  </Link>
+                </p>
+              </div>
+            )}
           </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <div className="relative">
-                <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <Input
-                  type="text"
-                  placeholder="Enter your full name"
-                  value={formData.name}
-                  onChange={(e) => updateFormData("name", e.target.value)}
-                  className="pl-10"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={formData.email}
-                  onChange={(e) => updateFormData("email", e.target.value)}
-                  className="pl-10"
-                  required
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className="relative">
-                <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Create a password"
-                  value={formData.password}
-                  onChange={(e) => updateFormData("password", e.target.value)}
-                  className="pl-10 pr-10"
-                  required
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5" />
-                  ) : (
-                    <Eye className="h-5 w-5" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <div className="relative">
-                <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                <Input
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm your password"
-                  value={formData.confirmPassword}
-                  onChange={(e) =>
-                    updateFormData("confirmPassword", e.target.value)
-                  }
-                  className="pl-10 pr-10"
-                  required
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                >
-                  {showConfirmPassword ? (
-                    <EyeOff className="h-5 w-5" />
-                  ) : (
-                    <Eye className="h-5 w-5" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                checked={agreeToTerms}
-                onChange={(e) => setAgreeToTerms(e.target.checked)}
-                className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                required
-              />
-              <span className="ml-2 text-sm text-gray-600">
-                I agree to the{" "}
-                <Link
-                  href="/terms"
-                  className="text-primary-600 hover:text-primary-700"
-                >
-                  Terms of Service
-                </Link>{" "}
-                and{" "}
-                <Link
-                  href="/privacy"
-                  className="text-primary-600 hover:text-primary-700"
-                >
-                  Privacy Policy
-                </Link>
-              </span>
-            </div>
-
-            <Button type="submit" className="w-full btn-vibrant">
-              Create Account ✨
-            </Button>
-          </form>
-
-          <p className="mt-8 text-center text-sm text-gray-600">
-            Already have an account?{" "}
-            <Link
-              href="/auth/signin"
-              className="text-primary-600 hover:text-primary-700 font-medium"
-            >
-              Sign in here
-            </Link>
-          </p>
         </Card>
       </div>
     </div>
