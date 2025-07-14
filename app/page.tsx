@@ -18,7 +18,11 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Card } from "@/components/ui/Card";
-import { SERVICE_CATEGORIES, CATEGORY_COLORS } from "@/lib/constants";
+import {
+  SERVICE_CATEGORIES,
+  CATEGORY_COLORS,
+  MAJOR_CITIES,
+} from "@/lib/constants";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,104 +30,99 @@ export default function HomePage() {
 
   const featuredProviders = [
     {
-      name: "Sarah Johnson",
-      service: "Professional House Cleaning",
+      name: "सरिता शर्मा",
+      service: "घर सरसफाइ सेवा",
       category: "trade-skilled",
       rating: 4.9,
       reviews: 127,
-      price: "$25/hr",
-      location: "Downtown",
+      price: "रू ३५०/घण्टा",
+      location: "काठमाडौं",
       image: "👩‍💼",
       badge: "Top Rated",
       specialties: ["Deep Cleaning", "Eco-Friendly", "Same Day"],
     },
     {
-      name: "Mike Chen",
-      service: "Advanced Math Tutoring",
+      name: "राज गुरुंग",
+      service: "गणित ट्यूशन",
       category: "teaching-coaching",
       rating: 4.8,
       reviews: 89,
-      price: "$35/hr",
-      location: "University Area",
+      price: "रू ५००/घण्टा",
+      location: "पोखरा",
       image: "👨‍🏫",
-      badge: "Expert",
-      specialties: ["SAT Prep", "Calculus", "Statistics"],
+      badge: "विशेषज्ञ",
+      specialties: ["SEE Prep", "Class 10", "+2 Math"],
     },
     {
-      name: "Emma Davis",
-      service: "Creative Graphic Design",
+      name: "माया तामाङ",
+      service: "ग्राफिक डिजाइन",
       category: "creative-artisanal",
       rating: 5.0,
       reviews: 45,
-      price: "$50/hr",
-      location: "Creative District",
+      price: "रू ८००/घण्टा",
+      location: "ललितपुर",
       image: "👩‍🎨",
-      badge: "Rising Star",
+      badge: "उदीयमान कलाकार",
       specialties: ["Logo Design", "Branding", "Social Media"],
     },
     {
-      name: "Alex Rivera",
-      service: "Full-Stack Development",
+      name: "अमित पौडेल",
+      service: "वेब डेभलपमेन्ट",
       category: "digital-online",
       rating: 4.9,
       reviews: 203,
-      price: "$75/hr",
-      location: "Tech Hub",
+      price: "रू १२००/घण्टा",
+      location: "��क्तपुर",
       image: "👨‍💻",
-      badge: "Verified Pro",
+      badge: "प्रमाणित प्रो",
       specialties: ["React", "Node.js", "Mobile Apps"],
     },
     {
-      name: "Lisa Wang",
-      service: "Personal Fitness Training",
+      name: "सुनिता कार्की",
+      service: "फिटनेस ट्रेनिङ",
       category: "personal-care",
       rating: 4.8,
       reviews: 156,
-      price: "$45/hr",
-      location: "Fitness District",
+      price: "रू ६००/घण्टा",
+      location: "काठमाडौं",
       image: "👩‍⚕️",
-      badge: "Certified",
-      specialties: ["Weight Loss", "Strength Training", "Nutrition"],
+      badge: "प्रमाणित",
+      specialties: ["Weight Loss", "Yoga", "Diet Plan"],
     },
     {
-      name: "David Kumar",
-      service: "Wedding Photography",
+      name: "रमेश श्रेष्ठ",
+      service: "विवाह फोटोग्राफी",
       category: "events-hospitality",
       rating: 5.0,
       reviews: 78,
-      price: "$200/event",
-      location: "Wedding District",
+      price: "रू २५,००० /कार्यक्रम",
+      location: "काठमाडौं",
       image: "📸",
-      badge: "Premium",
-      specialties: ["Destination", "Portrait", "Candid"],
+      badge: "प्रिमियम",
+      specialties: ["Traditional", "Candid", "Video"],
     },
   ];
 
   const stats = [
     {
-      label: "Active Providers",
-      value: "50K+",
+      label: "सक्रिय सेवाप्रदायक",
+      value: "५०K+",
       icon: Users,
       color: "text-blue-600",
     },
     {
-      label: "Services Completed",
-      value: "2M+",
+      label: "सम्पन्न सेवा",
+      value: "२M+",
       icon: Award,
       color: "text-green-600",
     },
     {
-      label: "Happy Customers",
-      value: "500K+",
+      label: "खुसी ग्रा���क",
+      value: "५००K+",
       icon: Star,
       color: "text-yellow-600",
     },
-    {
-      label: "Cities Covered",
-      value: "100+",
-      icon: MapPin,
-      color: "text-purple-600",
-    },
+    { label: "शहरहरू", value: "७७+", icon: MapPin, color: "text-purple-600" },
   ];
 
   return (
@@ -137,19 +136,19 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center text-white">
             <div className="floating-animation inline-block mb-6">
-              <Sparkles className="h-16 w-16 mx-auto text-yellow-300" />
+              <span className="text-6xl">🇳🇵</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-              Find Amazing
+              <span className="block text-white mb-2">नेपालको नम्बर १</span>
               <span className="block bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
-                Service Providers
+                सेवा खोज्ने प्लेटफर्म
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto animate-slide-up">
-              From digital services to home repairs, tutoring to creative arts -
-              discover trusted professionals for every need! 🚀
+              घर सरसफाइ���ेखि ट्यूशन, डिजिटल सेवादेखि रचनात्मक कामसम्म -
+              विश्वसनीय सेवा प्रदायकहरू फेला पार्नुहोस्! 🚀
             </p>
 
             {/* Enhanced Search Bar */}
@@ -160,7 +159,7 @@ export default function HomePage() {
                     <Search className="absolute left-4 top-4 h-5 w-5 text-white/70" />
                     <input
                       type="text"
-                      placeholder="What service do you need?"
+                      placeholder="कुन सेवा चाहिन्छ?"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all backdrop-blur-sm"
@@ -168,17 +167,28 @@ export default function HomePage() {
                   </div>
                   <div className="relative">
                     <MapPin className="absolute left-4 top-4 h-5 w-5 text-white/70" />
-                    <input
-                      type="text"
-                      placeholder="Your location"
+                    <select
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all backdrop-blur-sm"
-                    />
+                      className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all backdrop-blur-sm"
+                    >
+                      <option value="" className="text-gray-900">
+                        तपाईंको स्थान चयन गर्नुहोस्
+                      </option>
+                      {MAJOR_CITIES.map((city) => (
+                        <option
+                          key={city}
+                          value={city}
+                          className="text-gray-900"
+                        >
+                          {city}
+                        </option>
+                      ))}
+                    </select>
                   </div>
                   <Button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl">
                     <Search className="h-5 w-5 mr-2" />
-                    Find Services ✨
+                    खोज्नुहोस् ✨
                   </Button>
                 </div>
               </div>
@@ -213,11 +223,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">Explore Amazing Services</span>
+              <span className="gradient-text">सेवाको श्रेणीहरू</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From digital wizardry to hands-on expertise - find the perfect
-              professional for any project! 🎯
+              डिजिटल सेवादेखि घरेलु काम, शिक्षादेखि व्यापारिक सेवासम्म! 🎯
             </p>
           </div>
 
@@ -246,7 +255,7 @@ export default function HomePage() {
                       {category.name}
                     </h3>
                     <p className="text-center text-gray-600 text-sm mb-3">
-                      {category.subcategories.length} services
+                      {category.subcategories.length}+ सेवाहरू
                     </p>
                     <div className="flex flex-wrap gap-1 justify-center">
                       {category.subcategories
@@ -265,7 +274,7 @@ export default function HomePage() {
                         <span
                           className={`service-badge ${colors?.bg} ${colors?.text} text-xs font-bold`}
                         >
-                          +{category.subcategories.length - 3} more
+                          +{category.subcategories.length - 3} थप
                         </span>
                       )}
                     </div>
@@ -283,14 +292,14 @@ export default function HomePage() {
           <div className="flex justify-between items-center mb-16">
             <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="gradient-text">Top-Rated Providers</span>
+                <span className="gradient-text">शीर्ष ���ेवा प्रदायकहरू</span>
               </h2>
               <p className="text-xl text-gray-600">
-                Meet our amazing professionals who deliver excellence! ⭐
+                नेपालका उत्कृष्ट सेवा प्रदायकहरूसँग भेट गर्नुहोस्! ⭐
               </p>
             </div>
             <Button className="btn-vibrant hidden md:flex items-center">
-              View All <ArrowRight className="ml-2 h-5 w-5" />
+              सबै हेर्नुहोस् <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
 
@@ -366,10 +375,10 @@ export default function HomePage() {
 
                     <div className="flex space-x-3">
                       <Button variant="outline" className="flex-1">
-                        View Profile
+                        प्रोफाइल हेर्नुहोस्
                       </Button>
                       <Button className="flex-1 btn-vibrant">
-                        Book Now ⚡
+                        बुक गर्नुहोस् ⚡
                       </Button>
                     </div>
                   </div>
@@ -385,11 +394,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Why Choose{" "}
-              <span className="text-yellow-300">ServiceConnect?</span>
+              हाम्रो <span className="text-yellow-300">विशेषताहरू</span>
             </h2>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Built for trust, convenience, and amazing experiences! 🌟
+              विश्वास, सुविधा र उत्कृष्ट अनुभवका लागि निर्मित! 🌟
             </p>
           </div>
 
@@ -398,10 +406,11 @@ export default function HomePage() {
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl mb-6 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Shield className="h-12 w-12 text-green-300" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">🛡️ Verified Providers</h3>
+              <h3 className="text-2xl font-bold mb-4">
+                🛡️ प्रमाणित सेवाप्रदायक
+              </h3>
               <p className="text-blue-100 text-lg">
-                All service providers are background-checked and verified for
-                your safety and peace of mind.
+                सबै सेवा प्रदायकहरू पूर्ण रूपमा जाँच गरिएका र प्रमाणित छन्।
               </p>
             </div>
 
@@ -409,10 +418,9 @@ export default function HomePage() {
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl mb-6 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <Clock className="h-12 w-12 text-yellow-300" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">⚡ Instant Booking</h3>
+              <h3 className="text-2xl font-bold mb-4">⚡ तुरुन्त बुकिङ</h3>
               <p className="text-blue-100 text-lg">
-                Book services instantly or schedule for later. Quick, easy, and
-                super convenient!
+                चाहेको बेलामा तुरुन्त सेवा बुक गर्नुहोस्। सजिलो र छिटो!
               </p>
             </div>
 
@@ -420,10 +428,9 @@ export default function HomePage() {
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl mb-6 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <TrendingUp className="h-12 w-12 text-pink-300" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">💯 Quality Guaranteed</h3>
+              <h3 className="text-2xl font-bold mb-4">💯 गुणस्तर ग्यारेन्टी</h3>
               <p className="text-blue-100 text-lg">
-                100% satisfaction guarantee with our quality assurance program
-                and excellent support.
+                १००% सन्तुष्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।
               </p>
             </div>
           </div>
@@ -434,23 +441,22 @@ export default function HomePage() {
       <section className="py-20 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <div className="floating-animation inline-block mb-6">
-            <Sparkles className="h-16 w-16 text-yellow-300" />
+            <span className="text-6xl">🇳🇵</span>
           </div>
 
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Ready to Get Started? 🚀
+            सुरु गर्न तयार हुनुहुन्छ? 🚀
           </h2>
           <p className="text-xl md:text-2xl mb-12 text-pink-100 max-w-3xl mx-auto">
-            Join thousands of happy customers and amazing providers in our
-            vibrant marketplace!
+            हजारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहोस्!
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button className="bg-white text-purple-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 text-lg">
-              🔍 Find Services
+              🔍 सेवा खोज्नुहोस्
             </Button>
             <Button className="bg-gradient-to-r from-purple-600 to-blue-600 font-bold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-lg">
-              💼 Become a Provider
+              💼 सेवाप्रदायक बन्नुहोस्
             </Button>
           </div>
         </div>
