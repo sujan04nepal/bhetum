@@ -10,9 +10,9 @@ export function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // This will come from auth context later
 
   const navigation = [
-    { name: "Find Services", href: "/services" },
-    { name: "Become a Provider", href: "/provider/signup" },
-    { name: "How it Works", href: "/how-it-works" },
+    { name: "सेवा खोज्नुहोस्", href: "/services" },
+    { name: "सेवाप्रदायक बन्नुहोस्", href: "/provider/signup" },
+    { name: "कसरी काम गर्छ", href: "/how-it-works" },
   ];
 
   return (
