@@ -207,7 +207,7 @@ export default function ProviderDashboard() {
   };
 
   const navigationTabs = [
-    { id: "home", label: "Dashboard", icon: Grid3X3 },
+    { id: "home", label: "Dashboard", icon: Grid },
     { id: "jobs", label: "Find Jobs", icon: Search },
     { id: "applications", label: "Applications", icon: FileText },
     { id: "services", label: "My Services", icon: Briefcase },
@@ -269,7 +269,7 @@ export default function ProviderDashboard() {
                 className="md:hidden p-2"
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
               >
-                <Grid3X3 className="h-5 w-5" />
+                <Grid className="h-5 w-5" />
               </button>
             </div>
           </div>
