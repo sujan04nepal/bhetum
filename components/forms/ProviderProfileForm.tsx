@@ -18,9 +18,30 @@ import { Input } from "@/components/ui/Input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
 import { SERVICE_CATEGORIES, MAJOR_CITIES } from "@/lib/constants";
 
+interface ProviderFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  businessName: string;
+  bio: string;
+  location: string;
+  categories: string[];
+  skills: string[];
+  experience: string;
+  hourlyRate: string;
+  portfolio: Array<{
+    title: string;
+    description: string;
+    images: string[];
+  }>;
+  availability: {
+    [key: string]: { start: string; end: string; available: boolean };
+  };
+}
+
 interface ProviderProfileFormProps {
-  initialData?: any;
-  onSave?: (data: any) => void;
+  initialData?: Partial<ProviderFormData>;
+  onSave?: (data: ProviderFormData) => void;
   isEditing?: boolean;
 }
 
@@ -30,91 +51,61 @@ export default function ProviderProfileForm({
   isEditing = false,
 }: ProviderProfileFormProps) {
   const [editMode, setEditMode] = useState(isEditing);
-  const [formData, setFormData] = useState({
-    // Basic Information
+  const [newSkill, setNewSkill] = useState("");
+
+  const [formData, setFormData] = useState<ProviderFormData>({
     fullName: initialData.fullName || "राज गुरुंग",
     email: initialData.email || "raj.gurung@email.com",
-    phone: initialData.phone || "9841234567",
-
-    // Business Information
-    businessName: initialData.businessName || "गुरुंग ट्यूशन सेन्टर",
-    description:
-      initialData.description ||
-      "म गणित र विज्ञानको विषयमा ट्यूशन दिन्छु। मसँग १० वर्षको अनुभव छ।",
-
-    // Location
-    city: initialData.city || "पोखरा",
-    area: initialData.area || "माहेन्द्रपुल",
-
-    // Services
-    services: initialData.services || ["teaching-coaching"],
-    hourlyRate: initialData.hourlyRate || "500",
-
-    // Availability
+    phone: initialData.phone || "+977-9841234567",
+    businessName: initialData.businessName || "राजको सफाई सेवा",
+    bio:
+      initialData.bio ||
+      "५ वर्षको अनुभव भएको घर सफाई विशेषज्ञ। गुणस्तरीय र भरपर्दो सेवा प्रदान गर्छु।",
+    location: initialData.location || "काठमाडौं, बागबजार",
+    categories: initialData.categories || ["घर सरसफाई", "कार्यालय सफाई"],
+    skills: initialData.skills || [
+      "डीप क्लिनिङ",
+      "कार्पेट सफाई",
+      "झ्यालको सफाई",
+    ],
+    experience: initialData.experience || "५",
+    hourlyRate: initialData.hourlyRate || "८००",
+    portfolio: initialData.portfolio || [
+      {
+        title: "अफिस सफाई परियोजना",
+        description: "बागबजारको एक ठूलो अफिसको सम्पूर्ण सफाई काम।",
+        images: ["/portfolio1.jpg", "/portfolio2.jpg"],
+      },
+    ],
     availability: initialData.availability || {
-      monday: { available: true, start: "09:00", end: "17:00" },
-      tuesday: { available: true, start: "09:00", end: "17:00" },
-      wednesday: { available: true, start: "09:00", end: "17:00" },
-      thursday: { available: true, start: "09:00", end: "17:00" },
-      friday: { available: true, start: "09:00", end: "17:00" },
-      saturday: { available: true, start: "09:00", end: "15:00" },
-      sunday: { available: false, start: "", end: "" },
+      sunday: { start: "08:00", end: "18:00", available: true },
+      monday: { start: "08:00", end: "18:00", available: true },
+      tuesday: { start: "08:00", end: "18:00", available: true },
+      wednesday: { start: "08:00", end: "18:00", available: true },
+      thursday: { start: "08:00", end: "18:00", available: true },
+      friday: { start: "08:00", end: "18:00", available: true },
+      saturday: { start: "09:00", end: "15:00", available: true },
     },
-
-    // Skills & Experience
-    skills: initialData.skills || ["गणित", "विज्ञान", "SEE तयारी", "+2 तयारी"],
-    experience: initialData.experience || "५+ वर्ष",
-    education: initialData.education || "M.Ed Mathematics, TU",
-
-    // Portfolio
-    portfolio: initialData.portfolio || [],
-
-    // Reviews & Stats
-    rating: initialData.rating || 4.8,
-    totalReviews: initialData.totalReviews || 89,
-    completedJobs: initialData.completedJobs || 156,
-
-    // Profile Image
-    profileImage: initialData.profileImage || null,
   });
 
-  const days = [
-    { key: "monday", label: "सोमवार" },
-    { key: "tuesday", label: "मंगलवार" },
-    { key: "wednesday", label: "बुधवार" },
-    { key: "thursday", label: "बिहिवार" },
-    { key: "friday", label: "शुक्रवार" },
-    { key: "saturday", label: "शनिवार" },
-    { key: "sunday", label: "आइतवार" },
-  ];
-
-  const updateFormData = (field: string, value: any) => {
+  const updateFormData = <K extends keyof ProviderFormData>(
+    field: K,
+    value: ProviderFormData[K],
+  ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const updateAvailability = (day: string, field: string, value: any) => {
-    setFormData((prev) => ({
-      ...prev,
-      availability: {
-        ...prev.availability,
-        [day]: {
-          ...prev.availability[day],
-          [field]: value,
-        },
-      },
-    }));
-  };
-
-  const addSkill = (skill: string) => {
-    if (skill && !formData.skills.includes(skill)) {
-      updateFormData("skills", [...formData.skills, skill]);
+  const addSkill = () => {
+    if (newSkill.trim() && !formData.skills.includes(newSkill.trim())) {
+      updateFormData("skills", [...formData.skills, newSkill.trim()]);
+      setNewSkill("");
     }
   };
 
   const removeSkill = (skill: string) => {
     updateFormData(
       "skills",
-      formData.skills.filter((s) => s !== skill),
+      formData.skills.filter((s: string) => s !== skill),
     );
   };
 
@@ -123,75 +114,42 @@ export default function ProviderProfileForm({
     setEditMode(false);
   };
 
+  const daysOfWeek = [
+    { key: "sunday", label: "आइतबार" },
+    { key: "monday", label: "सोमबार" },
+    { key: "tuesday", label: "मंगलबार" },
+    { key: "wednesday", label: "बुधबार" },
+    { key: "thursday", label: "बिहिबार" },
+    { key: "friday", label: "शुक्रबार" },
+    { key: "saturday", label: "शनिबार" },
+  ];
+
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold gradient-text">
-          प्रोफाइल व्यवस्थापन
+        <h1 className="text-3xl font-bold text-gray-900">
+          प्रोफाइल अपडेट गर्नुहोस्
         </h1>
-        {!editMode ? (
-          <Button onClick={() => setEditMode(true)} className="btn-vibrant">
-            <Edit className="h-4 w-4 mr-2" />
-            सम्पादन गर्नुहोस्
-          </Button>
-        ) : (
-          <div className="space-x-2">
-            <Button variant="outline" onClick={() => setEditMode(false)}>
-              रद्द गर्नुहोस्
+        <div className="flex gap-3">
+          {editMode ? (
+            <>
+              <Button variant="outline" onClick={() => setEditMode(false)}>
+                रद्द गर्नुहोस्
+              </Button>
+              <Button onClick={handleSave}>
+                <Save className="h-4 w-4 mr-2" />
+                सेव गर्नुहोस्
+              </Button>
+            </>
+          ) : (
+            <Button onClick={() => setEditMode(true)}>
+              <Edit className="h-4 w-4 mr-2" />
+              सम्पादन गर्नुहोस्
             </Button>
-            <Button onClick={handleSave} className="btn-vibrant">
-              <Save className="h-4 w-4 mr-2" />
-              सेव गर्नुहोस्
-            </Button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-
-      {/* Profile Overview */}
-      <Card>
-        <CardContent className="p-6">
-          <div className="flex items-center space-x-6">
-            <div className="relative">
-              <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold">
-                {formData.fullName.charAt(0)}
-              </div>
-              {editMode && (
-                <button className="absolute -bottom-2 -right-2 bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700">
-                  <Upload className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold">{formData.fullName}</h2>
-              <p className="text-gray-600">{formData.businessName}</p>
-              <div className="flex items-center space-x-4 mt-2">
-                <div className="flex items-center">
-                  <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                  <span className="ml-1 font-medium">{formData.rating}</span>
-                  <span className="ml-1 text-gray-500">
-                    ({formData.totalReviews} समीक्षा)
-                  </span>
-                </div>
-                <span className="text-gray-300">•</span>
-                <span className="text-gray-600">
-                  {formData.completedJobs} काम सम्पन्न
-                </span>
-                <span className="text-gray-300">•</span>
-                <span className="text-gray-600">{formData.city}</span>
-              </div>
-            </div>
-
-            <div className="text-right">
-              <div className="text-2xl font-bold text-primary-600">
-                रू {formData.hourlyRate}/घण्टा
-              </div>
-              <div className="text-sm text-gray-500">आधार दर</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Basic Information */}
       <Card>
@@ -203,337 +161,270 @@ export default function ProviderProfileForm({
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                पूरा नाम
-              </label>
-              <Input
-                value={formData.fullName}
-                onChange={(e) => updateFormData("fullName", e.target.value)}
-                disabled={!editMode}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                व्यापारिक नाम
-              </label>
-              <Input
-                value={formData.businessName}
-                onChange={(e) => updateFormData("businessName", e.target.value)}
-                disabled={!editMode}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                इमेल
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <Input
-                  value={formData.email}
-                  onChange={(e) => updateFormData("email", e.target.value)}
-                  disabled={!editMode}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                फोन नम्बर
-              </label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                <Input
-                  value={formData.phone}
-                  onChange={(e) => updateFormData("phone", e.target.value)}
-                  disabled={!editMode}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              सेवाको विवरण
-            </label>
-            <textarea
-              rows={3}
-              value={formData.description}
-              onChange={(e) => updateFormData("description", e.target.value)}
+            <Input
+              label="पूरा नाम"
+              value={formData.fullName}
+              onChange={(e) => updateFormData("fullName", e.target.value)}
               disabled={!editMode}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 disabled:bg-gray-50"
+              icon={<User className="h-4 w-4" />}
+            />
+            <Input
+              label="इमेल ठेगाना"
+              type="email"
+              value={formData.email}
+              onChange={(e) => updateFormData("email", e.target.value)}
+              disabled={!editMode}
+              icon={<Mail className="h-4 w-4" />}
+            />
+            <Input
+              label="फोन नम्बर"
+              value={formData.phone}
+              onChange={(e) => updateFormData("phone", e.target.value)}
+              disabled={!editMode}
+              icon={<Phone className="h-4 w-4" />}
+            />
+            <Input
+              label="व्यापारिक नाम"
+              value={formData.businessName}
+              onChange={(e) => updateFormData("businessName", e.target.value)}
+              disabled={!editMode}
+              icon={<Briefcase className="h-4 w-4" />}
             />
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              बायो
+            </label>
+            <textarea
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 disabled:bg-gray-50"
+              rows={3}
+              value={formData.bio}
+              onChange={(e) => updateFormData("bio", e.target.value)}
+              disabled={!editMode}
+              placeholder="आफ्नो बारेमा छोटकरीमा बताउनुहोस्..."
+            />
+          </div>
+          <Input
+            label="स्थान"
+            value={formData.location}
+            onChange={(e) => updateFormData("location", e.target.value)}
+            disabled={!editMode}
+            icon={<MapPin className="h-4 w-4" />}
+          />
         </CardContent>
       </Card>
 
-      {/* Location & Services */}
+      {/* Services */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <MapPin className="h-5 w-5 mr-2" />
-            स्थान र सेवाहरू
+            <Briefcase className="h-5 w-5 mr-2" />
+            सेवाहरू
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                शहर
-              </label>
-              <select
-                value={formData.city}
-                onChange={(e) => updateFormData("city", e.target.value)}
-                disabled={!editMode}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 disabled:bg-gray-50"
-              >
-                {MAJOR_CITIES.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                क्षेत्र
-              </label>
-              <Input
-                value={formData.area}
-                onChange={(e) => updateFormData("area", e.target.value)}
-                disabled={!editMode}
-              />
-            </div>
-          </div>
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              घण्टाको दर (रुपैयाँमा)
-            </label>
-            <div className="relative">
-              <span className="absolute left-3 top-3 text-gray-500">रू</span>
-              <Input
-                type="number"
-                value={formData.hourlyRate}
-                onChange={(e) => updateFormData("hourlyRate", e.target.value)}
-                disabled={!editMode}
-                className="pl-12"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              सेवा श्रेणीहरू
+              श्रेणीहरू चयन गर्नुहोस्
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              {SERVICE_CATEGORIES.map((category) => (
-                <label
-                  key={category.id}
-                  className="flex items-center space-x-2"
-                >
+              {SERVICE_CATEGORIES.slice(0, 6).map((category) => (
+                <label key={category.name} className="flex items-center">
                   <input
                     type="checkbox"
-                    checked={formData.services.includes(category.id)}
+                    checked={formData.categories.includes(category.name)}
                     onChange={(e) => {
                       if (e.target.checked) {
-                        updateFormData("services", [
-                          ...formData.services,
-                          category.id,
+                        updateFormData("categories", [
+                          ...formData.categories,
+                          category.name,
                         ]);
                       } else {
                         updateFormData(
-                          "services",
-                          formData.services.filter((s) => s !== category.id),
+                          "categories",
+                          formData.categories.filter(
+                            (c) => c !== category.name,
+                          ),
                         );
                       }
                     }}
                     disabled={!editMode}
                     className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                   />
-                  <span className="text-sm">{category.name}</span>
+                  <span className="ml-2 text-sm text-gray-700">
+                    {category.name}
+                  </span>
                 </label>
               ))}
             </div>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              label="अनुभव (वर्षमा)"
+              type="number"
+              value={formData.experience}
+              onChange={(e) => updateFormData("experience", e.target.value)}
+              disabled={!editMode}
+              icon={<Calendar className="h-4 w-4" />}
+            />
+            <Input
+              label="घण्टावारी दर (रू)"
+              type="number"
+              value={formData.hourlyRate}
+              onChange={(e) => updateFormData("hourlyRate", e.target.value)}
+              disabled={!editMode}
+              icon={<span className="text-sm">रू</span>}
+            />
+          </div>
         </CardContent>
       </Card>
 
-      {/* Skills & Experience */}
+      {/* Skills */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <Briefcase className="h-5 w-5 mr-2" />
-            सीप र अनुभव
+            <Star className="h-5 w-5 mr-2" />
+            सीपहरू
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                अनुभव
-              </label>
-              <select
-                value={formData.experience}
-                onChange={(e) => updateFormData("experience", e.target.value)}
-                disabled={!editMode}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 disabled:bg-gray-50"
+          <div className="flex flex-wrap gap-2">
+            {formData.skills.map((skill, index) => (
+              <span
+                key={index}
+                className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-primary-100 text-primary-800"
               >
-                <option value="नयाँ">नयाँ (१ वर्ष मुनि)</option>
-                <option value="१-२ वर्ष">१-२ वर्ष</option>
-                <option value="३-५ वर्ष">३-५ वर्ष</option>
-                <option value="५+ वर्ष">५+ वर्ष</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                शिक्षा
-              </label>
+                {skill}
+                {editMode && (
+                  <button
+                    onClick={() => removeSkill(skill)}
+                    className="ml-2 text-primary-600 hover:text-primary-800"
+                  >
+                    ×
+                  </button>
+                )}
+              </span>
+            ))}
+          </div>
+          {editMode && (
+            <div className="flex gap-2">
               <Input
-                value={formData.education}
-                onChange={(e) => updateFormData("education", e.target.value)}
-                disabled={!editMode}
-                placeholder="जस्तै: Bachelor in Education"
+                placeholder="नयाँ सीप थप्नुहोस्"
+                value={newSkill}
+                onChange={(e) => setNewSkill(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && addSkill()}
               />
+              <Button onClick={addSkill}>थप्नुहोस्</Button>
             </div>
-          </div>
+          )}
+        </CardContent>
+      </Card>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              विशेषज्ञताहरू
-            </label>
-            <div className="flex flex-wrap gap-2 mb-2">
-              {formData.skills.map((skill: string, index: number) => (
-                <span
-                  key={index}
-                  className="bg-primary-100 text-primary-800 px-3 py-1 rounded-full text-sm flex items-center"
-                >
-                  {skill}
-                  {editMode && (
-                    <button
-                      onClick={() => removeSkill(skill)}
-                      className="ml-2 text-primary-600 hover:text-primary-800"
+      {/* Portfolio */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center">
+            <Upload className="h-5 w-5 mr-2" />
+            पोर्टफोलियो
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {formData.portfolio.map((item, index) => (
+              <div
+                key={index}
+                className="p-4 border border-gray-200 rounded-lg"
+              >
+                <h4 className="font-medium text-gray-900 mb-2">{item.title}</h4>
+                <p className="text-gray-600 text-sm mb-3">{item.description}</p>
+                <div className="flex gap-2">
+                  {item.images.map((img, imgIndex) => (
+                    <div
+                      key={imgIndex}
+                      className="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center"
                     >
-                      ×
-                    </button>
-                  )}
-                </span>
-              ))}
-            </div>
-
-            {editMode && (
-              <div className="flex gap-2">
-                <Input
-                  placeholder="नयाँ सीप थप्नुहोस्"
-                  onKeyPress={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      addSkill((e.target as HTMLInputElement).value);
-                      (e.target as HTMLInputElement).value = "";
-                    }
-                  }}
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={(e) => {
-                    const input =
-                      e.currentTarget.parentElement?.querySelector("input");
-                    if (input?.value) {
-                      addSkill(input.value);
-                      input.value = "";
-                    }
-                  }}
-                >
-                  थप्नुहोस्
-                </Button>
+                      <Upload className="h-6 w-6 text-gray-400" />
+                    </div>
+                  ))}
+                </div>
               </div>
-            )}
+            ))}
           </div>
+          {editMode && (
+            <Button variant="outline" className="mt-4">
+              <Upload className="h-4 w-4 mr-2" />
+              पोर्टफोलियो थप्नुहोस्
+            </Button>
+          )}
         </CardContent>
       </Card>
 
       {/* Availability */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center">
-            <Calendar className="h-5 w-5 mr-2" />
-            उपलब्धता
-          </CardTitle>
+          <CardTitle>उपलब्धता</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
-            {days.map(({ key, label }) => (
-              <div key={key} className="flex items-center space-x-4">
+          <div className="space-y-4">
+            {daysOfWeek.map((day) => (
+              <div key={day.key} className="flex items-center gap-4">
                 <div className="w-20">
                   <label className="flex items-center">
                     <input
                       type="checkbox"
-                      checked={formData.availability[key]?.available || false}
-                      onChange={(e) =>
-                        updateAvailability(key, "available", e.target.checked)
-                      }
+                      checked={formData.availability[day.key]?.available}
+                      onChange={(e) => {
+                        updateFormData("availability", {
+                          ...formData.availability,
+                          [day.key]: {
+                            ...formData.availability[day.key],
+                            available: e.target.checked,
+                          },
+                        });
+                      }}
                       disabled={!editMode}
-                      className="mr-2 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                      className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                     />
-                    {label}
+                    <span className="ml-2 text-sm font-medium">
+                      {day.label}
+                    </span>
                   </label>
                 </div>
-
-                {formData.availability[key]?.available && (
-                  <>
-                    <div>
-                      <select
-                        value={formData.availability[key]?.start || ""}
-                        onChange={(e) =>
-                          updateAvailability(key, "start", e.target.value)
-                        }
-                        disabled={!editMode}
-                        className="px-2 py-1 border border-gray-300 rounded text-sm disabled:bg-gray-50"
-                      >
-                        <option value="">सुरु</option>
-                        {Array.from({ length: 24 }, (_, i) => (
-                          <option
-                            key={i}
-                            value={String(i).padStart(2, "0") + ":00"}
-                          >
-                            {String(i).padStart(2, "0")}:00
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
+                {formData.availability[day.key]?.available && (
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="time"
+                      value={formData.availability[day.key]?.start}
+                      onChange={(e) => {
+                        updateFormData("availability", {
+                          ...formData.availability,
+                          [day.key]: {
+                            ...formData.availability[day.key],
+                            start: e.target.value,
+                          },
+                        });
+                      }}
+                      disabled={!editMode}
+                      className="px-2 py-1 border border-gray-300 rounded text-sm disabled:bg-gray-50"
+                    />
                     <span>देखि</span>
-
-                    <div>
-                      <select
-                        value={formData.availability[key]?.end || ""}
-                        onChange={(e) =>
-                          updateAvailability(key, "end", e.target.value)
-                        }
-                        disabled={!editMode}
-                        className="px-2 py-1 border border-gray-300 rounded text-sm disabled:bg-gray-50"
-                      >
-                        <option value="">अन्त्य</option>
-                        {Array.from({ length: 24 }, (_, i) => (
-                          <option
-                            key={i}
-                            value={String(i).padStart(2, "0") + ":00"}
-                          >
-                            {String(i).padStart(2, "0")}:00
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <span>सम्म</span>
-                  </>
+                    <input
+                      type="time"
+                      value={formData.availability[day.key]?.end}
+                      onChange={(e) => {
+                        updateFormData("availability", {
+                          ...formData.availability,
+                          [day.key]: {
+                            ...formData.availability[day.key],
+                            end: e.target.value,
+                          },
+                        });
+                      }}
+                      disabled={!editMode}
+                      className="px-2 py-1 border border-gray-300 rounded text-sm disabled:bg-gray-50"
+                    />
+                  </div>
                 )}
               </div>
             ))}
