@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { 
-  Star, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Calendar, 
-  Clock, 
+import {
+  Star,
+  MapPin,
+  Phone,
+  Mail,
+  Calendar,
+  Clock,
   CheckCircle,
   MessageCircle,
   Share2,
@@ -24,7 +24,7 @@ import {
   Camera,
   Shield,
   TrendingUp,
-  Users
+  Users,
 } from "lucide-react";
 
 interface ProviderProfilePageProps {
@@ -33,7 +33,9 @@ interface ProviderProfilePageProps {
   };
 }
 
-export default function ProviderProfilePage({ params }: ProviderProfilePageProps) {
+export default function ProviderProfilePage({
+  params,
+}: ProviderProfilePageProps) {
   const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState("overview");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -56,13 +58,13 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
     location: {
       province: "बागमती प्रदेश",
       district: "काठमाडौं",
-      municipality: "काठमाडौं महानगरपालिका",
+      municipality: "काठम���डौं महानगरपालिका",
       ward: 29,
-      area: "बागबजार"
+      area: "बागबजार",
     },
     contact: {
       phone: "+977-9841234567",
-      email: "raj.gurung@email.com"
+      email: "raj.gurung@email.com",
     },
     bio: "५ वर्षको अनुभव भएको घर सफाई विशेषज्ञ। गुणस्तरीय र भरपर्दो सेवा प्रदान गर्छु। ग्राहकको सन्तुष्टि नै हाम्रो मुख्य लक्ष्य हो।",
     services: [
@@ -73,33 +75,33 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
         description: "सम्पूर्ण घरको गहिरो सफाई",
         rate: 800,
         unit: "घण्टा",
-        category: "सफाई सेवा"
+        category: "सफाई सेवा",
       },
       {
-        id: "2", 
+        id: "2",
         title: "कार्यालय सफाई",
         titleEn: "Office Cleaning",
         description: "कार्यालयको दैनिक सफाई",
         rate: 1200,
         unit: "दिन",
-        category: "सफाई सेवा"
+        category: "सफाई सेवा",
       },
       {
         id: "3",
         title: "कार्पेट सफाई",
-        titleEn: "Carpet Cleaning", 
+        titleEn: "Carpet Cleaning",
         description: "कार्पेटको विशेष सफाई",
         rate: 500,
         unit: "वर्ग फुट",
-        category: "विशेष सफाई"
-      }
+        category: "विशेष सफाई",
+      },
     ],
     skills: [
       "डीप क्लिनिङ",
-      "कार्पेट सफाई", 
+      "कार्पेट सफाई",
       "झ्यालको सफाई",
       "बाथरुम सफाई",
-      "भान्साको सफाई"
+      "भान्साको सफाई",
     ],
     portfolio: [
       {
@@ -108,7 +110,7 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
         description: "बागबजारको एक ठूलो अफिसको सम्पूर्ण सफाई काम।",
         images: ["/portfolio1.jpg", "/portfolio2.jpg", "/portfolio3.jpg"],
         date: "2024-01-15",
-        category: "कार्यालय सफाई"
+        category: "कार्यालय सफाई",
       },
       {
         id: "2",
@@ -116,8 +118,8 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
         description: "नयाँ घरको पहिलो पटक गहिरो सफाई।",
         images: ["/portfolio4.jpg", "/portfolio5.jpg"],
         date: "2024-01-10",
-        category: "घर सफाई"
-      }
+        category: "घर सफाई",
+      },
     ],
     availability: {
       sunday: { available: true, start: "08:00", end: "18:00" },
@@ -126,41 +128,42 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
       wednesday: { available: true, start: "08:00", end: "18:00" },
       thursday: { available: true, start: "08:00", end: "18:00" },
       friday: { available: true, start: "08:00", end: "18:00" },
-      saturday: { available: true, start: "09:00", end: "15:00" }
+      saturday: { available: true, start: "09:00", end: "15:00" },
     },
     recentReviews: [
       {
         id: "1",
         reviewer: "सरिता शर्मा",
         rating: 5,
-        comment: "राज जीको काम एकदम राम्रो छ। समयमा आएर राम्रोसँग सफाई गर्नुभयो।",
+        comment:
+          "राज जीको काम एकदम राम्रो छ। समयमा आएर राम्रोसँग सफाई गर्नुभयो।",
         date: "2024-01-20",
-        service: "घर सरसफाई"
+        service: "घर सरसफाई",
       },
       {
-        id: "2", 
+        id: "2",
         reviewer: "अमित तामाङ",
         rating: 5,
-        comment: "व्यावसायिक र भर��र्दो सेवा। सिफारिस गर्छु।",
+        comment: "व्यावसायिक र भरपर्दो सेवा। सिफारिस गर्छु।",
         date: "2024-01-18",
-        service: "कार्यालय सफाई"
+        service: "कार्यालय सफाई",
       },
       {
         id: "3",
         reviewer: "मीरा गुरुंग",
         rating: 4,
-        comment: "राम्रो काम गर्नुहुन्छ तर अलि ढिलो आउनुभयो।",
+        comment: "राम्रो काम गर्��ुहुन्छ तर अलि ढिलो आउनुभयो।",
         date: "2024-01-15",
-        service: "कार्पेट सफाई"
-      }
-    ]
+        service: "कार्पेट सफाई",
+      },
+    ],
   };
 
   const content = {
     ne: {
       overview: "सिंहावलोकन",
       services: "सेवाहरू",
-      portfolio: "पोर्टफोलियो", 
+      portfolio: "पोर्टफोलियो",
       reviews: "समीक्षाहरू",
       availability: "उपलब्धता",
       contact: "सम्पर्क",
@@ -172,7 +175,7 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
       online: "अनलाइन",
       offline: "अफलाइन",
       lastSeen: "अन्तिम पटक देखियो",
-      joinedOn: "साम��ल भएको मिति",
+      joinedOn: "सामेल भएको मिति",
       completedJobs: "सम्पन्न कामहरू",
       responseRate: "प्रतिक्रिया दर",
       aboutProvider: "सेवा प्रदायकको बारेमा",
@@ -189,17 +192,17 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
       perSqFt: "प्रति वर्ग फुट",
       days: {
         sunday: "आइतबार",
-        monday: "सोमबार", 
+        monday: "सोमबार",
         tuesday: "मंगलबार",
         wednesday: "बुधबार",
         thursday: "बिहिबार",
         friday: "शुक्रबार",
-        saturday: "शनिबार"
-      }
+        saturday: "शनिबार",
+      },
     },
     en: {
       overview: "Overview",
-      services: "Services", 
+      services: "Services",
       portfolio: "Portfolio",
       reviews: "Reviews",
       availability: "Availability",
@@ -207,7 +210,7 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
       bookNow: "Book Now",
       sendMessage: "Send Message",
       share: "Share",
-      bookmark: "Bookmark", 
+      bookmark: "Bookmark",
       verified: "Verified",
       online: "Online",
       offline: "Offline",
@@ -219,7 +222,7 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
       skills: "Skills",
       location: "Location",
       contactInfo: "Contact Information",
-      workingHours: "Working Hours", 
+      workingHours: "Working Hours",
       recentWork: "Recent Work",
       clientReviews: "Client Reviews",
       viewAll: "View All",
@@ -230,17 +233,19 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
       days: {
         sunday: "Sunday",
         monday: "Monday",
-        tuesday: "Tuesday", 
+        tuesday: "Tuesday",
         wednesday: "Wednesday",
         thursday: "Thursday",
         friday: "Friday",
-        saturday: "Saturday"
-      }
-    }
+        saturday: "Saturday",
+      },
+    },
   };
 
   const currentContent = content[language];
-  const dayKeys = Object.keys(provider.availability) as Array<keyof typeof provider.availability>;
+  const dayKeys = Object.keys(provider.availability) as Array<
+    keyof typeof provider.availability
+  >;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -267,7 +272,9 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
               {/* Provider Info */}
               <div className="flex-1">
                 <div className="flex items-center space-x-2 mb-1">
-                  <h1 className="text-2xl font-bold text-gray-900">{provider.name}</h1>
+                  <h1 className="text-2xl font-bold text-gray-900">
+                    {provider.name}
+                  </h1>
                   {provider.isVerified && (
                     <div className="flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
                       <Shield className="w-3 h-3 mr-1" />
@@ -275,24 +282,40 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                     </div>
                   )}
                 </div>
-                
-                <p className="text-lg text-gray-600 mb-2">{provider.businessName}</p>
-                
+
+                <p className="text-lg text-gray-600 mb-2">
+                  {provider.businessName}
+                </p>
+
                 <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
                   <div className="flex items-center">
                     <Star className="w-4 h-4 text-yellow-400 mr-1" />
-                    <span className="font-medium text-gray-900">{provider.rating}</span>
-                    <span className="ml-1">({provider.reviewCount} reviews)</span>
+                    <span className="font-medium text-gray-900">
+                      {provider.rating}
+                    </span>
+                    <span className="ml-1">
+                      ({provider.reviewCount} reviews)
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="w-4 h-4 mr-1" />
-                    <span>{provider.location.area}, {provider.location.district}</span>
+                    <span>
+                      {provider.location.area}, {provider.location.district}
+                    </span>
                   </div>
                   <div className="flex items-center">
-                    <div className={`w-2 h-2 rounded-full mr-2 ${provider.isOnline ? 'bg-green-400' : 'bg-gray-400'}`}></div>
-                    <span>{provider.isOnline ? currentContent.online : currentContent.offline}</span>
+                    <div
+                      className={`w-2 h-2 rounded-full mr-2 ${provider.isOnline ? "bg-green-400" : "bg-gray-400"}`}
+                    ></div>
+                    <span>
+                      {provider.isOnline
+                        ? currentContent.online
+                        : currentContent.offline}
+                    </span>
                     {!provider.isOnline && (
-                      <span className="ml-1">• {currentContent.lastSeen} {provider.lastSeen}</span>
+                      <span className="ml-1">
+                        • {currentContent.lastSeen} {provider.lastSeen}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -300,17 +323,28 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                 <div className="flex items-center space-x-6 text-sm">
                   <div className="flex items-center">
                     <Briefcase className="w-4 h-4 text-gray-400 mr-1" />
-                    <span className="font-medium">{provider.completedJobs}</span>
-                    <span className="ml-1 text-gray-500">{currentContent.completedJobs}</span>
+                    <span className="font-medium">
+                      {provider.completedJobs}
+                    </span>
+                    <span className="ml-1 text-gray-500">
+                      {currentContent.completedJobs}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <TrendingUp className="w-4 h-4 text-gray-400 mr-1" />
-                    <span className="font-medium">{provider.responseRate}%</span>
-                    <span className="ml-1 text-gray-500">{currentContent.responseRate}</span>
+                    <span className="font-medium">
+                      {provider.responseRate}%
+                    </span>
+                    <span className="ml-1 text-gray-500">
+                      {currentContent.responseRate}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 text-gray-400 mr-1" />
-                    <span className="text-gray-500">{currentContent.joinedOn} {new Date(provider.joinedDate).toLocaleDateString()}</span>
+                    <span className="text-gray-500">
+                      {currentContent.joinedOn}{" "}
+                      {new Date(provider.joinedDate).toLocaleDateString()}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -318,12 +352,14 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
 
             {/* Action Buttons */}
             <div className="flex items-center space-x-3 mt-4 lg:mt-0">
-              <Button 
+              <Button
                 variant="outline"
                 onClick={() => setIsBookmarked(!isBookmarked)}
                 className={isBookmarked ? "text-red-600 border-red-600" : ""}
               >
-                <Heart className={`w-4 h-4 mr-2 ${isBookmarked ? "fill-current" : ""}`} />
+                <Heart
+                  className={`w-4 h-4 mr-2 ${isBookmarked ? "fill-current" : ""}`}
+                />
                 {currentContent.bookmark}
               </Button>
               <Button variant="outline">
@@ -351,7 +387,7 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
               { id: "services", label: currentContent.services },
               { id: "portfolio", label: currentContent.portfolio },
               { id: "reviews", label: currentContent.reviews },
-              { id: "availability", label: currentContent.availability }
+              { id: "availability", label: currentContent.availability },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -421,16 +457,27 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {provider.portfolio.slice(0, 2).map((work) => (
-                        <div key={work.id} className="border rounded-lg overflow-hidden">
+                        <div
+                          key={work.id}
+                          className="border rounded-lg overflow-hidden"
+                        >
                           <div className="aspect-video bg-gray-200 flex items-center justify-center">
                             <Camera className="w-8 h-8 text-gray-400" />
                           </div>
                           <div className="p-4">
-                            <h3 className="font-medium text-gray-900 mb-1">{work.title}</h3>
-                            <p className="text-sm text-gray-600 mb-2">{work.description}</p>
+                            <h3 className="font-medium text-gray-900 mb-1">
+                              {work.title}
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-2">
+                              {work.description}
+                            </p>
                             <div className="flex items-center justify-between text-sm">
-                              <span className="text-blue-600">{work.category}</span>
-                              <span className="text-gray-500">{new Date(work.date).toLocaleDateString()}</span>
+                              <span className="text-blue-600">
+                                {work.category}
+                              </span>
+                              <span className="text-gray-500">
+                                {new Date(work.date).toLocaleDateString()}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -445,7 +492,9 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
             {activeTab === "services" && (
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold text-gray-900">{currentContent.services}</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {currentContent.services}
+                  </h2>
                   <div className="flex items-center space-x-2">
                     <Button
                       variant={viewMode === "grid" ? "default" : "outline"}
@@ -464,21 +513,37 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                   </div>
                 </div>
 
-                <div className={viewMode === "grid" ? "grid grid-cols-1 md:grid-cols-2 gap-6" : "space-y-4"}>
+                <div
+                  className={
+                    viewMode === "grid"
+                      ? "grid grid-cols-1 md:grid-cols-2 gap-6"
+                      : "space-y-4"
+                  }
+                >
                   {provider.services.map((service) => (
                     <Card key={service.id}>
                       <div className="p-6">
                         <div className="flex items-start justify-between mb-3">
                           <div>
-                            <h3 className="text-lg font-semibold text-gray-900">{service.title}</h3>
-                            <p className="text-sm text-blue-600">{service.category}</p>
+                            <h3 className="text-lg font-semibold text-gray-900">
+                              {service.title}
+                            </h3>
+                            <p className="text-sm text-blue-600">
+                              {service.category}
+                            </p>
                           </div>
                           <div className="text-right">
-                            <div className="text-lg font-bold text-gray-900">रू {service.rate}</div>
-                            <div className="text-sm text-gray-500">प्रति {service.unit}</div>
+                            <div className="text-lg font-bold text-gray-900">
+                              रू {service.rate}
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              प्रति {service.unit}
+                            </div>
                           </div>
                         </div>
-                        <p className="text-gray-600 mb-4">{service.description}</p>
+                        <p className="text-gray-600 mb-4">
+                          {service.description}
+                        </p>
                         <Button className="w-full">
                           {currentContent.bookNow}
                           <ChevronRight className="w-4 h-4 ml-2" />
@@ -494,12 +559,18 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
             {activeTab === "reviews" && (
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold text-gray-900">{currentContent.clientReviews}</h2>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {currentContent.clientReviews}
+                  </h2>
                   <div className="text-right">
                     <div className="flex items-center">
                       <Star className="w-5 h-5 text-yellow-400 mr-1" />
-                      <span className="text-xl font-bold">{provider.rating}</span>
-                      <span className="text-gray-500 ml-1">({provider.reviewCount} reviews)</span>
+                      <span className="text-xl font-bold">
+                        {provider.rating}
+                      </span>
+                      <span className="text-gray-500 ml-1">
+                        ({provider.reviewCount} reviews)
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -514,8 +585,12 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                               {review.reviewer.charAt(0)}
                             </div>
                             <div className="ml-3">
-                              <div className="font-medium text-gray-900">{review.reviewer}</div>
-                              <div className="text-sm text-gray-500">{review.service}</div>
+                              <div className="font-medium text-gray-900">
+                                {review.reviewer}
+                              </div>
+                              <div className="text-sm text-gray-500">
+                                {review.service}
+                              </div>
                             </div>
                           </div>
                           <div className="text-right">
@@ -524,7 +599,9 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                                 <Star
                                   key={i}
                                   className={`w-4 h-4 ${
-                                    i < review.rating ? "text-yellow-400 fill-current" : "text-gray-300"
+                                    i < review.rating
+                                      ? "text-yellow-400 fill-current"
+                                      : "text-gray-300"
                                   }`}
                                 />
                               ))}
@@ -551,7 +628,10 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                   </h2>
                   <div className="space-y-3">
                     {dayKeys.map((day) => (
-                      <div key={day} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
+                      <div
+                        key={day}
+                        className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0"
+                      >
                         <span className="font-medium text-gray-900">
                           {currentContent.days[day]}
                         </span>
@@ -559,7 +639,8 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                           <div className="flex items-center text-green-600">
                             <Clock className="w-4 h-4 mr-1" />
                             <span>
-                              {provider.availability[day].start} - {provider.availability[day].end}
+                              {provider.availability[day].start} -{" "}
+                              {provider.availability[day].end}
                             </span>
                           </div>
                         ) : (
@@ -584,18 +665,28 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                 <div className="space-y-3">
                   <div className="flex items-center">
                     <Phone className="w-4 h-4 text-gray-400 mr-3" />
-                    <span className="text-gray-600">{provider.contact.phone}</span>
+                    <span className="text-gray-600">
+                      {provider.contact.phone}
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <Mail className="w-4 h-4 text-gray-400 mr-3" />
-                    <span className="text-gray-600">{provider.contact.email}</span>
+                    <span className="text-gray-600">
+                      {provider.contact.email}
+                    </span>
                   </div>
                   <div className="flex items-start">
                     <MapPin className="w-4 h-4 text-gray-400 mr-3 mt-1" />
                     <div className="text-gray-600">
                       <div>{provider.location.area}</div>
-                      <div>{provider.location.municipality}-{provider.location.ward}</div>
-                      <div>{provider.location.district}, {provider.location.province}</div>
+                      <div>
+                        {provider.location.municipality}-
+                        {provider.location.ward}
+                      </div>
+                      <div>
+                        {provider.location.district},{" "}
+                        {provider.location.province}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -605,11 +696,13 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
             {/* Quick Stats */}
             <Card>
               <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  Quick Stats
+                </h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-gray-600">Response Time</span>
-                    <span className="font-medium">< 1 hour</span>
+                    <span className="font-medium">&lt; 1 hour</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-600">Languages</span>
@@ -631,9 +724,16 @@ export default function ProviderProfilePage({ params }: ProviderProfilePageProps
                 </h3>
                 <div className="space-y-3">
                   {provider.services.slice(0, 3).map((service) => (
-                    <div key={service.id} className="flex items-center justify-between">
-                      <span className="text-gray-600 text-sm">{service.title}</span>
-                      <span className="font-medium">रू {service.rate}/{service.unit}</span>
+                    <div
+                      key={service.id}
+                      className="flex items-center justify-between"
+                    >
+                      <span className="text-gray-600 text-sm">
+                        {service.title}
+                      </span>
+                      <span className="font-medium">
+                        रू {service.rate}/{service.unit}
+                      </span>
                     </div>
                   ))}
                 </div>
