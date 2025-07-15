@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { SERVICE_CATEGORIES } from "@/lib/constants";
@@ -23,7 +26,7 @@ export default function CategoriesPage() {
   const content = {
     ne: {
       title: "सेवा श्रेणीहरू",
-      subtitle: "आफ्नो आवश्यकता अनुसार सेवाको श्रेणी चयन गर्नुहोस्",
+      subtitle: "आफ��नो आवश्यकता अनुसार सेवाको श्रेणी चयन गर्नुहोस्",
       searchPlaceholder: "श्रेणी खोज्नुहोस्...",
       sortBy: "क्रमबद्ध गर्नुहोस्",
       popular: "लोकप्रिय",
@@ -31,7 +34,7 @@ export default function CategoriesPage() {
       newest: "नयाँ",
       subcategories: "उप-श्रेणीहरू",
       providers: "सेवा प्रदायकहरू",
-      viewSubcategories: "उप-श्रेणीहरू हेर्नुहोस��",
+      viewSubcategories: "उप-श्रेणीहरू हेर्नुहोस्",
       browse: "ब्राउज गर्नुहोस्",
     },
     en: {
