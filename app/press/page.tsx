@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -22,7 +20,7 @@ export default function PressPage() {
       aboutCompany:
         "सेवा खोज नेपालको अग्रणी सेवा मार्केटप्लेस हो जसले ग्राहकहरूलाई विश्वसनीय सेवा प्रदायकहरूसँग जोड्छ।",
       pressContact: "प्रेस सम्पर्क जानकारी",
-      mediaInquiries: "मिडिया सोधपुछ",
+      mediaInquiries: "मिडिया सोध���ुछ",
       pressReleasesList: [
         {
           title: "सेवा खोजले 50,000+ ग्राहकहरूको मापदण्डता पार गर्यो",
