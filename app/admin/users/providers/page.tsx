@@ -172,7 +172,7 @@ export default function ProvidersManagement() {
       case "pending":
         return <Shield className="h-4 w-4" />;
       case "suspended":
-        return <ShieldX className="h-4 w-4" />;
+        return <ShieldOff className="h-4 w-4" />;
       default:
         return <Shield className="h-4 w-4" />;
     }
