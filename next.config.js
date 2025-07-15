@@ -9,9 +9,18 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  // Configure ISR (Incremental Static Regeneration)
-  async generateBuildId() {
-    return "build-" + Date.now();
+  // Configure for Netlify deployment
+  output: "standalone",
+  trailingSlash: true,
+  // Handle dynamic imports properly
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      fs: false,
+      path: false,
+      crypto: false,
+    };
+    return config;
   },
 };
 
