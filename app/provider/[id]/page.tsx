@@ -58,7 +58,7 @@ export default function ProviderProfilePage({
     location: {
       province: "बागमती प्रदेश",
       district: "काठमाडौं",
-      municipality: "काठम���डौं महानगरपालिका",
+      municipality: "काठमाडौं महानगरपालिका",
       ward: 29,
       area: "बागबजार",
     },
@@ -79,7 +79,7 @@ export default function ProviderProfilePage({
       },
       {
         id: "2",
-        title: "कार्यालय सफाई",
+        title: "कार्यालय सफ��ई",
         titleEn: "Office Cleaning",
         description: "कार्यालयको दैनिक सफाई",
         rate: 1200,
@@ -114,7 +114,7 @@ export default function ProviderProfilePage({
       },
       {
         id: "2",
-        title: "घर सफाई",
+        title: "घर स���ाई",
         description: "नयाँ घरको पहिलो पटक गहिरो सफाई।",
         images: ["/portfolio4.jpg", "/portfolio5.jpg"],
         date: "2024-01-10",
@@ -144,7 +144,7 @@ export default function ProviderProfilePage({
         id: "2",
         reviewer: "अमित तामाङ",
         rating: 5,
-        comment: "व्यावसायिक र भरपर्दो सेवा। सिफारिस गर्छु।",
+        comment: "व्याव���ायिक र भरपर्दो सेवा। सिफारिस गर्छु।",
         date: "2024-01-18",
         service: "कार्यालय सफाई",
       },
@@ -152,7 +152,7 @@ export default function ProviderProfilePage({
         id: "3",
         reviewer: "मीरा गुरुंग",
         rating: 4,
-        comment: "राम्रो काम गर्��ुहुन्छ तर अलि ढिलो आउनुभयो।",
+        comment: "राम्रो काम गर्नुहुन्छ तर अलि ढिलो आउनुभयो।",
         date: "2024-01-15",
         service: "कार्पेट सफाई",
       },
@@ -497,7 +497,7 @@ export default function ProviderProfilePage({
                   </h2>
                   <div className="flex items-center space-x-2">
                     <Button
-                      variant={viewMode === "grid" ? "default" : "outline"}
+                      variant={viewMode === "grid" ? "primary" : "outline"}
                       size="sm"
                       onClick={() => setViewMode("grid")}
                     >
