@@ -54,7 +54,7 @@ const translations = {
     "home.bookNow": "बुक गर्नुहोस्",
     "home.features": "हाम्रा विशेषताहरू",
     "home.featuresDesc": "विश्वास, सुविधा र उत्कृष्ट अनुभवका लागि निर्मित!",
-    "home.verifiedProviders": "प्रमाणित ���ेवाप्रदायक",
+    "home.verifiedProviders": "प्रमाणित सेवाप्रदायक",
     "home.verifiedDesc":
       "सबै सेवा प्रदायकहरू पूर्ण रूपमा जाँच गरिएका र प्रमाणित छन्।",
     "home.instantBooking": "तुरुन्त बुकिङ",
@@ -69,7 +69,7 @@ const translations = {
 
     // Stats
     "stats.providers": "सक्रिय सेवाप्रदायक",
-    "stats.completed": "सम्पन्न ���ेवा",
+    "stats.completed": "सम्पन्न सेवा",
     "stats.customers": "खुसी ग्राहक",
     "stats.cities": "शहरहरू",
 
@@ -148,7 +148,7 @@ const translations = {
     "auth.signup.seekerDesc":
       "घर सरसफाइ, ट्यूशन, डिजिटल सेवा र अन्य आवश्यकताहरूका लागि विश्वसनीय सेवा प्रदायकहरू फेला पार्नुहोस्।",
     "auth.signup.providerDesc":
-      "आफ्ना सीप र सेवाहरू साझा गरेर आम्दानी गर्नुहोस्। हजारौ�� ग्राहकहरूसँग जोडिनुहोस्।",
+      "आफ्ना सीप र सेवाहरू साझा गरेर आम्दानी गर्नुहोस्। हजारौं ग्राहकहरूसँग जोडिनुहोस्।",
     "auth.signup.continue": "जारी राख्नुहोस्",
     "auth.signup.fullName": "पूरा नाम",
     "auth.signup.confirmPassword": "पासवर्ड पुष्टि गर्नुहोस्",
@@ -176,7 +176,7 @@ const translations = {
     "dashboard.provider.earnings": "आम्दानी",
     "dashboard.provider.monthlyEarnings": "मासिक आम्दानी",
     "dashboard.provider.weeklyEarnings": "साप्ताहिक आम्दानी",
-    "dashboard.provider.findJobs": "काम खोज्नुहोस्",
+    "dashboard.provider.findJobs": "काम खोज���नुहोस्",
     "dashboard.provider.manageServices": "सेवा व्यवस्थापन",
     "dashboard.provider.viewProfile": "प्रोफाइल हेर्नुहोस्",
     "dashboard.provider.applyNow": "अहिले आवेदन दिनुहोस्",
@@ -185,7 +185,7 @@ const translations = {
     "dashboard.seeker.home": "गृह",
     "dashboard.seeker.bookings": "बुकिङहरू",
     "dashboard.seeker.messages": "सन्देशहरू",
-    "dashboard.seeker.settings": "सेटिङ��रू",
+    "dashboard.seeker.settings": "सेटिङहरू",
     "dashboard.seeker.welcome": "स्वागत छ",
     "dashboard.seeker.searchServices": "सेवा खोज्नुहोस्",
     "dashboard.seeker.recentBookings": "हालका बुकिङहरू",
@@ -193,7 +193,7 @@ const translations = {
     "dashboard.seeker.quickStats": "द्रुत तथ्याङ्क",
     "dashboard.seeker.totalBookings": "कुल बुकिङहरू",
     "dashboard.seeker.completedServices": "सम्पन्न सेवाहरू",
-    "dashboard.seeker.savedProviders": "सुरक्षित प्रदायकहरू",
+    "dashboard.seeker.savedProviders": "सुरक्षित प्रद��यकहरू",
     "dashboard.seeker.unreadMessages": "नपढिएका सन्देशहरू",
     "dashboard.seeker.bookService": "सेवा बुक गर्नुहोस्",
     "dashboard.seeker.browseCategories": "श्रेणीहरू ब्राउज गर्नुहोस्",
@@ -201,7 +201,7 @@ const translations = {
     "dashboard.seeker.contactProvider": "प्रदायकलाई सम्पर्क गर्नुहोस्",
 
     // Forms
-    "form.booking.title": "सेवा बुक ग���्नुहोस्",
+    "form.booking.title": "सेवा बुक गर्नुहोस्",
     "form.booking.serviceDetails": "सेवाको विवरण",
     "form.booking.provider": "सेवा प्रदायक",
     "form.booking.serviceType": "सेवाको प्रकार",
@@ -234,7 +234,7 @@ const translations = {
     "booking.serviceDetails": "सेवा विवरण",
     "booking.whatService": "तपाईंलाई कस्तो सेवा चाहिएको छ?",
     "booking.serviceDetailsPlaceholder":
-      "कृपया आफ्ना आवश्यकताहरू विस्तारमा लेख्नुहोस्...",
+      "कृपया आफ्ना आवश्यकत���हरू विस्तारमा लेख्नुहोस्...",
     "booking.estimatedDuration": "अनुमानित अवधि",
     "booking.dateTime": "मिति र समय",
     "booking.selectDate": "मिति छान्नुहोस्",
@@ -290,7 +290,7 @@ const translations = {
     "findServices.in": "मा",
     "findServices.sortByRating": "रेटिङअनुसार मिलाउनुहोस्",
     "findServices.sortByPrice": "मूल्यअनुसार मिलाउनुहोस्",
-    "findServices.sortByReviews": "समीक्षाअनुसार मिलाउनुहोस्",
+    "findServices.sortByReviews": "समीक्षाअनुसार मिलाउन���होस्",
     "findServices.noResults": "कुनै नतिजा फेला परेन",
     "findServices.noResultsDesc": "फरक शब्दहरू प्रयोग गरेर खोजी गर्नुहोस्",
     "findServices.clearFilters": "फिल्टर सफा गर्नुहोस्",
@@ -313,7 +313,7 @@ const translations = {
     "services.newest": "नयाँ",
     "services.resultsFound": "परिणामहरू फेला परे",
     "services.noResults": "कुनै परिणाम फेला परेन",
-    "services.tryDifferentFilters": "फरक फिल्टरहरू प्रयोग गर्नुह���स्",
+    "services.tryDifferentFilters": "फरक फिल्टरहरू प्रयोग गर्नुहोस्",
     "services.clearFilters": "फिल्टरहरू हटाउनुहोस्",
     "services.showMore": "थप देखाउनुहोस्",
 
@@ -558,6 +558,39 @@ const translations = {
     "form.booking.total": "Total",
     "form.booking.confirmBooking": "Confirm Booking",
     "form.booking.termsAgree": "I agree to the terms of service.",
+
+    // Booking Page
+    "booking.newBooking": "New Booking",
+    "booking.serviceDetails": "Service Details",
+    "booking.whatService": "What service do you need?",
+    "booking.serviceDetailsPlaceholder":
+      "Please describe your requirements in detail...",
+    "booking.estimatedDuration": "Estimated Duration",
+    "booking.dateTime": "Date & Time",
+    "booking.selectDate": "Select Date",
+    "booking.selectTime": "Select Time",
+    "booking.selectedDateTime": "Selected Date & Time",
+    "booking.contactInfo": "Contact Information",
+    "booking.fullName": "Full Name",
+    "booking.fullNamePlaceholder": "Your full name",
+    "booking.email": "Email",
+    "booking.emailPlaceholder": "Your email address",
+    "booking.phone": "Phone Number",
+    "booking.phonePlaceholder": "Your phone number",
+    "booking.address": "Address",
+    "booking.addressPlaceholder": "Your complete address",
+    "booking.specialInstructions": "Special Instructions",
+    "booking.specialInstructionsPlaceholder":
+      "Any special instructions or notes...",
+    "booking.payment": "Payment",
+    "booking.summary": "Summary",
+    "booking.service": "Service",
+    "booking.provider": "Provider",
+    "booking.date": "Date",
+    "booking.location": "Location",
+    "booking.total": "Total",
+    "booking.paymentMethod": "Payment Method",
+    "booking.securePayment": "Secure payment guaranteed",
 
     "form.profile.title": "Update Profile",
     "form.profile.basicInfo": "Basic Information",
