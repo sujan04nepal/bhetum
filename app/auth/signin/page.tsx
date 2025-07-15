@@ -14,12 +14,24 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { t } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle sign in logic here
     console.log("Sign in:", { email, password, rememberMe });
+  };
+
+  const handleOAuthSignIn = async (provider: string) => {
+    setIsLoading(true);
+    try {
+      await signIn(provider, { callbackUrl: "/dashboard" });
+    } catch (error) {
+      console.error("OAuth error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
