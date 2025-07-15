@@ -22,8 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <LanguageProvider>
-          {children}
-          <FloatingActionButton />
+          <ClientLayout>{children}</ClientLayout>
         </LanguageProvider>
       </body>
     </html>
