@@ -104,9 +104,7 @@ export default function BecomeProviderPage() {
       number: 4,
       title: language === "ne" ? "समीक्षा" : "Review",
       description:
-        language === "ne"
-          ? "जानकारी ���मीक्षा गर्नुहोस्"
-          : "Review information",
+        language === "ne" ? "जानकारी समीक्षा गर्नुहोस्" : "Review information",
     },
   ];
 
@@ -554,7 +552,7 @@ export default function BecomeProviderPage() {
                     </h4>
                     <ul className="text-blue-800 space-y-1">
                       <li>• {t("becomeProvider.reviewProcess")}</li>
-                      <li>• {t("becomeProvider.verification")}</li>
+                      <li>• {t("becomeProvider.verificationProcess")}</li>
                       <li>• {t("becomeProvider.profileSetup")}</li>
                       <li>• {t("becomeProvider.startEarning")}</li>
                     </ul>
