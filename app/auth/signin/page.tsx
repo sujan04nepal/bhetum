@@ -26,9 +26,22 @@ export default function SignInPage() {
   const handleOAuthSignIn = async (provider: string) => {
     setIsLoading(true);
     try {
-      await signIn(provider, { callbackUrl: "/dashboard" });
+      const result = await signIn(provider, {
+        callbackUrl: "/dashboard",
+        redirect: false,
+      });
+
+      if (result?.error) {
+        console.error("OAuth error:", result.error);
+        // You could show an error message here
+        alert(`Sign in failed: ${result.error}`);
+      } else if (result?.ok) {
+        // Redirect will happen automatically
+        window.location.href = result.url || "/dashboard";
+      }
     } catch (error) {
       console.error("OAuth error:", error);
+      alert("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }
