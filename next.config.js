@@ -6,6 +6,13 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
+  // Generate static pages at build time
+  trailingSlash: false,
+  // Configure output for deployment
+  output: "standalone",
 };
 
 module.exports = nextConfig;
