@@ -111,7 +111,7 @@ function FindServicesContent() {
       availability: language === "ne" ? "व्यस्त" : "Busy",
       description:
         language === "ne"
-          ? "आधुनिक ग्राफिक डिजाइन र ब्रान्डिङ"
+          ? "आधुनिक ग्र���फिक डिजाइन र ब्रान्डिङ"
           : "Modern graphic design and branding solutions",
     },
     {
