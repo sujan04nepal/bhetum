@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   Search,
@@ -25,7 +25,7 @@ import {
 import { useLanguage } from "@/contexts/LanguageContext";
 import Link from "next/link";
 
-export default function FindServicesPage() {
+function FindServicesContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -58,7 +58,7 @@ export default function FindServicesPage() {
       rating: 4.9,
       reviews: 127,
       price: language === "ne" ? "रू ३५०/घण्टा" : "Rs 350/hr",
-      location: language === "ne" ? "काठम���डौं" : "Kathmandu",
+      location: language === "ne" ? "काठमाडौं" : "Kathmandu",
       image: "👩‍💼",
       badge: language === "ne" ? "टप रेटेड" : "Top Rated",
       responseTime: language === "ne" ? "२ मिनेट" : "2 min",
@@ -83,7 +83,7 @@ export default function FindServicesPage() {
       location: language === "ne" ? "पोखरा" : "Pokhara",
       image: "👨‍🏫",
       badge: language === "ne" ? "विशेषज्ञ" : "Expert",
-      responseTime: language === "ne" ? "५ मिन��ट" : "5 min",
+      responseTime: language === "ne" ? "५ मिनेट" : "5 min",
       completedJobs: 156,
       isVerified: true,
       availability: language === "ne" ? "उपलब्ध" : "Available",
@@ -111,7 +111,7 @@ export default function FindServicesPage() {
       availability: language === "ne" ? "व्यस्त" : "Busy",
       description:
         language === "ne"
-          ? "आधुनि�� ग्राफिक डिजाइन र ब्रान्डिङ"
+          ? "आधुनिक ग्राफिक डिजाइन र ब्रान्डिङ"
           : "Modern graphic design and branding solutions",
     },
     {
@@ -504,5 +504,24 @@ export default function FindServicesPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function FindServicesPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-6xl mb-4">🔍</div>
+            <div className="text-xl font-semibold text-gray-600">
+              Loading services...
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <FindServicesContent />
+    </Suspense>
   );
 }
