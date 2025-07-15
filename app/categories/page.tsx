@@ -126,10 +126,9 @@ export default function CategoriesPage() {
         {/* Categories Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedCategories.map((category) => {
-            const stats = categoryStats[category.id] || {
-              providers: 0,
-              subcategories: 0,
-            };
+            const stats = categoryStats[
+              category.id as keyof typeof categoryStats
+            ] || { providers: 0, subcategories: 0 };
 
             return (
               <Link key={category.id} href={`/categories/${category.id}`}>
