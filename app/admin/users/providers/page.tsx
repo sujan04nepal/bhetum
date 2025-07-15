@@ -576,7 +576,7 @@ export default function ProvidersManagement() {
                       </h4>
                       <div className="space-y-2">
                         {Object.entries(selectedProvider.documents).map(
-                          ([doc, status]: [string, string]) => (
+                          ([doc, status]) => (
                             <div
                               key={doc}
                               className="flex justify-between items-center"
