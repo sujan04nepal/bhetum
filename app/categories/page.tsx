@@ -215,8 +215,10 @@ export default function CategoriesPage() {
             {sortedCategories
               .sort(
                 (a, b) =>
-                  (categoryStats[b.id]?.providers || 0) -
-                  (categoryStats[a.id]?.providers || 0),
+                  (categoryStats[b.id as keyof typeof categoryStats]
+                    ?.providers || 0) -
+                  (categoryStats[a.id as keyof typeof categoryStats]
+                    ?.providers || 0),
               )
               .slice(0, 4)
               .map((category) => {
