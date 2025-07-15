@@ -199,12 +199,12 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
       specialties: ["इलस्ट्रेसन", "एनिमेसन", "भिडियो एडिटिङ"],
       experience: "2+ years",
       languages: ["नेपाली", "English"],
-      bio: "युवा डिजाइनर जसले इलस्ट्रेसन र एनिमेसनम�� काम गर्छे।",
+      bio: "युवा डिजाइनर जसले इलस्ट्रेसन र एनिमेसनमा काम गर्छे।",
     },
     {
       id: "5",
       name: "अनिल राई",
-      businessName: "टेक इनोभेसन",
+      businessName: "टेक इनोभे��न",
       rating: 4.5,
       reviews: 94,
       completedJobs: 203,
@@ -235,7 +235,7 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
       specialties: ["सोसल मिडिया", "कन्टेन्ट राइटिङ", "ब्लगिङ"],
       experience: "2+ years",
       languages: ["नेपाली", "English"],
-      bio: "सोसल मिडिया र कन्टेन्ट मार्केटिङमा विशेषज्ञ युवा प्रतिभा।",
+      bio: "सोसल मिडिया र कन्टेन्ट मार्���ेटिङमा विशेषज्ञ युवा प्रतिभा।",
     },
   ];
 
@@ -459,7 +459,7 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
                 </select>
                 <div className="flex items-center border border-gray-300 rounded-lg">
                   <Button
-                    variant={viewMode === "grid" ? "default" : "ghost"}
+                    variant={viewMode === "grid" ? "primary" : "ghost"}
                     size="sm"
                     onClick={() => setViewMode("grid")}
                     className="rounded-r-none"
