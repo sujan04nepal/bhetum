@@ -385,6 +385,8 @@ const topProviders = [
 export default function AdminDashboard() {
   const [timeRange, setTimeRange] = useState("7d");
   const [isLoading, setIsLoading] = useState(false);
+  const [showQuickActionModal, setShowQuickActionModal] = useState(false);
+  const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
 
   const handleQuickAction = (action: string) => {
     console.log(`Quick action: ${action}`);
