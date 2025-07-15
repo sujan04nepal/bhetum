@@ -31,7 +31,7 @@ export default function CategoriesPage() {
       newest: "नयाँ",
       subcategories: "उप-श्रेणीहरू",
       providers: "सेवा प्रदायकहरू",
-      viewSubcategories: "उप-श्रेणीहरू हेर्नुहोस्",
+      viewSubcategories: "उप-श्रेणीहरू हेर्नुहोस��",
       browse: "ब्राउज गर्नुहोस्",
     },
     en: {
@@ -221,10 +221,9 @@ export default function CategoriesPage() {
               )
               .slice(0, 4)
               .map((category) => {
-                const stats = categoryStats[category.id] || {
-                  providers: 0,
-                  subcategories: 0,
-                };
+                const stats = categoryStats[
+                  category.id as keyof typeof categoryStats
+                ] || { providers: 0, subcategories: 0 };
 
                 return (
                   <Link key={category.id} href={`/categories/${category.id}`}>
