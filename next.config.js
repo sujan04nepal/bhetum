@@ -9,43 +9,12 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  // Disable static optimization for problematic routes
-  async headers() {
-    return [
-      {
-        source: "/auth/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "no-store, max-age=0",
-          },
-        ],
-      },
-      {
-        source: "/admin/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "no-store, max-age=0",
-          },
-        ],
-      },
-      {
-        source: "/payment/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "no-store, max-age=0",
-          },
-        ],
-      },
-    ];
+  // Disable static generation to avoid SSR issues
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
   },
-  // Force client-side rendering for problematic pages
-  async rewrites() {
-    return [];
-  },
-  output: "standalone",
 };
 
 module.exports = nextConfig;
