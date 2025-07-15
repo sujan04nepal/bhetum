@@ -579,6 +579,13 @@ export default function AdminDashboard() {
             </div>
           </div>
         </Card>
+
+        {/* Quick Actions Modal */}
+        <QuickActionsModal
+          isOpen={showQuickActionModal}
+          onClose={() => setShowQuickActionModal(false)}
+          actionId={selectedActionId}
+        />
       </div>
     </AdminLayout>
   );
