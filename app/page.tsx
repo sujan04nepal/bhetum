@@ -27,6 +27,9 @@ import {
 } from "@/lib/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
@@ -86,12 +89,12 @@ export default function HomePage() {
       reviews: 45,
       price: language === "ne" ? "रू ८००/घण्टा" : "Rs 800/hr",
       location: language === "ne" ? "ललितपुर" : "Lalitpur",
-      image: "👩‍🎨",
+      image: "���‍🎨",
       badge: language === "ne" ? "उदीयमान कलाकार" : "Rising Star",
       specialties: ["Logo Design", "Branding", "Social Media"],
     },
     {
-      name: language === "ne" ? "अमित ���ौडेल" : "Amit Poudel",
+      name: language === "ne" ? "अमित पौडेल" : "Amit Poudel",
       service: language === "ne" ? "वेब डेभलपमेन्ट" : "Web Development",
       category: "digital-online",
       rating: 4.9,
