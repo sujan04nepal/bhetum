@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Home,
   Users,
@@ -30,103 +31,118 @@ interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-const sidebarItems = [
+const getSidebarItems = (t: (key: string) => string) => [
   {
-    title: "Dashboard",
+    title: t("admin.dashboard"),
     href: "/admin",
     icon: Home,
     exact: true,
   },
   {
-    title: "User Management",
+    title: t("admin.userManagement"),
     icon: Users,
     submenu: [
-      { title: "Service Providers", href: "/admin/users/providers" },
-      { title: "Service Seekers", href: "/admin/users/seekers" },
-      { title: "User Verification", href: "/admin/users/verification" },
+      { title: t("admin.serviceProviders"), href: "/admin/users/providers" },
+      { title: t("admin.serviceSeekers"), href: "/admin/users/seekers" },
+      { title: t("admin.userVerification"), href: "/admin/users/verification" },
     ],
   },
   {
-    title: "Service Management",
+    title: t("admin.serviceManagement"),
     icon: Package,
     submenu: [
-      { title: "All Services", href: "/admin/services" },
-      { title: "Categories", href: "/admin/services/categories" },
-      { title: "Service Approval", href: "/admin/services/approval" },
+      { title: t("admin.allServices"), href: "/admin/services" },
+      { title: t("admin.categories"), href: "/admin/services/categories" },
+      { title: t("admin.serviceApproval"), href: "/admin/services/approval" },
     ],
   },
   {
-    title: "Booking & Transactions",
+    title: t("admin.bookingTransactions"),
     icon: Calendar,
     submenu: [
-      { title: "All Bookings", href: "/admin/bookings" },
-      { title: "Transactions", href: "/admin/transactions" },
-      { title: "Refunds", href: "/admin/transactions/refunds" },
+      { title: t("admin.allBookings"), href: "/admin/bookings" },
+      { title: t("admin.transactions"), href: "/admin/transactions" },
+      { title: t("admin.refunds"), href: "/admin/transactions/refunds" },
     ],
   },
   {
-    title: "Payments & Commission",
+    title: t("admin.paymentsCommission"),
     icon: CreditCard,
     submenu: [
-      { title: "Revenue Tracking", href: "/admin/payments/revenue" },
-      { title: "Commission Settings", href: "/admin/payments/commission" },
-      { title: "Payouts", href: "/admin/payments/payouts" },
+      { title: t("admin.revenueTracking"), href: "/admin/payments/revenue" },
+      {
+        title: t("admin.commissionSettings"),
+        href: "/admin/payments/commission",
+      },
+      { title: t("admin.payouts"), href: "/admin/payments/payouts" },
     ],
   },
   {
-    title: "Disputes & Reviews",
+    title: t("admin.disputesReviews"),
     icon: MessageSquare,
     submenu: [
-      { title: "Dispute Management", href: "/admin/disputes" },
-      { title: "Review Moderation", href: "/admin/reviews" },
-      { title: "Reports", href: "/admin/reports" },
+      { title: t("admin.disputeManagement"), href: "/admin/disputes" },
+      { title: t("admin.reviewModeration"), href: "/admin/reviews" },
+      { title: t("admin.reports"), href: "/admin/reports" },
     ],
   },
   {
-    title: "Platform Notifications",
+    title: t("admin.platformNotifications"),
     icon: Bell,
     submenu: [
-      { title: "Send Notifications", href: "/admin/notifications/send" },
-      { title: "Email Templates", href: "/admin/notifications/templates" },
-      { title: "Push Settings", href: "/admin/notifications/settings" },
+      {
+        title: t("admin.sendNotifications"),
+        href: "/admin/notifications/send",
+      },
+      {
+        title: t("admin.emailTemplates"),
+        href: "/admin/notifications/templates",
+      },
+      { title: t("admin.pushSettings"), href: "/admin/notifications/settings" },
     ],
   },
   {
-    title: "Analytics",
+    title: t("admin.analytics"),
     href: "/admin/analytics",
     icon: BarChart3,
   },
   {
-    title: "Database Management",
+    title: t("admin.databaseManagement"),
     href: "/admin/database",
     icon: Database,
   },
   {
-    title: "Settings & Config",
+    title: t("admin.settingsConfig"),
     icon: Settings,
     submenu: [
-      { title: "Platform Settings", href: "/admin/settings/platform" },
-      { title: "Commission Rates", href: "/admin/settings/commission" },
-      { title: "Service Categories", href: "/admin/settings/categories" },
-      { title: "System Maintenance", href: "/admin/settings/maintenance" },
+      { title: t("admin.platformSettings"), href: "/admin/settings/platform" },
+      { title: t("admin.commissionRates"), href: "/admin/settings/commission" },
+      {
+        title: t("admin.serviceCategories"),
+        href: "/admin/settings/categories",
+      },
+      {
+        title: t("admin.systemMaintenance"),
+        href: "/admin/settings/maintenance",
+      },
     ],
   },
   {
-    title: "Logs & Audit",
+    title: t("admin.logsAudit"),
     icon: Shield,
     submenu: [
-      { title: "Activity Logs", href: "/admin/logs/activity" },
-      { title: "Admin Actions", href: "/admin/logs/admin" },
-      { title: "Security Logs", href: "/admin/logs/security" },
+      { title: t("admin.activityLogs"), href: "/admin/logs/activity" },
+      { title: t("admin.adminActions"), href: "/admin/logs/admin" },
+      { title: t("admin.securityLogs"), href: "/admin/logs/security" },
     ],
   },
   {
-    title: "Support Tools",
+    title: t("admin.supportTools"),
     icon: HelpCircle,
     submenu: [
-      { title: "Support Tickets", href: "/admin/support/tickets" },
-      { title: "Quick Replies", href: "/admin/support/replies" },
-      { title: "Contact Management", href: "/admin/support/contacts" },
+      { title: t("admin.supportTickets"), href: "/admin/support/tickets" },
+      { title: t("admin.quickReplies"), href: "/admin/support/replies" },
+      { title: t("admin.contactManagement"), href: "/admin/support/contacts" },
     ],
   },
 ];
@@ -135,6 +151,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const sidebarItems = getSidebarItems(t);
 
   const toggleExpanded = (title: string) => {
     setExpandedItems((prev) =>
@@ -168,7 +187,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-          <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
+          <h1 className="text-xl font-bold text-gray-900">
+            {t("admin.adminPanel")}
+          </h1>
           <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
             <X className="h-6 w-6" />
           </button>
@@ -239,7 +260,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               <span className="text-white text-sm font-medium">A</span>
             </div>
             <div className="ml-3 flex-1">
-              <p className="text-sm font-medium text-gray-900">Admin User</p>
+              <p className="text-sm font-medium text-gray-900">
+                {t("admin.adminUser")}
+              </p>
               <p className="text-xs text-gray-500">admin@servicekhoj.com</p>
             </div>
             <Button variant="outline" size="sm">
@@ -263,7 +286,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               </button>
               <div className="ml-4 lg:ml-0">
                 <h2 className="text-lg font-semibold text-gray-900">
-                  Service Marketplace Admin
+                  {t("admin.serviceMarketplaceAdmin")}
                 </h2>
               </div>
             </div>
@@ -274,7 +297,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder={t("admin.search")}
                   className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
