@@ -405,10 +405,31 @@ export default function ProvidersManagement() {
                           <Eye className="h-4 w-4" />
                         </Button>
                         <div className="relative">
-                          <Button variant="outline" size="sm">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                          {/* Dropdown menu would go here */}
+                          <select
+                            onChange={(e) => {
+                              if (e.target.value) {
+                                handleProviderAction(
+                                  provider.id,
+                                  e.target.value,
+                                );
+                                e.target.value = "";
+                              }
+                            }}
+                            className="px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          >
+                            <option value="">Actions</option>
+                            <option value="contact">Contact</option>
+                            {provider.status === "pending" && (
+                              <option value="verify">Verify</option>
+                            )}
+                            {provider.status !== "suspended" && (
+                              <option value="suspend">Suspend</option>
+                            )}
+                            {provider.status === "suspended" && (
+                              <option value="activate">Activate</option>
+                            )}
+                            <option value="delete">Delete</option>
+                          </select>
                         </div>
                       </div>
                     </td>
