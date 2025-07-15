@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import {
   MapPin,
@@ -25,7 +25,7 @@ import { SERVICE_CATEGORIES, MAJOR_CITIES } from "@/lib/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Link from "next/link";
 
-export default function PostRequestPage() {
+function PostRequestContent() {
   const [step, setStep] = useState(1);
   const [requestData, setRequestData] = useState({
     title: "",
@@ -65,7 +65,8 @@ export default function PostRequestPage() {
     },
     {
       number: 3,
-      title: language === "ne" ? "बजेट र आवश्यकताहरू" : "Budget & Requirements",
+      title:
+        language === "ne" ? "बजेट र आवश्यकताह���ू" : "Budget & Requirements",
       description:
         language === "ne"
           ? "बजेट र विशेष आवश्यकताहरू"
@@ -103,7 +104,10 @@ export default function PostRequestPage() {
   ];
 
   const budgetTypes = [
-    { id: "fixed", label: language === "ne" ? "निश्चित मूल्य" : "Fixed Price" },
+    {
+      id: "fixed",
+      label: language === "ne" ? "नि���्चित मूल्य" : "Fixed Price",
+    },
     { id: "hourly", label: language === "ne" ? "घण्टाको दर" : "Hourly Rate" },
     {
       id: "negotiable",
@@ -397,7 +401,7 @@ export default function PostRequestPage() {
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                         placeholder={
                           language === "ne"
-                            ? "आफ्ना आ���श्यकताहरू विस्तारमा लेख्नुहोस्..."
+                            ? "आफ्ना आवश्यकताहरू विस्तारमा लेख्नुहोस्..."
                             : "Describe your requirements in detail..."
                         }
                       />
@@ -705,7 +709,7 @@ export default function PostRequestPage() {
                       <li>
                         •{" "}
                         {language === "ne"
-                          ? "तपाईंको अनुरोध नजिकैका सेवा प्रदायकहरूलाई पठाइनेछ"
+                          ? "तपाईंको अनुरोध नजिकै���ा सेवा प्रदायकहरूलाई पठाइनेछ"
                           : "Your request will be sent to nearby service providers"}
                       </li>
                       <li>
@@ -774,5 +778,24 @@ export default function PostRequestPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function PostRequestPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-6xl mb-4">📝</div>
+            <div className="text-xl font-semibold text-gray-600">
+              Loading request form...
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <PostRequestContent />
+    </Suspense>
   );
 }
