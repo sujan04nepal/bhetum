@@ -10,12 +10,7 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   // Configure for Netlify deployment
-  output: "export",
   trailingSlash: true,
-  // Disable image optimization for static export
-  images: {
-    unoptimized: true,
-  },
   // Handle dynamic imports properly
   webpack: (config) => {
     config.resolve.fallback = {
