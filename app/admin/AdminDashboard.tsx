@@ -499,99 +499,55 @@ export default function AdminDashboard() {
           <UserGrowthWidget />
         </div>
 
-        {/* Additional Analytics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Platform Health */}
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Platform Health
-            </h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Uptime</span>
-                <span className="text-sm font-medium text-green-600">
-                  99.9%
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Response Time</span>
-                <span className="text-sm font-medium text-blue-600">245ms</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Error Rate</span>
-                <span className="text-sm font-medium text-yellow-600">
-                  0.1%
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Server Load</span>
-                <span className="text-sm font-medium text-purple-600">67%</span>
-              </div>
-            </div>
-          </Card>
+        {/* Additional Analytics and Widgets */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <PlatformHealthWidget />
+          <GeographicWidget />
+          <ServiceCategoriesWidget />
+        </div>
 
-          {/* User Satisfaction */}
+        {/* Notification Center */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <NotificationCenterWidget />
           <Card className="p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              User Satisfaction
+              Recent Bookings
             </h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Average Rating</span>
-                <div className="flex items-center">
-                  <Star className="h-4 w-4 text-yellow-400 fill-current mr-1" />
-                  <span className="text-sm font-medium">
-                    {dashboardStats.avgRating}
-                  </span>
+            <div className="space-y-3">
+              {recentBookings.map((booking) => (
+                <div
+                  key={booking.id}
+                  className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-900">
+                      {booking.service}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {booking.provider} → {booking.seeker}
+                    </p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      {booking.id} • {booking.date}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-medium text-gray-900">
+                      Rs {booking.amount.toLocaleString()}
+                    </p>
+                    <span
+                      className={`inline-block px-2 py-1 text-xs rounded-full ${
+                        booking.status === "completed"
+                          ? "bg-green-100 text-green-800"
+                          : booking.status === "in_progress"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-yellow-100 text-yellow-800"
+                      }`}
+                    >
+                      {booking.status.replace("_", " ")}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">
-                  Reviews This Month
-                </span>
-                <span className="text-sm font-medium text-blue-600">1,234</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Repeat Customers</span>
-                <span className="text-sm font-medium text-green-600">78%</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">NPS Score</span>
-                <span className="text-sm font-medium text-purple-600">+45</span>
-              </div>
-            </div>
-          </Card>
-
-          {/* Financial Summary */}
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Financial Summary
-            </h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Total Revenue</span>
-                <span className="text-sm font-medium text-green-600">
-                  Rs {dashboardStats.totalRevenue.toLocaleString()}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Commission Earned</span>
-                <span className="text-sm font-medium text-blue-600">
-                  Rs 245,678
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Pending Payouts</span>
-                <span className="text-sm font-medium text-orange-600">
-                  Rs 89,234
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600">Refunds Processed</span>
-                <span className="text-sm font-medium text-red-600">
-                  Rs 12,456
-                </span>
-              </div>
+              ))}
             </div>
           </Card>
         </div>
