@@ -7,7 +7,7 @@ import {
   MoreHorizontal,
   Shield,
   ShieldCheck,
-  ShieldX,
+  ShieldOff,
   Eye,
   Ban,
   Trash2,
