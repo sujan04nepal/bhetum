@@ -388,6 +388,16 @@ export default function AdminDashboard() {
   const [showQuickActionModal, setShowQuickActionModal] = useState(false);
   const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
 
+  // Transform data for widgets
+  const transformedTopProviders = topProviders.map((provider) => ({
+    name: provider.name,
+    category: provider.service,
+    rating: provider.rating,
+    metric: `${provider.jobs} jobs`,
+    value: provider.revenue,
+    period: "this month",
+  }));
+
   const handleQuickAction = (actionId: string) => {
     setSelectedActionId(actionId);
     setShowQuickActionModal(true);
