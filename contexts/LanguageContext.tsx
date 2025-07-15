@@ -37,7 +37,7 @@ const translations = {
 
     // Homepage
     "home.title": "नेपालको नम्बर १",
-    "home.subtitle": "सेवा खोज्ने ���्लेटफर्म",
+    "home.subtitle": "सेवा खोज्ने प्लेटफर्म",
     "home.description":
       "घर सरसफाइदेखि ट्यूशन, डिजिटल सेवादेखि रचनात्मक कामसम्म - विश्वसनीय सेवा प्रदायकहरू फेला पार्नुहोस्!",
     "home.searchPlaceholder": "कुन सेवा चाहिन्छ?",
@@ -51,7 +51,7 @@ const translations = {
       "नेपालका उत्कृष्ट सेवा प्रदायकहरूसँग भेट गर्नुहोस्!",
     "home.viewAll": "सबै हेर्नुहोस्",
     "home.viewProfile": "प्रोफाइल हेर्नुहोस्",
-    "home.bookNow": "बुक ���र्नुहोस्",
+    "home.bookNow": "बुक गर्नुहोस्",
     "home.features": "हाम्रा विशेषताहरू",
     "home.featuresDesc": "विश्वास, सुविधा र उत्कृष्ट अनुभवका लागि निर्मित!",
     "home.verifiedProviders": "प्रमाणित सेवाप्रदायक",
@@ -63,7 +63,7 @@ const translations = {
     "home.qualityGuarantee": "गुणस्तर ग्यारेन्टी",
     "home.qualityDesc": "१००% सन्तु��्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।",
     "home.readyTitle": "सुरु गर्न तयार हुनुहुन्छ?",
-    "home.readyDesc": "हजारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहो���्!",
+    "home.readyDesc": "��जारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहोस्!",
     "home.findServices": "सेवा खोज्नुहोस्",
     "home.becomeProvider": "सेवाप्रदायक बन्नुहोस्",
 
@@ -88,7 +88,7 @@ const translations = {
     "common.next": "अर्को चरण",
     "common.submit": "पेश गर्नुहोस्",
     "common.phone": "फोन नम्बर",
-    "common.email": "इमेल ���ेगाना",
+    "common.email": "इमेल ठेगाना",
     "common.name": "नाम",
     "common.address": "ठेगाना",
     "common.city": "शहर",
@@ -130,8 +130,8 @@ const translations = {
 
     // Auth Pages
     "auth.signin.title": "सेवा खोजमा लगइन गर्नुहोस्",
-    "auth.signin.subtitle": "आफ्नो खातामा पहुँच गर्नुहोस्",
-    "auth.signin.email": "इमेल ठे��ाना",
+    "auth.signin.subtitle": "��फ्नो खातामा पहुँच गर्नुहोस्",
+    "auth.signin.email": "इमेल ठेगाना",
     "auth.signin.password": "पासवर्ड",
     "auth.signin.rememberMe": "मलाई सम्झनुहोस्",
     "auth.signin.forgotPassword": "पासवर्ड बिर्सनुभयो?",
@@ -159,7 +159,7 @@ const translations = {
     "auth.signup.confirmPassword": "पासवर्ड पुष्टि गर्नुहोस्",
     "auth.signup.agreeTerms":
       "मैले सेवाका सर्तहरू र गोपनीयता नीति पढेको छु र सहमत छु।",
-    "auth.signup.createAccount": "खाता सिर्जना गर्नुहोस्",
+    "auth.signup.createAccount": "खाता सिर्���ना गर्नुहोस्",
     "auth.signup.alreadyHaveAccount": "पहिले नै खाता छ?",
     "auth.signup.signIn": "लगइन गर्नुहोस्",
 
@@ -177,11 +177,11 @@ const translations = {
     "dashboard.provider.viewDetails": "विवरण हेर्नुहोस्",
     "dashboard.provider.recentActivity": "हालका गतिविधिहरू",
     "dashboard.provider.pendingApplications": "बाँकी आवेदनहरू",
-    "dashboard.provider.activeJobs": "सक्रिय कामहरू",
+    "dashboard.provider.activeJobs": "सक्रिय कामह���ू",
     "dashboard.provider.earnings": "आम्दानी",
     "dashboard.provider.monthlyEarnings": "मासिक आम्दानी",
     "dashboard.provider.weeklyEarnings": "साप्ताहिक आम्दानी",
-    "dashboard.provider.findJobs": "काम खोज्नुह��स्",
+    "dashboard.provider.findJobs": "काम खोज्नुहोस्",
     "dashboard.provider.manageServices": "सेवा व्यवस्थापन",
     "dashboard.provider.viewProfile": "प्रोफाइल हेर्नुहोस्",
     "dashboard.provider.applyNow": "अहिले आवेदन दिनुहोस्",
@@ -412,7 +412,7 @@ const translations = {
     "admin.userManagement": "प्रयोगकर्ता व्यवस्थापन",
     "admin.serviceManagement": "सेवा व्यवस्थापन",
     "admin.bookings": "बुकिङहरू",
-    "admin.analytics": "वि���्लेषण",
+    "admin.analytics": "विश्लेषण",
     "admin.settings": "सेटिङहरू",
     "admin.logout": "लगआउट",
     "admin.welcome": "स्वागत छ",
@@ -446,7 +446,7 @@ const translations = {
     "admin.refunds": "फिर्ता",
     "admin.paymentsCommission": "भुक्तानी र कमिसन",
     "admin.revenueTracking": "आम्दानी ट्र्याकिङ",
-    "admin.commissionSettings": "कमिस�� सेटिङहरू",
+    "admin.commissionSettings": "कमिसन सेटिङहरू",
     "admin.payouts": "भुक्तानी",
     "admin.disputesReviews": "विवाद र समीक्षाहरू",
     "admin.disputeManagement": "विवाद व्यवस्थापन",
@@ -461,9 +461,9 @@ const translations = {
     "admin.platformSettings": "प्लेटफर्म सेटिङहरू",
     "admin.commissionRates": "कमिसन दरहरू",
     "admin.serviceCategories": "सेवा श्रेणीहरू",
-    "admin.systemMaintenance": "सिस्टम मर्मत",
+    "admin.systemMaintenance": "सिस्���म मर्मत",
     "admin.logsAudit": "लगहरू र अडिट",
-    "admin.activityLogs": "गति��िधि लगहरू",
+    "admin.activityLogs": "गतिविधि लगहरू",
     "admin.adminActions": "प्रशासक कार्यहरू",
     "admin.securityLogs": "सुरक्षा लगहरू",
     "admin.supportTools": "सहयोग उपकरणहरू",
@@ -480,7 +480,7 @@ const translations = {
     "howItWorks.step2Desc": "सेवा प्रदायकहरूको तुलना गर्नुहोस्",
     "howItWorks.step3": "बुक गर्नुहोस्",
     "howItWorks.step3Desc": "मनपर्ने प्रदायकलाई बुक गर्नुहोस्",
-    "howItWorks.step4": "आन���्द लिनुहोस्",
+    "howItWorks.step4": "आनन्द लिनुहोस्",
     "howItWorks.step4Desc": "गुणस्तरीय सेवाको आनन्द लिनुहोस्",
 
     // Payment System
@@ -494,6 +494,14 @@ const translations = {
     "payment.payNow": "अब भुक्तानी गर्नुहोस्",
     "payment.paymentSuccessful": "भुक्तानी सफल",
     "payment.paymentFailed": "भुक्तानी असफल",
+    "payment.selectMethod": "भुक्तानी विधि छान्नुहोस्",
+    "payment.processing": "भुक्तानी प्रक्रिया भइरहेको छ",
+    "payment.breakdown": "भुक्तानी विवरण",
+    "payment.platformFee": "प्लेटफर्म शुल्क",
+    "payment.gatewayFee": "गेटवे शुल्क",
+    "payment.providerEarnings": "प���रदायक आम्दानी",
+    "payment.securePayment": "सुरक्षित भुक्तानी",
+    "payment.paymentProtected": "तपाईंको भुक्तानी सुरक्षित छ",
 
     // Reviews and Ratings
     "review.addReview": "समीक्षा थप्नुहोस्",
@@ -512,7 +520,7 @@ const translations = {
     "notification.newMessage": "नयाँ सन्देश",
 
     // OAuth
-    "oauth.continueWith": "यसबाट जारी राख्नुहोस्",
+    "oauth.continueWith": "यसबाट जारी राख्नुहोस��",
     "oauth.google": "Google",
     "oauth.facebook": "Facebook",
     "oauth.apple": "Apple",
