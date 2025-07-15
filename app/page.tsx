@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   Search,
   Star,
@@ -29,6 +31,20 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
   const { t, language } = useLanguage();
+  const router = useRouter();
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+    if (searchQuery) params.set("q", searchQuery);
+    if (location) params.set("location", location);
+    router.push(`/find-services?${params.toString()}`);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   const featuredProviders = [
     {
@@ -75,7 +91,7 @@ export default function HomePage() {
       specialties: ["Logo Design", "Branding", "Social Media"],
     },
     {
-      name: language === "ne" ? "अमित पौडेल" : "Amit Poudel",
+      name: language === "ne" ? "अमित ���ौडेल" : "Amit Poudel",
       service: language === "ne" ? "वेब डेभलपमेन्ट" : "Web Development",
       category: "digital-online",
       rating: 4.9,
@@ -181,6 +197,7 @@ export default function HomePage() {
                       placeholder={t("home.searchPlaceholder")}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyPress={handleKeyPress}
                       className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all backdrop-blur-sm"
                     />
                   </div>
@@ -205,7 +222,10 @@ export default function HomePage() {
                       ))}
                     </select>
                   </div>
-                  <Button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl">
+                  <Button
+                    onClick={handleSearch}
+                    className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl"
+                  >
                     <Search className="h-5 w-5 mr-2" />
                     {t("home.searchButton")} ✨
                   </Button>
@@ -254,8 +274,9 @@ export default function HomePage() {
               const colors =
                 CATEGORY_COLORS[category.id as keyof typeof CATEGORY_COLORS];
               return (
-                <div
+                <Link
                   key={category.id}
+                  href={`/categories/${category.id}`}
                   className="category-card group"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -299,7 +320,7 @@ export default function HomePage() {
                       )}
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -318,9 +339,11 @@ export default function HomePage() {
                 {t("home.topProvidersDesc")} ⭐
               </p>
             </div>
-            <Button className="btn-vibrant hidden md:flex items-center">
-              {t("home.viewAll")} <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="/find-services">
+              <Button className="btn-vibrant hidden md:flex items-center">
+                {t("home.viewAll")} <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -394,12 +417,19 @@ export default function HomePage() {
                     </div>
 
                     <div className="flex space-x-3">
-                      <Button variant="outline" className="flex-1">
-                        {t("home.viewProfile")}
-                      </Button>
-                      <Button className="flex-1 btn-vibrant">
-                        {t("home.bookNow")} ⚡
-                      </Button>
+                      <Link href={`/provider/${index + 1}`} className="flex-1">
+                        <Button variant="outline" className="w-full">
+                          {t("home.viewProfile")}
+                        </Button>
+                      </Link>
+                      <Link
+                        href={`/booking/new?provider=${index + 1}`}
+                        className="flex-1"
+                      >
+                        <Button className="w-full btn-vibrant">
+                          {t("home.bookNow")} ⚡
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </Card>
@@ -470,12 +500,16 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button className="bg-white text-purple-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 text-lg">
-              🔍 {t("home.findServices")}
-            </Button>
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-600 font-bold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-lg">
-              💼 {t("home.becomeProvider")}
-            </Button>
+            <Link href="/find-services">
+              <Button className="bg-white text-purple-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 text-lg">
+                🔍 {t("home.findServices")}
+              </Button>
+            </Link>
+            <Link href="/become-provider">
+              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 font-bold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-lg">
+                💼 {t("home.becomeProvider")}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
