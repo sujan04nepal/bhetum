@@ -306,7 +306,7 @@ export default function CategorySubcategoriesPage({
                 <Grid className="w-4 h-4" />
               </Button>
               <Button
-                variant={viewMode === "list" ? "default" : "ghost"}
+                variant={viewMode === "list" ? "primary" : "ghost"}
                 size="sm"
                 onClick={() => setViewMode("list")}
                 className="rounded-l-none"
