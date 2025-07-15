@@ -483,66 +483,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">
-              Quick Actions
-            </h3>
-            <Button variant="outline" size="sm">
-              <Settings className="h-4 w-4 mr-2" />
-              Customize
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <QuickActionButton
-              title="Verify Providers"
-              subtitle={`${dashboardStats.pendingVerifications} pending`}
-              icon={UserCheck}
-              color="hover:border-green-500 hover:text-green-600"
-              onClick={() => handleQuickAction("verify_providers")}
-              badge={dashboardStats.pendingVerifications}
-            />
-            <QuickActionButton
-              title="Resolve Disputes"
-              subtitle={`${dashboardStats.disputeCount} active`}
-              icon={MessageSquare}
-              color="hover:border-red-500 hover:text-red-600"
-              onClick={() => handleQuickAction("resolve_disputes")}
-              badge={dashboardStats.disputeCount}
-            />
-            <QuickActionButton
-              title="Approve Services"
-              subtitle="23 pending"
-              icon={Package}
-              color="hover:border-blue-500 hover:text-blue-600"
-              onClick={() => handleQuickAction("approve_services")}
-              badge={23}
-            />
-            <QuickActionButton
-              title="Process Payouts"
-              subtitle={`${dashboardStats.pendingPayouts} ready`}
-              icon={CreditCard}
-              color="hover:border-purple-500 hover:text-purple-600"
-              onClick={() => handleQuickAction("process_payouts")}
-              badge={dashboardStats.pendingPayouts}
-            />
-            <QuickActionButton
-              title="Support Tickets"
-              subtitle={`${dashboardStats.supportTickets} open`}
-              icon={Bell}
-              color="hover:border-yellow-500 hover:text-yellow-600"
-              onClick={() => handleQuickAction("support_tickets")}
-              badge={dashboardStats.supportTickets}
-            />
-            <QuickActionButton
-              title="System Settings"
-              subtitle="Configure platform"
-              icon={Settings}
-              color="hover:border-gray-500 hover:text-gray-600"
-              onClick={() => handleQuickAction("system_settings")}
-            />
-          </div>
-        </Card>
+        <QuickActions onActionClick={handleQuickAction} />
 
         {/* Charts and Analytics Row */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
