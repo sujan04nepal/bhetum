@@ -181,7 +181,7 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
       specialties: ["मोबाइल एप", "वेब डेभलपमेन्ट", "डाटाबेस"],
       experience: "7+ years",
       languages: ["नेपाली", "English"],
-      bio: "सिनियर सफ्टवेयर डेभलपर। मोबाइल एप र वेब डेभलपमेन्टमा एक्सपर्ट।",
+      bio: "सिनियर सफ्टवेयर डेभलपर। मोबाइल एप र वेब डेभलपमेन्टमा ��क्सपर्ट।",
     },
     {
       id: "4",
@@ -204,7 +204,7 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
     {
       id: "5",
       name: "अनिल राई",
-      businessName: "टेक इनोभे��न",
+      businessName: "टेक इनोभेसन",
       rating: 4.5,
       reviews: 94,
       completedJobs: 203,
@@ -235,7 +235,7 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
       specialties: ["सोसल मिडिया", "कन्टेन्ट राइटिङ", "ब्लगिङ"],
       experience: "2+ years",
       languages: ["नेपाली", "English"],
-      bio: "सोसल मिडिया र कन्टेन्ट मार्���ेटिङमा विशेषज्ञ युवा प्रतिभा।",
+      bio: "सोसल मिडिया र कन्टेन्ट मार्केटिङमा विशेषज्ञ युवा प्रतिभा।",
     },
   ];
 
@@ -357,7 +357,7 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
                     >
                       <option value="">All Locations</option>
                       <option value="काठमाडौं">काठमाडौं</option>
-                      <option value="ललितपुर">ललितपुर</option>
+                      <option value="लल���तपुर">ललितपुर</option>
                       <option value="भक्तपुर">भक्तपुर</option>
                       <option value="पोखरा">पोखरा</option>
                       <option value="चितवन">चितवन</option>
@@ -467,7 +467,7 @@ export default function ProvidersListPage({ params }: ProvidersListPageProps) {
                     <Grid className="w-4 h-4" />
                   </Button>
                   <Button
-                    variant={viewMode === "list" ? "default" : "ghost"}
+                    variant={viewMode === "list" ? "primary" : "ghost"}
                     size="sm"
                     onClick={() => setViewMode("list")}
                     className="rounded-l-none"
