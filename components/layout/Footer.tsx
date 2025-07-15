@@ -8,13 +8,21 @@ export function Footer() {
 
   const footerSections = {
     [t("footer.customers")]: [
-      { name: t("footer.findServices"), href: "/services" },
+      { name: t("footer.findServices"), href: "/find-services" },
+      {
+        name: language === "ne" ? "श्रेणीहरू" : "Categories",
+        href: "/categories",
+      },
       { name: t("footer.howItWorks"), href: "/how-it-works" },
       { name: t("footer.safety"), href: "/safety" },
       { name: t("footer.customerSupport"), href: "/support" },
     ],
     [t("footer.providers")]: [
-      { name: t("footer.becomeProvider"), href: "/provider/signup" },
+      { name: t("footer.becomeProvider"), href: "/become-provider" },
+      {
+        name: language === "ne" ? "अनुरोध ब्राउज गर्नुहोस्" : "Browse Requests",
+        href: "/browse-requests",
+      },
       { name: t("footer.providerResources"), href: "/provider/resources" },
       { name: t("footer.earnings"), href: "/provider/earnings" },
       { name: t("footer.providerSupport"), href: "/provider/support" },
@@ -41,19 +49,38 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="md:col-span-1">
-            <div className="flex items-center mb-4">
+            <Link href="/" className="flex items-center mb-4">
               <span className="text-2xl mr-2">🇳🇵</span>
               <h3 className="text-lg font-semibold">{brandName}</h3>
-            </div>
+            </Link>
             <p className="text-gray-400 text-sm mb-4">
               {t("footer.description")}
             </p>
+
+            {/* Quick Actions */}
+            <div className="space-y-2 mb-4">
+              <Link
+                href="/find-services"
+                className="block text-sm text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                🔍 {language === "ne" ? "सेवा खोज्नुहोस्" : "Find Services"}
+              </Link>
+              <Link
+                href="/post-request"
+                className="block text-sm text-green-400 hover:text-green-300 transition-colors"
+              >
+                📝{" "}
+                {language === "ne" ? "अनुरोध पोस्ट गर्नुहोस्" : "Post Request"}
+              </Link>
+            </div>
+
+            {/* Social Links */}
             <div className="flex space-x-4">
               <a
                 href="#"
                 className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Facebook"
               >
-                <span className="sr-only">Facebook</span>
                 <svg
                   className="h-5 w-5"
                   fill="currentColor"
@@ -65,8 +92,8 @@ export function Footer() {
               <a
                 href="#"
                 className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Twitter"
               >
-                <span className="sr-only">Twitter</span>
                 <svg
                   className="h-5 w-5"
                   fill="currentColor"
@@ -78,8 +105,8 @@ export function Footer() {
               <a
                 href="#"
                 className="text-gray-400 hover:text-white transition-colors"
+                aria-label="LinkedIn"
               >
-                <span className="sr-only">LinkedIn</span>
                 <svg
                   className="h-5 w-5"
                   fill="currentColor"
@@ -91,8 +118,8 @@ export function Footer() {
               <a
                 href="#"
                 className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Instagram"
               >
-                <span className="sr-only">Instagram</span>
                 <svg
                   className="h-5 w-5"
                   fill="currentColor"
@@ -124,8 +151,33 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-          <p>{t("footer.copyright")}</p>
+        {/* Bottom Section */}
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">{t("footer.copyright")}</p>
+
+            {/* Quick Links */}
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link
+                href="/terms"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                {language === "ne" ? "सेवाका सर्तहरू" : "Terms"}
+              </Link>
+              <Link
+                href="/privacy"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                {language === "ne" ? "गोपनीयता" : "Privacy"}
+              </Link>
+              <Link
+                href="/support"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                {language === "ne" ? "सहयोग" : "Support"}
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
