@@ -56,14 +56,14 @@ const translations = {
     "home.featuresDesc": "विश्वास, सुविधा र उत्कृष्ट अनुभवका लागि निर्मित!",
     "home.verifiedProviders": "प्रमाणित सेवाप्रदायक",
     "home.verifiedDesc":
-      "सबै सेवा प्रदायकहरू पूर्ण रूपमा जाँच गरिएका र प्रमाणित छन्।",
+      "सबै सेवा प्रदायकहरू पूर्ण रूपमा जाँच गरिएका र प्���माणित छन्।",
     "home.instantBooking": "तुरुन्त बुकिङ",
     "home.instantDesc":
       "चाहेको बेलामा तुरुन्त सेवा बुक गर्नुहोस्। सजिलो र छिटो!",
     "home.qualityGuarantee": "गुणस्तर ग्यारेन्टी",
     "home.qualityDesc": "१००% सन्तु��्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।",
     "home.readyTitle": "सुरु गर्न तयार हुनुहुन्छ?",
-    "home.readyDesc": "��जारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहोस्!",
+    "home.readyDesc": "हजारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहोस्!",
     "home.findServices": "सेवा खोज्नुहोस्",
     "home.becomeProvider": "सेवाप्रदायक बन्नुहोस्",
 
@@ -121,7 +121,7 @@ const translations = {
     "footer.careers": "करियर",
     "footer.press": "प्रेस",
     "footer.blog": "ब्लग",
-    "footer.helpCenter": "सहायता केन्द्र",
+    "footer.helpCenter": "सहायता केन्��्र",
     "footer.contact": "सम्पर्क गर्नुहोस्",
     "footer.terms": "सेवाका सर्तहरू",
     "footer.privacy": "गोपनीयता नीति",
@@ -130,7 +130,7 @@ const translations = {
 
     // Auth Pages
     "auth.signin.title": "सेवा खोजमा लगइन गर्नुहोस्",
-    "auth.signin.subtitle": "��फ्नो खातामा पहुँच गर्नुहोस्",
+    "auth.signin.subtitle": "आफ्नो खातामा पहुँच गर्नुहोस्",
     "auth.signin.email": "इमेल ठेगाना",
     "auth.signin.password": "पासवर्ड",
     "auth.signin.rememberMe": "मलाई सम्झनुहोस्",
@@ -138,7 +138,7 @@ const translations = {
     "auth.signin.signInButton": "लगइन गर्नुहोस्",
     "auth.signin.noAccount": "खाता छैन?",
     "auth.signin.signUp": "यहाँ दर्ता गर्नुहोस्",
-    "auth.signin.orContinueWith": "वा यसबाट जारी राख्नुहोस्",
+    "auth.signin.orContinueWith": "वा य��बाट जारी राख्नुहोस्",
     "auth.signin.google": "Google बाट लगइन",
     "auth.signin.facebook": "Facebook बाट लगइन",
     "auth.signin.backToHome": "मुख्य पृष्ठमा फर्किनुहोस्",
@@ -159,7 +159,7 @@ const translations = {
     "auth.signup.confirmPassword": "पासवर्ड पुष्टि गर्नुहोस्",
     "auth.signup.agreeTerms":
       "मैले सेवाका सर्तहरू र गोपनीयता नीति पढेको छु र सहमत छु।",
-    "auth.signup.createAccount": "खाता सिर्���ना गर्नुहोस्",
+    "auth.signup.createAccount": "खाता सिर्जना गर्नुहोस्",
     "auth.signup.alreadyHaveAccount": "पहिले नै खाता छ?",
     "auth.signup.signIn": "लगइन गर्नुहोस्",
 
@@ -177,7 +177,7 @@ const translations = {
     "dashboard.provider.viewDetails": "विवरण हेर्नुहोस्",
     "dashboard.provider.recentActivity": "हालका गतिविधिहरू",
     "dashboard.provider.pendingApplications": "बाँकी आवेदनहरू",
-    "dashboard.provider.activeJobs": "सक्रिय कामह���ू",
+    "dashboard.provider.activeJobs": "सक्रिय कामहरू",
     "dashboard.provider.earnings": "आम्दानी",
     "dashboard.provider.monthlyEarnings": "मासिक आम्दानी",
     "dashboard.provider.weeklyEarnings": "साप्ताहिक आम्दानी",
@@ -243,7 +243,7 @@ const translations = {
     "booking.estimatedDuration": "अनुमानित अवधि",
     "booking.dateTime": "मिति र समय",
     "booking.selectDate": "मिति छान्नुहोस्",
-    "booking.selectTime": "समय छान्नुहोस्",
+    "booking.selectTime": "समय छ���न्नुहोस्",
     "booking.selectedDateTime": "छानिएको मिति र समय",
     "booking.contactInfo": "सम्पर्क जानकारी",
     "booking.fullName": "पूरा नाम",
@@ -346,7 +346,7 @@ const translations = {
     "becomeProvider.verificationProcess": "कागजात प्रमाणीकरण प्रक्रिया",
     "becomeProvider.profileSetup": "प्रोफाइल सेटअप पूरा गर्नुहोस्",
     "becomeProvider.startEarning": "आम्दानी सुरु गर्नुहोस्!",
-    "becomeProvider.submit": "आवेदन पेश गर्नुहोस्",
+    "becomeProvider.submit": "आ���ेदन पेश गर्नुहोस्",
 
     // Services Page
     "services.title": "सेवाहरू खोज्नुहोस्",
@@ -453,7 +453,7 @@ const translations = {
     "admin.reviewModeration": "समीक्षा मोडरेसन",
     "admin.reports": "रिपोर्टहरू",
     "admin.platformNotifications": "प्लेटफर्म सूचनाहरू",
-    "admin.sendNotifications": "सूचनाहरू पठाउनुहोस्",
+    "admin.sendNotifications": "��ूचनाहरू पठाउनुहोस्",
     "admin.emailTemplates": "इमेल टेम्प्लेटहरू",
     "admin.pushSettings": "पुश सेटिङहरू",
     "admin.databaseManagement": "डाटाबेस व्यवस्थापन",
@@ -461,7 +461,7 @@ const translations = {
     "admin.platformSettings": "प्लेटफर्म सेटिङहरू",
     "admin.commissionRates": "कमिसन दरहरू",
     "admin.serviceCategories": "सेवा श्रेणीहरू",
-    "admin.systemMaintenance": "सिस्���म मर्मत",
+    "admin.systemMaintenance": "सिस्टम मर्मत",
     "admin.logsAudit": "लगहरू र अडिट",
     "admin.activityLogs": "गतिविधि लगहरू",
     "admin.adminActions": "प्रशासक कार्यहरू",
@@ -491,7 +491,7 @@ const translations = {
     "payment.commission": "कमिसन",
     "payment.serviceCharge": "सेवा शुल्क",
     "payment.total": "जम्मा",
-    "payment.payNow": "अब भुक्तानी गर्नुहोस्",
+    "payment.payNow": "अब भ���क्तानी गर्नुहोस्",
     "payment.paymentSuccessful": "भुक्तानी सफल",
     "payment.paymentFailed": "भुक्तानी असफल",
     "payment.selectMethod": "भुक्तानी विधि छान्नुहोस्",
@@ -499,7 +499,7 @@ const translations = {
     "payment.breakdown": "भुक्तानी विवरण",
     "payment.platformFee": "प्लेटफर्म शुल्क",
     "payment.gatewayFee": "गेटवे शुल्क",
-    "payment.providerEarnings": "प���रदायक आम्दानी",
+    "payment.providerEarnings": "प्रदायक आम्दानी",
     "payment.securePayment": "सुरक्षित भुक्तानी",
     "payment.paymentProtected": "तपाईंको भुक्तानी सुरक्षित छ",
 
@@ -509,7 +509,7 @@ const translations = {
     "review.writeReview": "समीक्षा लेख्नुहोस्",
     "review.submitReview": "समीक्षा पेश गर्नुहोस्",
     "review.helpful": "उपयोगी",
-    "review.notHelpful": "उपयोगी छैन",
+    "review.notHelpful": "���पयोगी छैन",
     "review.reportReview": "समीक्षा रिपोर्ट गर्नुहोस्",
 
     // Notifications
@@ -520,7 +520,7 @@ const translations = {
     "notification.newMessage": "नयाँ सन्देश",
 
     // OAuth
-    "oauth.continueWith": "यसबाट जारी राख्नुहोस��",
+    "oauth.continueWith": "यसबाट जारी राख्नुहोस्",
     "oauth.google": "Google",
     "oauth.facebook": "Facebook",
     "oauth.apple": "Apple",
@@ -999,6 +999,14 @@ const translations = {
     "payment.payNow": "Pay Now",
     "payment.paymentSuccessful": "Payment Successful",
     "payment.paymentFailed": "Payment Failed",
+    "payment.selectMethod": "Select Payment Method",
+    "payment.processing": "Processing Payment",
+    "payment.breakdown": "Payment Breakdown",
+    "payment.platformFee": "Platform Fee",
+    "payment.gatewayFee": "Gateway Fee",
+    "payment.providerEarnings": "Provider Earnings",
+    "payment.securePayment": "Secure Payment",
+    "payment.paymentProtected": "Your payment is protected",
 
     // Reviews and Ratings
     "review.addReview": "Add Review",
