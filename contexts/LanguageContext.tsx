@@ -56,10 +56,10 @@ const translations = {
     "home.featuresDesc": "विश्वास, सुविधा र उत्कृष्ट अनुभवका लागि निर्मित!",
     "home.verifiedProviders": "प्रमाणित सेवाप्रदायक",
     "home.verifiedDesc":
-      "सबै सेवा प्रदायकहरू पूर्ण ���ूपमा जाँच गरिएका र प्रमाणित छन्।",
+      "सबै सेवा प्रदायकहरू पूर्ण रूपमा जाँच गरिएका र प्रमाणित छन्।",
     "home.instantBooking": "तुरुन्त बुकिङ",
     "home.instantDesc":
-      "चाहेको बेलामा तुरुन्त सेवा बुक गर्नुहोस्। सजिलो र छिटो!",
+      "चाह��को बेलामा तुरुन्त सेवा बुक गर्नुहोस्। सजिलो र छिटो!",
     "home.qualityGuarantee": "गुणस्तर ग्यारेन्टी",
     "home.qualityDesc": "१००% सन्तु��्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।",
     "home.readyTitle": "सुरु गर्न तयार हुनुहुन्छ?",
@@ -102,7 +102,7 @@ const translations = {
     "common.response": "प्रतिक्रिया",
     "common.at": "मा",
     "common.viewProfile": "प्रोफाइल हेर्नुहोस्",
-    "common.bookNow": "बुक गर्नुहोस्",
+    "common.bookNow": "ब���क गर्नुहोस्",
 
     // Footer
     "footer.customers": "ग्राहकहरूका लागि",
@@ -123,7 +123,7 @@ const translations = {
     "footer.blog": "ब्लग",
     "footer.helpCenter": "सहायता केन्द्र",
     "footer.contact": "सम्पर्क गर्नुहोस्",
-    "footer.terms": "सेवाका सर्तहरू",
+    "footer.terms": "सेवाका सर्तहर���",
     "footer.privacy": "गोपनीयता नीति",
     "footer.description": "मानिसहरूलाई विश्वसनीय सेवा प्रदायकहरूसँग जोड्दै।",
     "footer.copyright": "© 2024 सेवा खोज। सबै अधिकार सुरक्षित।",
@@ -184,7 +184,7 @@ const translations = {
     "dashboard.provider.findJobs": "काम खोज्नुहोस्",
     "dashboard.provider.manageServices": "सेवा व्यवस्थापन",
     "dashboard.provider.viewProfile": "प्रोफाइल हेर्नुहोस्",
-    "dashboard.provider.applyNow": "अहिले आवे��न दिनुहोस्",
+    "dashboard.provider.applyNow": "अहिले आवेदन दिनुहोस्",
 
     "dashboard.seeker.title": "सेवा खोज���ने ड्यासबोर्ड",
     "dashboard.seeker.home": "गृह",
@@ -201,7 +201,7 @@ const translations = {
     "dashboard.seeker.savedProviders": "सुरक्षित प्रदायकहरू",
     "dashboard.seeker.unreadMessages": "नपढिएका सन्देशहरू",
     "dashboard.seeker.bookService": "सेवा बुक गर्नुहोस्",
-    "dashboard.seeker.browseCategories": "श्रेणीह���ू ब्राउज गर्नुहोस्",
+    "dashboard.seeker.browseCategories": "श्रेणीहरू ब्राउज गर्नुहोस्",
     "dashboard.seeker.viewAllBookings": "सबै बुकिङहरू हेर्नुहोस्",
     "dashboard.seeker.contactProvider": "प्रदायकलाई सम्पर्क गर्नुहोस्",
 
@@ -227,7 +227,7 @@ const translations = {
     "form.booking.esewa": "eSewa",
     "form.booking.khalti": "Khalti",
     "form.booking.online": "अनलाइन",
-    "form.booking.serviceCost": "सेवाको लागत",
+    "form.booking.serviceCost": "स���वाको लागत",
     "form.booking.baseRate": "आधारभूत दर",
     "form.booking.platformFee": "प्लेटफर्म शुल्क",
     "form.booking.total": "जम्मा",
@@ -262,10 +262,10 @@ const translations = {
     "booking.service": "सेवा",
     "booking.provider": "सेवा प्रदायक",
     "booking.date": "मिति",
-    "booking.location": "��्थान",
+    "booking.location": "स्थान",
     "booking.total": "जम्मा",
     "booking.paymentMethod": "भुक्तानी तरिका",
-    "booking.securePayment": "सुरक्षित भुक्तानी गारेन्टी",
+    "booking.securePayment": "सुरक्षित भुक्���ानी गारेन्टी",
 
     "form.profile.title": "प्रोफाइल अपडेट गर्नुहोस्",
     "form.profile.basicInfo": "आधारभूत जानकारी",
@@ -314,7 +314,7 @@ const translations = {
     "becomeProvider.email": "इमेल",
     "becomeProvider.emailPlaceholder": "तपाईंको इमेल ठेगाना",
     "becomeProvider.phone": "फोन नम्बर",
-    "becomeProvider.phonePlaceholder": "तपाईंक�� फोन नम्बर",
+    "becomeProvider.phonePlaceholder": "तपाईंको फोन नम्बर",
     "becomeProvider.location": "स्थान",
     "becomeProvider.selectLocation": "स्थान छान्नुहोस्",
     "becomeProvider.serviceDetails": "सेवा विवरण",
@@ -349,7 +349,7 @@ const translations = {
     "becomeProvider.submit": "आवेदन पेश गर्नुहोस्",
 
     // Services Page
-    "services.title": "सेवाहरू खोज्नुहोस्",
+    "services.title": "सेवाहरू खोज्नुहोस���",
     "services.subtitle":
       "तपाईंको आवश्यकता अनुसार उत्कृष्ट सेवा प्रदायकहरू फेला पार्नुहोस्",
     "services.filterBy": "फिल्टर गर्नुहोस्",
@@ -366,7 +366,7 @@ const translations = {
     "services.newest": "नयाँ",
     "services.resultsFound": "परिणामहरू फेला परे",
     "services.noResults": "कुनै परिणाम फेला परेन",
-    "services.tryDifferentFilters": "फरक फिल्टरहरू प्रयोग गर्नुहोस्",
+    "services.tryDifferentFilters": "फरक फिल्टरहरू प्रयोग गर्नुहोस��",
     "services.clearFilters": "फिल्टरहरू हटाउनुहोस्",
     "services.showMore": "थप देखाउनुहोस्",
 
@@ -391,7 +391,7 @@ const translations = {
     "time.yesterday": "हिजो",
     "time.thisWeek": "यो हप्ता",
     "time.lastWeek": "गत हप्ता",
-    "time.thisMonth": "��ो महिना",
+    "time.thisMonth": "यो महिना",
     "time.lastMonth": "गत महिना",
 
     // Days of Week
@@ -824,7 +824,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 export function useLanguage() {
   const context = useContext(LanguageContext);
   if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
+    // Return default values during SSR to prevent errors
+    return {
+      language: "ne" as Language,
+      setLanguage: () => {},
+      t: (key: string) => key,
+    };
   }
   return context;
 }
