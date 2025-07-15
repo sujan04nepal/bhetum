@@ -553,7 +553,48 @@ export function QuickActionsModal({
                   </Button>
                 </div>
               </div>
-              {/* Add more pending providers */}
+              <div className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                    👩‍🎨
+                  </div>
+                  <div>
+                    <p className="font-medium">Maya Tamang</p>
+                    <p className="text-sm text-gray-500">Graphic Designer</p>
+                  </div>
+                </div>
+                <div className="flex space-x-2">
+                  <Button size="sm" className="bg-green-600">
+                    <CheckCircle className="h-4 w-4 mr-1" />
+                    Approve
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <XCircle className="h-4 w-4 mr-1" />
+                    Reject
+                  </Button>
+                </div>
+              </div>
+              <div className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="flex items-center space-x-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                    👨‍🏫
+                  </div>
+                  <div>
+                    <p className="font-medium">Raj Gurung</p>
+                    <p className="text-sm text-gray-500">Math Tutor</p>
+                  </div>
+                </div>
+                <div className="flex space-x-2">
+                  <Button size="sm" className="bg-green-600">
+                    <CheckCircle className="h-4 w-4 mr-1" />
+                    Approve
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <XCircle className="h-4 w-4 mr-1" />
+                    Reject
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         );
