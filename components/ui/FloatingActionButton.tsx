@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Plus, Search, MessageCircle, X, ArrowUp } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -27,7 +27,7 @@ export function FloatingActionButton() {
   const actionItems = [
     {
       icon: Search,
-      label: language === "ne" ? "सेवा खोज्नुहो��्" : "Find Services",
+      label: language === "ne" ? "सेवा खोज्नुहोस्" : "Find Services",
       href: "/find-services",
       color: "bg-blue-600 hover:bg-blue-700",
     },
@@ -96,7 +96,7 @@ export function FloatingActionButton() {
           className={`p-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg transition-all duration-200 transform hover:scale-110 ${
             isOpen ? "rotate-45" : ""
           }`}
-          aria-label={language === "ne" ? "मेनु खोल्���ुहोस्" : "Open menu"}
+          aria-label={language === "ne" ? "मेनु खोल्नुहोस्" : "Open menu"}
         >
           {isOpen ? <X className="h-6 w-6" /> : <Plus className="h-6 w-6" />}
         </button>
