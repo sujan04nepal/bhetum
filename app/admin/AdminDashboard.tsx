@@ -34,6 +34,21 @@ import {
 import { AdminLayout } from "@/components/admin/layout/AdminLayout";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import {
+  QuickActions,
+  QuickActionsModal,
+} from "@/components/admin/QuickActions";
+import {
+  StatCard,
+  RecentActivityWidget,
+  TopPerformersWidget,
+  PlatformHealthWidget,
+  RevenueChartWidget,
+  UserGrowthWidget,
+  GeographicWidget,
+  NotificationCenterWidget,
+  ServiceCategoriesWidget,
+} from "@/components/admin/widgets";
 
 // Dashboard Stats Cards Component
 const StatsCard = ({
