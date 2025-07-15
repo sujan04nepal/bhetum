@@ -591,7 +591,8 @@ export default function ProvidersManagement() {
                               >
                                 {getStatusIcon(status as string)}
                                 <span className="ml-1 capitalize">
-                                  {status}
+                                  {" "}
+                                  {String(status)}
                                 </span>
                               </span>
                             </div>
