@@ -45,7 +45,7 @@ const translations = {
     "home.searchButton": "खोज्नुहोस्",
     "home.categories": "सेवाको श्रेणीहरू",
     "home.categoriesDesc":
-      "डिजिटल सेवादेखि घरेलु काम, शिक्षादेखि व्यापारिक सेवासम्म!",
+      "डिजिटल सेवादेखि घरेलु काम, शिक्षादेखि व्यापारिक ���ेवासम्म!",
     "home.topProviders": "शीर्ष सेवा प्रदायकहरू",
     "home.topProvidersDesc":
       "नेपालका उत्कृष्ट सेवा प्रदायकहरूसँग भेट गर्नुहोस्!",
@@ -62,7 +62,7 @@ const translations = {
       "चाहेको बेलामा तुरुन्त सेवा बुक गर्नुहोस्। सजिलो र छिटो!",
     "home.qualityGuarantee": "गुणस्तर ग्यारेन्टी",
     "home.qualityDesc": "१००% सन्तुष्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।",
-    "home.readyTitle": "सुरु गर्न तयार ���ुनुहुन्छ?",
+    "home.readyTitle": "सुरु गर्न तयार हुनुहुन्छ?",
     "home.readyDesc": "हजारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहोस्!",
     "home.findServices": "सेवा खोज्नुहोस्",
     "home.becomeProvider": "सेवाप्रदायक बन्नुहोस्",
@@ -109,7 +109,7 @@ const translations = {
     "footer.safety": "सुरक्षा",
     "footer.customerSupport": "ग्राहक सेवा",
     "footer.becomeProvider": "सेवाप्रदायक बन्नुहोस्",
-    "footer.providerResources": "सेवाप्रदायक स्र��तहरू",
+    "footer.providerResources": "सेवाप्रदायक स्रोतहरू",
     "footer.earnings": "��म्दानी",
     "footer.providerSupport": "सेवाप्रदायक सहयोग",
     "footer.about": "हाम्रो बारेमा",
@@ -124,11 +124,11 @@ const translations = {
     "footer.copyright": "© 2024 सेवा खोज। सबै अधिकार सुरक्षित।",
 
     // Auth Pages
-    "auth.signin.title": "सेवा खोजमा लगइन गर्नुहोस्",
+    "auth.signin.title": "सेवा खोजमा लगइन गर��नुहोस्",
     "auth.signin.subtitle": "आफ्नो खातामा पहुँच गर्नुहोस्",
     "auth.signin.email": "इमेल ठेगाना",
     "auth.signin.password": "पासवर्ड",
-    "auth.signin.rememberMe": "मल���ई सम्झनुहोस्",
+    "auth.signin.rememberMe": "मलाई सम्झनुहोस्",
     "auth.signin.forgotPassword": "पासवर्ड बिर्सनुभयो?",
     "auth.signin.signInButton": "लगइन गर्नुहोस्",
     "auth.signin.noAccount": "खाता छैन?",
@@ -189,7 +189,7 @@ const translations = {
     "dashboard.seeker.welcome": "स्वागत छ",
     "dashboard.seeker.searchServices": "सेवा खोज्नुहोस्",
     "dashboard.seeker.recentBookings": "हालका बुकिङहरू",
-    "dashboard.seeker.topProviders": "शीर्ष प्रदायकहरू",
+    "dashboard.seeker.topProviders": "शीर्��� प्रदायकहरू",
     "dashboard.seeker.quickStats": "द्रुत तथ्याङ्क",
     "dashboard.seeker.totalBookings": "कुल बुकिङहरू",
     "dashboard.seeker.completedServices": "सम्पन्न सेवाहरू",
@@ -205,7 +205,7 @@ const translations = {
     "form.booking.serviceDetails": "सेवाको विवरण",
     "form.booking.provider": "सेवा प्रदायक",
     "form.booking.serviceType": "सेवाको प्रकार",
-    "form.booking.dateTime": "मिति र समय",
+    "form.booking.dateTime": "मिति र सम��",
     "form.booking.selectDate": "मिति चयन गर्नुहोस्",
     "form.booking.selectTime": "समय चयन गर्नुहोस्",
     "form.booking.duration": "अवधि",
@@ -227,12 +227,12 @@ const translations = {
     "form.booking.platformFee": "प्लेटफर्म शुल्क",
     "form.booking.total": "जम्मा",
     "form.booking.confirmBooking": "बुकिङ पुष्टि गर्नुहोस्",
-    "form.booking.termsAgree": "मैले सेवाका सर्तहरूमा सहमति जनाएको छु।",
+    "form.booking.termsAgree": "मैले सेवाका सर्तहरूमा सहमति जनाएको छु���",
 
     "form.profile.title": "प्रोफाइल अपडेट गर्नुहोस्",
     "form.profile.basicInfo": "आधारभूत जानकारी",
     "form.profile.businessName": "व्यापारिक नाम",
-    "form.profile.bio": "��ायो",
+    "form.profile.bio": "बायो",
     "form.profile.services": "सेवाहरू",
     "form.profile.selectCategories": "श्रेणीहरू चयन गर्नुहोस्",
     "form.profile.skills": "सीपहरू",
@@ -247,7 +247,7 @@ const translations = {
     "form.profile.updateProfile": "प्रोफाइल अपडेट गर्नुहोस्",
 
     // Find Services Page
-    "findServices.title": "सेवा खोज्नुहोस्",
+    "findServices.title": "सेवा ख��ज्नुहोस्",
     "findServices.searchPlaceholder": "कुन सेवा चाहिन्छ?",
     "findServices.allLocations": "सबै स्थानहरू",
     "findServices.allCategories": "सबै श्रेणीहरू",
@@ -265,7 +265,7 @@ const translations = {
     // Services Page
     "services.title": "सेवाहरू खोज्नुहोस्",
     "services.subtitle":
-      "तपाईंको आवश्यकता अनुसार उत्कृष्ट सेवा प्रदायकहरू फेला पार्नुहोस्",
+      "तपाईंको आवश��यकता अनुसार उत्कृष्ट सेवा प्रदायकहरू फेला पार्नुहोस्",
     "services.filterBy": "फिल्टर गर्नुहोस्",
     "services.category": "श्रेणी",
     "services.location": "स्थान",
@@ -281,7 +281,7 @@ const translations = {
     "services.resultsFound": "परिणामहरू फेला परे",
     "services.noResults": "कुनै परिणाम फेला परेन",
     "services.tryDifferentFilters": "फरक फिल्टरहरू प्रयोग गर्नुहोस्",
-    "services.clearFilters": "फिल्टरहरू हटाउनुहोस्",
+    "services.clearFilters": "फिल्टरहरू ��टाउनुहोस्",
     "services.showMore": "थप देखाउनुहोस्",
 
     // Status
@@ -312,7 +312,7 @@ const translations = {
     "day.sunday": "आइतबार",
     "day.monday": "सोमबार",
     "day.tuesday": "मंगलबार",
-    "day.wednesday": "बुधबार",
+    "day.wednesday": "बुधबा���",
     "day.thursday": "बिहिबार",
     "day.friday": "शुक्रबार",
     "day.saturday": "शनिबार",
@@ -542,6 +542,22 @@ const translations = {
     "form.profile.workingDays": "Working Days",
     "form.profile.workingHours": "Working Hours",
     "form.profile.updateProfile": "Update Profile",
+
+    // Find Services Page
+    "findServices.title": "Find Services",
+    "findServices.searchPlaceholder": "What service do you need?",
+    "findServices.allLocations": "All Locations",
+    "findServices.allCategories": "All Categories",
+    "findServices.search": "Search",
+    "findServices.results": "Results",
+    "findServices.searchingFor": "Searching for",
+    "findServices.in": "in",
+    "findServices.sortByRating": "Sort by Rating",
+    "findServices.sortByPrice": "Sort by Price",
+    "findServices.sortByReviews": "Sort by Reviews",
+    "findServices.noResults": "No results found",
+    "findServices.noResultsDesc": "Try using different keywords",
+    "findServices.clearFilters": "Clear Filters",
 
     // Services Page
     "services.title": "Find Services",
