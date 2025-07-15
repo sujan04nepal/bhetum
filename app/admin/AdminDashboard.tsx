@@ -500,7 +500,10 @@ export default function AdminDashboard() {
           <div className="lg:col-span-2">
             <RevenueChartWidget />
           </div>
-          <TopPerformersWidget performers={topProviders} type="providers" />
+          <TopPerformersWidget
+            performers={transformedTopProviders}
+            type="providers"
+          />
         </div>
 
         {/* Activity and Analytics */}
