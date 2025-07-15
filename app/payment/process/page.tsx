@@ -20,7 +20,7 @@ import {
   Shield,
 } from "lucide-react";
 
-export default function PaymentProcessPage() {
+function PaymentProcessPageContent() {
   const { t } = useLanguage();
   const router = useRouter();
   const searchParams = useSearchParams();
