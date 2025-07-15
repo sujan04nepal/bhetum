@@ -6,10 +6,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  experimental: {
-    optimizePackageImports: ["lucide-react"],
-  },
-  output: "standalone",
 };
 
 module.exports = nextConfig;
