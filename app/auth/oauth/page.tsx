@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 
-export default function OAuthSignIn() {
+function OAuthSignInContent() {
   const { t } = useLanguage();
   const router = useRouter();
   const searchParams = useSearchParams();
