@@ -487,50 +487,10 @@ export default function AdminDashboard() {
 
         {/* Charts and Analytics Row */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Revenue Chart */}
-          <Card className="lg:col-span-2 p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Revenue Trends
-              </h3>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm">
-                  Week
-                </Button>
-                <Button variant="outline" size="sm">
-                  Month
-                </Button>
-                <Button size="sm" className="bg-blue-600">
-                  Year
-                </Button>
-              </div>
-            </div>
-            <ChartPlaceholder title="Revenue Analytics" type="Line" />
-          </Card>
-
-          {/* Top Performers */}
-          <Card className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Top Providers
-              </h3>
-              <Button variant="outline" size="sm">
-                <Eye className="h-4 w-4" />
-              </Button>
-            </div>
-            <div className="space-y-2">
-              {topProviders.slice(0, 4).map((provider, index) => (
-                <TopProviderItem
-                  key={provider.name}
-                  provider={provider}
-                  index={index}
-                />
-              ))}
-            </div>
-            <Button variant="outline" className="w-full mt-4" size="sm">
-              View All Providers
-            </Button>
-          </Card>
+          <div className="lg:col-span-2">
+            <RevenueChartWidget />
+          </div>
+          <TopPerformersWidget performers={topProviders} type="providers" />
         </div>
 
         {/* Recent Activity and Bookings */}
