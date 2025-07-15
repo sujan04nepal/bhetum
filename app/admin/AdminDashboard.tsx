@@ -493,51 +493,10 @@ export default function AdminDashboard() {
           <TopPerformersWidget performers={topProviders} type="providers" />
         </div>
 
-        {/* Recent Activity and Bookings */}
+        {/* Activity and Analytics */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Recent Bookings */}
-          <Card className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Recent Bookings
-              </h3>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm">
-                  <Filter className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="sm">
-                  View All
-                </Button>
-              </div>
-            </div>
-            <div className="space-y-3">
-              {recentBookings.map((booking) => (
-                <BookingItem key={booking.id} booking={booking} />
-              ))}
-            </div>
-          </Card>
-
-          {/* Recent Activity */}
-          <Card className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Recent Activity
-              </h3>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm">
-                  <Filter className="h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="sm">
-                  View All
-                </Button>
-              </div>
-            </div>
-            <div className="space-y-1">
-              {recentActivity.map((activity, index) => (
-                <ActivityItem key={index} activity={activity} />
-              ))}
-            </div>
-          </Card>
+          <RecentActivityWidget activities={recentActivity} />
+          <UserGrowthWidget />
         </div>
 
         {/* Additional Analytics Cards */}
