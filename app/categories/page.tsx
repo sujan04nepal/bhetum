@@ -30,7 +30,7 @@ export default function CategoriesPage() {
       searchPlaceholder: "श्रेणी खोज्नुहोस्...",
       sortBy: "क्रमबद्ध गर्नुहोस्",
       popular: "लोकप्रिय",
-      alphabetical: "व��्णमाला अनुसार",
+      alphabetical: "वर्णमाला अनुसार",
       newest: "नयाँ",
       subcategories: "उप-श्रेणीहरू",
       providers: "सेवा प्रदायकहरू",
@@ -271,6 +271,7 @@ export default function CategoriesPage() {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
