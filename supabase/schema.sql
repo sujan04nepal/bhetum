@@ -300,55 +300,7 @@ left join bookings b on sp.id = b.provider_id
 group by sp.id, u.full_name;
 
 -- Function to search providers
-create or replace function search_providers(
-    search_term text default null,
-    category_id uuid default null,
-    province text default null,
-    district text default null,
-    min_rating decimal default 0,
-    max_rate decimal default null
-)
-returns table (
-    id uuid,
-    full_name text,
-    business_name text,
-    bio text,
-    province text,
-    district text,
-    rating_average decimal,
-    hourly_rate decimal,
-    is_available boolean
-) as $$
-begin
-    return query
-    select 
-        sp.id,
-        u.full_name,
-        sp.business_name,
-        sp.bio,
-        sp.province,
-        sp.district,
-        sp.rating_average,
-        sp.hourly_rate,
-        sp.is_available
-    from service_providers sp
-    join users u on sp.user_id = u.id
-    left join provider_services ps on sp.id = ps.provider_id
-    where 
-        sp.is_available = true
-        and (search_term is null or 
-             u.full_name ilike '%' || search_term || '%' or
-             sp.business_name ilike '%' || search_term || '%' or
-             sp.bio ilike '%' || search_term || '%')
-        and (category_id is null or ps.category_id = category_id)
-        and (province is null or sp.province = province)
-        and (district is null or sp.district = district)
-        and sp.rating_average >= coalesce(min_rating, 0)
-        and (max_rate is null or sp.hourly_rate <= max_rate)
-    group by sp.id, u.full_name
-    order by sp.rating_average desc, sp.total_reviews desc;
-end;
-$$ language plpgsql;
+-- Function to search providers (to be fixed)
 
 -- Insert sample service categories
 insert into service_categories (name_en, name_ne, icon, color, sort_order) values
