@@ -9,10 +9,6 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  // Disable static generation for problematic routes
-  async generateStaticParams() {
-    return [];
-  },
   // Configure ISR (Incremental Static Regeneration)
   async generateBuildId() {
     return "build-" + Date.now();
