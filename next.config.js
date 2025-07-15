@@ -12,7 +12,14 @@ const nextConfig = {
   // Generate static pages at build time
   trailingSlash: false,
   // Configure output for deployment
-  output: "standalone",
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+  // Disable static generation for problematic pages
+  async generateStaticParams() {
+    return [];
+  },
 };
 
 module.exports = nextConfig;
