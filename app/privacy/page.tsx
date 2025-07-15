@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { Shield, Eye, Lock, FileText } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -25,7 +23,7 @@ export default function PrivacyPage() {
             "हामी तपाईंको नाम, इमेल, फोन नम्बर, ठेगाना र सेवा प्राथमिकताहरू सङ्कलन गर्छौं। यो जानकारी राम्रो सेवा प्रदान गर्न आवश्यक छ।",
         },
         {
-          title: "जानकारीको प्रयोग",
+          title: "���ानकारीको प्रयोग",
           icon: Eye,
           content:
             "तपाईंको जानकारी सेवा प्रदान गर्न, सुरक्षा सुनिश्चित गर्न, र प्लेटफर्म सुधार गर्न प्रयोग गरिन्छ। हामी तेस्रो पक्षलाई बिक्री गर्दैनौं।",
