@@ -256,7 +256,7 @@ export default function ProvidersManagement() {
           <Card className="p-6">
             <div className="flex items-center">
               <div className="p-3 bg-red-100 rounded-full">
-                <ShieldX className="h-6 w-6 text-red-600" />
+                <ShieldOff className="h-6 w-6 text-red-600" />
               </div>
               <div className="ml-4">
                 <p className="text-sm font-medium text-gray-600">Suspended</p>
