@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import {
   Calendar,
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/Input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Link from "next/link";
 
-export default function NewBookingPage() {
+function NewBookingContent() {
   const [step, setStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
@@ -511,9 +511,7 @@ export default function NewBookingPage() {
                         {
                           id: "cash",
                           name:
-                            language === "ne"
-                              ? "नगद भु���्तानी"
-                              : "Cash Payment",
+                            language === "ne" ? "नगद भुक्तानी" : "Cash Payment",
                           icon: "💰",
                         },
                       ].map((method) => (
@@ -592,5 +590,24 @@ export default function NewBookingPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function NewBookingPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-6xl mb-4">📅</div>
+            <div className="text-xl font-semibold text-gray-600">
+              Loading booking form...
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <NewBookingContent />
+    </Suspense>
   );
 }
