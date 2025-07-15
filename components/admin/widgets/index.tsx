@@ -177,7 +177,7 @@ export function TopPerformersWidget({
             </div>
             <div className="text-right">
               <p className="text-sm font-medium text-gray-900">
-                Rs {performer.value.toLocaleString()}
+                Rs {(performer.value || 0).toLocaleString()}
               </p>
               <p className="text-xs text-gray-500">{performer.period}</p>
             </div>
