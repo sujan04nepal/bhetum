@@ -75,8 +75,8 @@ export default function CategoriesPage() {
         return a.name.localeCompare(b.name);
       case "providers":
         return (
-          (categoryStats[b.id]?.providers || 0) -
-          (categoryStats[a.id]?.providers || 0)
+          (categoryStats[b.id as keyof typeof categoryStats]?.providers || 0) -
+          (categoryStats[a.id as keyof typeof categoryStats]?.providers || 0)
         );
       default:
         return 0; // Keep original order for "popular"
