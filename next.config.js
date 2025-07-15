@@ -6,6 +6,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  target: "experimental-serverless-trace",
 };
 
 module.exports = nextConfig;
