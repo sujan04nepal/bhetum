@@ -298,7 +298,7 @@ export default function CategorySubcategoriesPage({
             </select>
             <div className="flex items-center border border-gray-300 rounded-lg">
               <Button
-                variant={viewMode === "grid" ? "default" : "ghost"}
+                variant={viewMode === "grid" ? "primary" : "ghost"}
                 size="sm"
                 onClick={() => setViewMode("grid")}
                 className="rounded-r-none"
