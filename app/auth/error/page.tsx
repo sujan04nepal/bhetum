@@ -15,7 +15,7 @@ const errorMessages: { [key: string]: string } = {
   Default: "An error occurred during authentication.",
 };
 
-export default function AuthErrorPage() {
+function AuthErrorPageContent() {
   const { t } = useLanguage();
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
