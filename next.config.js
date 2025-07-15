@@ -9,11 +9,13 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  // Disable static generation to avoid SSR issues
-  output: "export",
-  trailingSlash: true,
-  images: {
-    unoptimized: true,
+  // Disable static generation for problematic routes
+  async generateStaticParams() {
+    return [];
+  },
+  // Configure ISR (Incremental Static Regeneration)
+  async generateBuildId() {
+    return "build-" + Date.now();
   },
 };
 
