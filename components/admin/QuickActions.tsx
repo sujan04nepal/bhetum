@@ -618,7 +618,36 @@ export function QuickActionsModal({
                   <Button size="sm">Respond</Button>
                 </div>
               </div>
-              {/* Add more tickets */}
+              <div className="p-3 border rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-medium">Service Quality Complaint</h4>
+                  <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
+                    Medium Priority
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">
+                  Customer dissatisfied with cleaning service quality
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">5 hours ago</span>
+                  <Button size="sm">Respond</Button>
+                </div>
+              </div>
+              <div className="p-3 border rounded-lg">
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="font-medium">Account Verification</h4>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                    Low Priority
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">
+                  User needs help with document verification process
+                </p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">1 day ago</span>
+                  <Button size="sm">Respond</Button>
+                </div>
+              </div>
             </div>
           </div>
         );
