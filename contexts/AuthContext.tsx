@@ -8,8 +8,16 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  return <SessionProvider>{children}</SessionProvider>;
+  return (
+    <SessionProvider
+      basePath="/api/auth"
+      refetchInterval={5 * 60} // Refetch session every 5 minutes
+      refetchOnWindowFocus={true}
+    >
+      {children}
+    </SessionProvider>
+  );
 }
 
-// We'll use next-auth's useSession hook directly
-// This file is mainly for future custom auth logic if needed
+// Export hooks for easier usage
+export { useSession, signIn, signOut } from "next-auth/react";
