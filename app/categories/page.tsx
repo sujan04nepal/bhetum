@@ -26,11 +26,11 @@ export default function CategoriesPage() {
   const content = {
     ne: {
       title: "सेवा श्रेणीहरू",
-      subtitle: "आफ��नो आवश्यकता अनुसार सेवाको श्रेणी चयन गर्नुहोस्",
+      subtitle: "आफ्नो आवश्यकता अनुसार सेवाको श्रेणी चयन गर्नुहोस्",
       searchPlaceholder: "श्रेणी खोज्नुहोस्...",
       sortBy: "क्रमबद्ध गर्नुहोस्",
       popular: "लोकप्रिय",
-      alphabetical: "वर्णमाला अनुसार",
+      alphabetical: "व��्णमाला अनुसार",
       newest: "नयाँ",
       subcategories: "उप-श्रेणीहरू",
       providers: "सेवा प्रदायकहरू",
@@ -88,7 +88,13 @@ export default function CategoriesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Header />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Breadcrumb */}
+        <Breadcrumb
+          items={[{ label: language === "ne" ? "श्रेणीहरू" : "Categories" }]}
+          className="mb-6"
+        />
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
