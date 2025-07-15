@@ -388,9 +388,10 @@ export default function AdminDashboard() {
   const [showQuickActionModal, setShowQuickActionModal] = useState(false);
   const [selectedActionId, setSelectedActionId] = useState<string | null>(null);
 
-  const handleQuickAction = (action: string) => {
-    console.log(`Quick action: ${action}`);
-    // In a real app, this would navigate to the appropriate page or open a modal
+  const handleQuickAction = (actionId: string) => {
+    setSelectedActionId(actionId);
+    setShowQuickActionModal(true);
+    console.log(`Quick action: ${actionId}`);
   };
 
   const handleRefreshData = () => {
