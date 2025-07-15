@@ -440,41 +440,45 @@ export default function AdminDashboard() {
 
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatsCard
+          <StatCard
             title="Total Users"
             value={dashboardStats.totalUsers}
             change="+12.5%"
             changeType="up"
             icon={Users}
-            iconColor="bg-blue-100 text-blue-600"
+            color="bg-blue-100 text-blue-600"
             onClick={() => handleQuickAction("view_users")}
+            subtitle="All registered users"
           />
-          <StatsCard
+          <StatCard
             title="Active Providers"
             value={dashboardStats.totalProviders}
             change="+8.2%"
             changeType="up"
             icon={UserCheck}
-            iconColor="bg-green-100 text-green-600"
+            color="bg-green-100 text-green-600"
             onClick={() => handleQuickAction("view_providers")}
+            subtitle="Verified service providers"
           />
-          <StatsCard
+          <StatCard
             title="Monthly Revenue"
             value={`Rs ${dashboardStats.monthlyRevenue.toLocaleString()}`}
             change="+15.3%"
             changeType="up"
             icon={DollarSign}
-            iconColor="bg-purple-100 text-purple-600"
+            color="bg-purple-100 text-purple-600"
             onClick={() => handleQuickAction("view_revenue")}
+            subtitle="Commission earned"
           />
-          <StatsCard
+          <StatCard
             title="Active Bookings"
             value={dashboardStats.activeBookings}
             change="-2.1%"
             changeType="down"
             icon={Calendar}
-            iconColor="bg-orange-100 text-orange-600"
+            color="bg-orange-100 text-orange-600"
             onClick={() => handleQuickAction("view_bookings")}
+            subtitle="Currently in progress"
           />
         </div>
 
