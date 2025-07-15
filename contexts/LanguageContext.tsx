@@ -39,7 +39,7 @@ const translations = {
     "home.title": "नेपालको नम्बर १",
     "home.subtitle": "सेवा खोज्ने प्लेटफर्म",
     "home.description":
-      "घर सरसफाइदेखि ट्यूशन, डिजिटल सेवादेखि रचनात्मक कामसम्म - विश्वसन��य सेवा प्रदायकहरू फेला पार्नुहोस्!",
+      "घर सरसफाइदेखि ट्यूशन, डिजिटल सेवादेखि रचनात्मक कामसम्म - विश्वसनीय सेवा प्रदायकहरू फेला पार्नुहोस्!",
     "home.searchPlaceholder": "कुन सेवा चाहिन्छ?",
     "home.locationPlaceholder": "तपाईंको स्थान चयन गर्नुहोस्",
     "home.searchButton": "खोज्नुहोस्",
@@ -53,15 +53,15 @@ const translations = {
     "home.viewProfile": "प्रोफाइल हेर्नुहोस्",
     "home.bookNow": "बुक गर्नुहोस्",
     "home.features": "हाम्रा विशेषताहरू",
-    "home.featuresDesc": "विश्वास, सुविधा र उत्कृष्ट अनुभवका ला��ि निर्मित!",
+    "home.featuresDesc": "विश्वास, सुविधा र उत्कृष्ट अनुभवका लागि निर्मित!",
     "home.verifiedProviders": "प्रमाणित सेवाप्रदायक",
     "home.verifiedDesc":
-      "सबै सेवा प्रदायकहरू पूर्ण रूपमा जाँच गरिएका र प्रमाणित छन्।",
+      "सबै सेवा प्रदायकहरू पूर्ण ���ूपमा जाँच गरिएका र प्रमाणित छन्।",
     "home.instantBooking": "तुरुन्त बुकिङ",
     "home.instantDesc":
       "चाहेको बेलामा तुरुन्त सेवा बुक गर्नुहोस्। सजिलो र छिटो!",
     "home.qualityGuarantee": "गुणस्तर ग्यारेन्टी",
-    "home.qualityDesc": "१००% सन्तुष्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।",
+    "home.qualityDesc": "१००% सन्तु��्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।",
     "home.readyTitle": "सुरु गर्न तयार हुनुहुन्छ?",
     "home.readyDesc": "हजारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहोस्!",
     "home.findServices": "सेवा खोज्नुहोस्",
@@ -134,7 +134,7 @@ const translations = {
     "auth.signin.email": "इमेल ठेगाना",
     "auth.signin.password": "पासवर्ड",
     "auth.signin.rememberMe": "मलाई सम्झनुहोस्",
-    "auth.signin.forgotPassword": "पासवर्ड बिर्सनुभय���?",
+    "auth.signin.forgotPassword": "पासवर्ड बिर्सनुभयो?",
     "auth.signin.signInButton": "लगइन गर्नुहोस्",
     "auth.signin.noAccount": "खाता छैन?",
     "auth.signin.signUp": "यहाँ दर्ता गर्नुहोस्",
@@ -165,7 +165,7 @@ const translations = {
 
     // Dashboard
     "dashboard.provider.title": "सेवा प्रदायक ड्यासबोर्ड",
-    "dashboard.provider.analytics": "व��श्लेषण",
+    "dashboard.provider.analytics": "विश्लेषण",
     "dashboard.provider.jobs": "काम",
     "dashboard.provider.services": "सेवाहरू",
     "dashboard.provider.applications": "आवेदनहरू",
@@ -184,9 +184,9 @@ const translations = {
     "dashboard.provider.findJobs": "काम खोज्नुहोस्",
     "dashboard.provider.manageServices": "सेवा व्यवस्थापन",
     "dashboard.provider.viewProfile": "प्रोफाइल हेर्नुहोस्",
-    "dashboard.provider.applyNow": "अहिले आवेदन दिनुहोस्",
+    "dashboard.provider.applyNow": "अहिले आवे��न दिनुहोस्",
 
-    "dashboard.seeker.title": "सेवा खोज्ने ड्यासबोर्ड",
+    "dashboard.seeker.title": "सेवा खोज���ने ड्यासबोर्ड",
     "dashboard.seeker.home": "गृह",
     "dashboard.seeker.bookings": "बुकिङहरू",
     "dashboard.seeker.messages": "सन्देशहरू",
@@ -201,7 +201,7 @@ const translations = {
     "dashboard.seeker.savedProviders": "सुरक्षित प्रदायकहरू",
     "dashboard.seeker.unreadMessages": "नपढिएका सन्देशहरू",
     "dashboard.seeker.bookService": "सेवा बुक गर्नुहोस्",
-    "dashboard.seeker.browseCategories": "श्रेणीहरू ब्राउज गर्नुहोस्",
+    "dashboard.seeker.browseCategories": "श्रेणीह���ू ब्राउज गर्नुहोस्",
     "dashboard.seeker.viewAllBookings": "सबै बुकिङहरू हेर्नुहोस्",
     "dashboard.seeker.contactProvider": "प्रदायकलाई सम्पर्क गर्नुहोस्",
 
@@ -239,7 +239,7 @@ const translations = {
     "booking.serviceDetails": "सेवा विवरण",
     "booking.whatService": "तपाईंलाई कस्तो सेवा चाहिएको छ?",
     "booking.serviceDetailsPlaceholder":
-      "कृपया आफ्ना आवश्यकताहरू विस्तारमा लेख्���ुहोस्...",
+      "कृपया आफ्ना आवश्यकताहरू विस्तारमा लेख्नुहोस्...",
     "booking.estimatedDuration": "अनुमानित अवधि",
     "booking.dateTime": "मिति र समय",
     "booking.selectDate": "मिति छान्नुहोस्",
@@ -262,7 +262,7 @@ const translations = {
     "booking.service": "सेवा",
     "booking.provider": "सेवा प्रदायक",
     "booking.date": "मिति",
-    "booking.location": "स्थान",
+    "booking.location": "��्थान",
     "booking.total": "जम्मा",
     "booking.paymentMethod": "भुक्तानी तरिका",
     "booking.securePayment": "सुरक्षित भुक्तानी गारेन्टी",
@@ -278,7 +278,7 @@ const translations = {
     "form.profile.experience": "अनुभव",
     "form.profile.yearsExperience": "वर्षको अनुभव",
     "form.profile.portfolio": "पोर्टफोलियो",
-    "form.profile.addPortfolio": "पोर्���फोलियो थप्नुहोस्",
+    "form.profile.addPortfolio": "पोर्टफोलियो थप्नुहोस्",
     "form.profile.availability": "उपलब्धता",
     "form.profile.workingDays": "काम गर्ने दिनहरू",
     "form.profile.workingHours": "काम गर्ने समय",
@@ -314,7 +314,7 @@ const translations = {
     "becomeProvider.email": "इमेल",
     "becomeProvider.emailPlaceholder": "तपाईंको इमेल ठेगाना",
     "becomeProvider.phone": "फोन नम्बर",
-    "becomeProvider.phonePlaceholder": "तपाईंको फोन नम्बर",
+    "becomeProvider.phonePlaceholder": "तपाईंक�� फोन नम्बर",
     "becomeProvider.location": "स्थान",
     "becomeProvider.selectLocation": "स्थान छान्नुहोस्",
     "becomeProvider.serviceDetails": "सेवा विवरण",
@@ -343,7 +343,7 @@ const translations = {
     "becomeProvider.nextSteps": "अर्का चरणहरू",
     "becomeProvider.reviewProcess":
       "२४ घण्टा भित्र तपाईंको आवेदन समीक्षा गरिनेछ",
-    "becomeProvider.verificationProcess": "कागजात प्रमाणीकरण प्रक्���िया",
+    "becomeProvider.verificationProcess": "कागजात प्रमाणीकरण प्रक्रिया",
     "becomeProvider.profileSetup": "प्रोफाइल सेटअप पूरा गर्नुहोस्",
     "becomeProvider.startEarning": "आम्दानी सुरु गर्नुहोस्!",
     "becomeProvider.submit": "आवेदन पेश गर्नुहोस्",
@@ -386,12 +386,12 @@ const translations = {
     "time.afternoon": "दिउँसो",
     "time.evening": "साँझ",
     "time.night": "रात",
-    "time.today": "���ज",
+    "time.today": "आज",
     "time.tomorrow": "भोलि",
     "time.yesterday": "हिजो",
     "time.thisWeek": "यो हप्ता",
     "time.lastWeek": "गत हप्ता",
-    "time.thisMonth": "यो महिना",
+    "time.thisMonth": "��ो महिना",
     "time.lastMonth": "गत महिना",
 
     // Days of Week
@@ -788,9 +788,11 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguage] = useState<Language>("ne");
+  const [isClient, setIsClient] = useState(false);
 
   // Load language from localStorage on mount
   useEffect(() => {
+    setIsClient(true);
     const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && (savedLanguage === "ne" || savedLanguage === "en")) {
       setLanguage(savedLanguage);
@@ -799,8 +801,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   // Save language to localStorage when changed
   useEffect(() => {
-    localStorage.setItem("language", language);
-  }, [language]);
+    if (isClient) {
+      localStorage.setItem("language", language);
+    }
+  }, [language, isClient]);
 
   const t = (key: string): string => {
     return (
