@@ -1,5 +1,8 @@
 import dynamic from "next/dynamic";
 
+// Prevent static generation
+export const dynamic = "force-dynamic";
+
 const PostRequestContent = dynamic(() => import("./PostRequestContent"), {
   ssr: false,
   loading: () => (
