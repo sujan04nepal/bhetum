@@ -1,5 +1,8 @@
 "use client";
 
+// Prevent static generation
+export const dynamic = "force-dynamic";
+
 import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Send, MessageCircle } from "lucide-react";
 import { Header } from "@/components/layout/Header";
@@ -33,7 +36,7 @@ export default function ContactPage() {
       contactInfo: "सम्पर्क जानकारी",
       address: "काठमाडौं, नेपाल",
       workingHours: "कार्य समय",
-      hours: "आइतवार - शुक्रवार: ९:०० - १८:००",
+      hours: "आ��तवार - शुक्रवार: ९:०० - १८:००",
       saturday: "शनिवार: ९:०० - १४:००",
       quickContact: "तुरुन्त सम्पर्क",
       whatsapp: "WhatsApp मा सन्देश गर्नुहोस्",
