@@ -30,6 +30,18 @@ import {
   Shield,
 } from "lucide-react";
 
+// Generate static paths for sample booking IDs
+export function generateStaticParams() {
+  // Generate sample booking IDs for static generation
+  const sampleBookingIds = Array.from({ length: 50 }, (_, i) =>
+    (i + 1).toString(),
+  );
+
+  return sampleBookingIds.map((id) => ({
+    id,
+  }));
+}
+
 export default function BookingDetailPage() {
   const { t, language } = useLanguage();
   const [showCancelModal, setShowCancelModal] = useState(false);
@@ -93,7 +105,7 @@ export default function BookingDetailPage() {
     paymentStatus: "completed",
     notes:
       language === "ne"
-        ? "कृपया इको-फ्रेन्डली प्रोड���्ट प्रयोग गर्नुहोस्। घरमा कुकुर छ।"
+        ? "कृपया इको-फ्रेन्डली प्रोड���्ट प्रयोग गर्नुहोस्। घरमा कुकुर ��।"
         : "Please use eco-friendly products. There's a dog at home.",
     timeline: [
       {
@@ -165,7 +177,7 @@ export default function BookingDetailPage() {
       case "pending":
         return language === "ne" ? "पेन्डिङ" : "Pending";
       case "confirmed":
-        return language === "ne" ? "पुष्टि भएको" : "Confirmed";
+        return language === "ne" ? "पुष्टि भ���को" : "Confirmed";
       case "in_progress":
         return language === "ne" ? "प्रगतिमा" : "In Progress";
       case "completed":
