@@ -39,7 +39,7 @@ export function Header() {
         },
         {
           name:
-            language === "ne" ? "अनुरोध ब्राउज गर्नुहोस्" : "Browse Requests",
+            language === "ne" ? "अनुरोध ब्राउज गर्नुहोस���" : "Browse Requests",
           href: "/browse-requests",
         },
       ],
@@ -207,7 +207,7 @@ export function Header() {
               </>
             ) : (
               <>
-                <Link href="/auth/signin">
+                <Link href="/auth/login">
                   <Button variant="ghost" size="sm">
                     {t("nav.signin")}
                   </Button>
