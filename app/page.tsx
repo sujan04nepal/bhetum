@@ -27,9 +27,6 @@ import {
 } from "@/lib/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Force dynamic rendering
-export const dynamic = "force-dynamic";
-
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
