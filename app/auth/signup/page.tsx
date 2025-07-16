@@ -50,10 +50,36 @@ export default function SignUpPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle sign up logic here
-    console.log("Sign up:", { role, ...formData });
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          password: formData.password,
+          role,
+        }),
+      });
+
+      if (response.ok) {
+        // Redirect to signin page or show a success message
+        window.location.href = "/auth/signin";
+      } else {
+        const { error } = await response.json();
+        alert(`Sign up failed: ${error}`);
+      }
+    } catch (error) {
+      console.error("Sign up error:", error);
+      alert("An unexpected error occurred. Please try again.");
+    }
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {

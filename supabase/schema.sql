@@ -302,11 +302,11 @@ group by sp.id, u.full_name;
 -- Function to search providers
 create or replace function search_providers(
     search_term text default null,
-    category_id uuid default null,
-    province text default null,
-    district text default null,
-    min_rating decimal default 0,
-    max_rate decimal default null
+    p_category_id uuid default null,
+    p_province text default null,
+    p_district text default null,
+    p_min_rating decimal default 0,
+    p_max_rate decimal default null
 )
 returns table (
     id uuid,
@@ -340,11 +340,11 @@ begin
              u.full_name ilike '%' || search_term || '%' or
              sp.business_name ilike '%' || search_term || '%' or
              sp.bio ilike '%' || search_term || '%')
-        and (category_id is null or ps.category_id = category_id)
-        and (province is null or sp.province = province)
-        and (district is null or sp.district = district)
-        and sp.rating_average >= coalesce(min_rating, 0)
-        and (max_rate is null or sp.hourly_rate <= max_rate)
+        and (p_category_id is null or ps.category_id = p_category_id)
+        and (p_province is null or sp.province = p_province)
+        and (p_district is null or sp.district = p_district)
+        and sp.rating_average >= coalesce(p_min_rating, 0)
+        and (p_max_rate is null or sp.hourly_rate <= p_max_rate)
     group by sp.id, u.full_name
     order by sp.rating_average desc, sp.total_reviews desc;
 end;
