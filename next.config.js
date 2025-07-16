@@ -6,10 +6,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Disable static optimization for pages using React Context
-  output: "standalone",
+  // Disable static optimization completely to fix context issues
+  trailingSlash: false,
   experimental: {
     optimizePackageImports: ["lucide-react"],
+    // Disable ISR and SSG
+    isrMemoryCacheSize: 0,
   },
   // Improve development experience
   webpack: (config, { dev, isServer }) => {
