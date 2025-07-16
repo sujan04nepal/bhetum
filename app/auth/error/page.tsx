@@ -65,7 +65,7 @@ function AuthErrorPageContent() {
               </div>
 
               <div className="space-y-3 pt-4">
-                <Link href="/auth/signin">
+                <Link href="/auth/login">
                   <Button className="w-full">Try Again</Button>
                 </Link>
 
