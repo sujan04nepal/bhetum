@@ -35,6 +35,22 @@ interface ProvidersListPageProps {
   };
 }
 
+// Generate static paths for all category/subcategory combinations
+export function generateStaticParams() {
+  const params: { categoryId: string; subcategoryId: string }[] = [];
+
+  SERVICE_CATEGORIES.forEach((category) => {
+    category.subcategories.forEach((subcategory) => {
+      params.push({
+        categoryId: category.id,
+        subcategoryId: subcategory.id,
+      });
+    });
+  });
+
+  return params;
+}
+
 export default function ProvidersListPage({ params }: ProvidersListPageProps) {
   const { t, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
