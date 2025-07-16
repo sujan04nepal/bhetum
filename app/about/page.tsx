@@ -1,8 +1,5 @@
 "use client";
 
-// Prevent static generation
-export const dynamic = "force-dynamic";
-
 import {
   Heart,
   Award,
