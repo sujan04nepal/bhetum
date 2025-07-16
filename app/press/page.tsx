@@ -1,6 +1,9 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
+
+// Prevent static generation
+export const dynamic = "force-dynamic";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Calendar, Download, Mail, ExternalLink } from "lucide-react";
@@ -23,7 +26,7 @@ export default function PressPage() {
       mediaInquiries: "मिडिया सोध���ुछ",
       pressReleasesList: [
         {
-          title: "सेवा खोजले 50,000+ ग्राहकहरूको मापदण्डता पार गर्यो",
+          title: "सेवा ���ोजले 50,000+ ग्राहकहरूको मापदण्डता पार गर्यो",
           date: "2024-01-15",
           summary:
             "नेपालको अग्रणी सेवा मार्केटप्लेसले महत्वपूर्ण उपलब्धि हासिल गर्यो।",
