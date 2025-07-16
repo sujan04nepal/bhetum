@@ -4,6 +4,9 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ClientLayout } from "@/components/layout/ClientLayout";
 
+// Force dynamic rendering for all pages since we use React Context
+export const dynamic = "force-dynamic";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
