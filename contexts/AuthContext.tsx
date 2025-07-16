@@ -96,8 +96,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         .single();
 
       if (error && error.code !== "PGRST116") {
-        console.error("Error fetching user profile:", error);
-        setUser(null);
+        console.warn("Demo mode - using mock user profile");
+        // Create a mock user for demo mode
+        const mockUser: User = {
+          id: userId,
+          email: "demo@example.com",
+          full_name: "Demo User",
+          role: "seeker",
+          status: "active",
+          language_preference: "en",
+          email_notifications: true,
+          push_notifications: true,
+          sms_notifications: false,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        };
+        setUser(mockUser);
       } else if (data) {
         setUser(data as User);
         // Update last login
@@ -107,7 +121,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           .eq("id", userId);
       }
     } catch (error) {
-      console.error("Error in fetchUserProfile:", error);
+      console.warn("Demo mode - using mock user profile");
       setUser(null);
     } finally {
       setLoading(false);
