@@ -212,7 +212,7 @@ export function Header() {
                     {t("nav.signin")}
                   </Button>
                 </Link>
-                <Link href="/auth/signup">
+                <Link href="/auth/register">
                   <Button size="sm">{t("nav.signup")}</Button>
                 </Link>
               </>
