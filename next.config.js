@@ -6,16 +6,14 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Disable problematic features for deployment
-  poweredByHeader: false,
-  generateEtags: false,
+  // Force all pages to be server-side rendered for deployment
+  output: "standalone",
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  // Skip build-time validation to avoid context issues
-  async rewrites() {
-    return [];
-  },
+  // Configure for deployment without static generation
+  distDir: ".next",
+  generateBuildId: () => "build",
 };
 
 module.exports = nextConfig;
