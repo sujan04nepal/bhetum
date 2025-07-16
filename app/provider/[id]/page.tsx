@@ -33,6 +33,18 @@ interface ProviderProfilePageProps {
   };
 }
 
+// Generate static paths for sample provider IDs
+export function generateStaticParams() {
+  // Generate sample provider IDs for static generation
+  const sampleProviderIds = Array.from({ length: 100 }, (_, i) =>
+    (i + 1).toString(),
+  );
+
+  return sampleProviderIds.map((id) => ({
+    id,
+  }));
+}
+
 export default function ProviderProfilePage({
   params,
 }: ProviderProfilePageProps) {
@@ -107,7 +119,7 @@ export default function ProviderProfilePage({
       {
         id: "1",
         title: "अफिस सफाई परियोजना",
-        description: "बागबजारको एक ठूलो अफिसको सम्पूर्ण सफाई काम।",
+        description: "बागबजारको एक ठूलो अफिसको ��म्पूर्ण सफाई काम।",
         images: ["/portfolio1.jpg", "/portfolio2.jpg", "/portfolio3.jpg"],
         date: "2024-01-15",
         category: "कार्यालय सफाई",
@@ -136,7 +148,7 @@ export default function ProviderProfilePage({
         reviewer: "सरिता शर्मा",
         rating: 5,
         comment:
-          "राज जीको काम एकदम राम्रो छ। समयमा आएर राम्रोसँग सफाई गर्नुभयो।",
+          "राज जीको काम एकदम राम्रो छ। समयमा ���एर राम्रोसँग सफाई गर्नुभयो।",
         date: "2024-01-20",
         service: "घर सरसफाई",
       },
@@ -168,7 +180,7 @@ export default function ProviderProfilePage({
       availability: "उपलब्धता",
       contact: "सम्पर्क",
       bookNow: "अहिले बुक गर्नुहोस्",
-      sendMessage: "सन्देश पठाउनुहोस्",
+      sendMessage: "सन्देश पठाउनुहोस���",
       share: "साझा गर्नुहोस्",
       bookmark: "बुकमार्क",
       verified: "प्रमाणित",
