@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Header } from "@/components/layout/Header";
@@ -42,13 +39,21 @@ export function generateStaticParams() {
   }));
 }
 
-export default function BookingDetailPage() {
-  const { t, language } = useLanguage();
-  const [showCancelModal, setShowCancelModal] = useState(false);
-  const params = useParams();
-  const searchParams = useSearchParams();
-  const bookingId = params.id as string;
-  const status = searchParams.get("status");
+interface BookingDetailPageProps {
+  params: {
+    id: string;
+  };
+  searchParams: {
+    status?: string;
+  };
+}
+
+export default function BookingDetailPage({
+  params,
+  searchParams,
+}: BookingDetailPageProps) {
+  const bookingId = params.id;
+  const status = searchParams.status;
 
   // Mock data - in real app, this would come from API/database
   const booking = {
@@ -67,7 +72,7 @@ export default function BookingDetailPage() {
           : "Kathmandu Metropolitan City",
       ward: 15,
       streetAddress:
-        language === "ne" ? "दरबारमार्ग, नयाँ सडक" : "Durbar Marg, New Road",
+        language === "ne" ? "दरबारमार्��, नयाँ सडक" : "Durbar Marg, New Road",
     },
     service: {
       id: "service-1",
@@ -105,7 +110,7 @@ export default function BookingDetailPage() {
     paymentStatus: "completed",
     notes:
       language === "ne"
-        ? "कृपया इको-फ्रेन्डली प्रोड���्ट प्रयोग गर्नुहोस्। घरमा कुकुर ��।"
+        ? "कृपया इको-फ्रेन्डली प्रोड���्ट प्रयोग गर्नुहोस्। घरमा कुकुर छ।"
         : "Please use eco-friendly products. There's a dog at home.",
     timeline: [
       {
@@ -177,7 +182,7 @@ export default function BookingDetailPage() {
       case "pending":
         return language === "ne" ? "पेन्डिङ" : "Pending";
       case "confirmed":
-        return language === "ne" ? "पुष्टि भ���को" : "Confirmed";
+        return language === "ne" ? "पुष्टि भएको" : "Confirmed";
       case "in_progress":
         return language === "ne" ? "प्रगतिमा" : "In Progress";
       case "completed":
@@ -472,7 +477,7 @@ export default function BookingDetailPage() {
               </h3>
               <p className="text-gray-600 text-sm mb-4">
                 {language === "ne"
-                  ? "यदि तपाईंलाई कुनै समस्या छ भने हामीलाई सम्पर्क गर्नुहोस्।"
+                  ? "यदि तपाईंलाई कुनै सम���्या छ भने हामीलाई सम्पर्क गर्नुहोस्।"
                   : "Contact us if you have any issues with your booking."}
               </p>
               <Button variant="outline" className="w-full">
