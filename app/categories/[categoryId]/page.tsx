@@ -26,6 +26,13 @@ interface CategoryPageProps {
   };
 }
 
+// Generate static paths for all categories
+export function generateStaticParams() {
+  return SERVICE_CATEGORIES.map((category) => ({
+    categoryId: category.id,
+  }));
+}
+
 export default function CategorySubcategoriesPage({
   params,
 }: CategoryPageProps) {
@@ -38,7 +45,7 @@ export default function CategorySubcategoriesPage({
     ne: {
       backToCategories: "श्रेणीहरूमा फर्किनुहोस्",
       subcategories: "उप-श्रेणीहरू",
-      searchPlaceholder: "उप-श्रेणी खोज्नुहोस्...",
+      searchPlaceholder: "���प-श्रेणी खोज्नुहोस्...",
       sortBy: "क्रमबद्ध गर्नुहोस्",
       popular: "लोकप्रिय",
       alphabetical: "वर्णमाला अनुसार",
