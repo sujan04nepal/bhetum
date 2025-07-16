@@ -25,6 +25,18 @@ import { Input } from "@/components/ui/Input";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Link from "next/link";
 
+// Generate static paths for sample request IDs
+export function generateStaticParams() {
+  // Generate sample request IDs for static generation
+  const sampleRequestIds = Array.from({ length: 50 }, (_, i) =>
+    (i + 1).toString(),
+  );
+
+  return sampleRequestIds.map((id) => ({
+    id,
+  }));
+}
+
 export default function RequestDetailPage() {
   const [showBidForm, setShowBidForm] = useState(false);
   const [bidAmount, setBidAmount] = useState("");
