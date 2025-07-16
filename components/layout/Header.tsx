@@ -323,7 +323,7 @@ export function Header() {
             ) : (
               <div className="pt-4 space-y-2 border-t">
                 <Link
-                  href="/auth/signin"
+                  href="/auth/login"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Button variant="outline" size="sm" className="w-full">
