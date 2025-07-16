@@ -47,32 +47,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setAuthUser(session?.user ?? null);
-      if (session?.user) {
-        fetchUserProfile(session.user.id);
-      } else {
+    supabase.auth
+      .getSession()
+      .then(({ data: { session } }) => {
+        setSession(session);
+        setAuthUser(session?.user ?? null);
+        if (session?.user) {
+          fetchUserProfile(session.user.id);
+        } else {
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.warn("Supabase not configured, running in demo mode");
         setLoading(false);
-      }
-    });
+      });
 
     // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, session) => {
-      setSession(session);
-      setAuthUser(session?.user ?? null);
+    try {
+      const {
+        data: { subscription },
+      } = supabase.auth.onAuthStateChange(async (event, session) => {
+        setSession(session);
+        setAuthUser(session?.user ?? null);
 
-      if (event === "SIGNED_IN" && session?.user) {
-        await fetchUserProfile(session.user.id);
-      } else if (event === "SIGNED_OUT") {
-        setUser(null);
-        setLoading(false);
-      }
-    });
+        if (event === "SIGNED_IN" && session?.user) {
+          await fetchUserProfile(session.user.id);
+        } else if (event === "SIGNED_OUT") {
+          setUser(null);
+          setLoading(false);
+        }
+      });
 
-    return () => subscription.unsubscribe();
+      return () => subscription.unsubscribe();
+    } catch (error) {
+      console.warn("Supabase not configured, running in demo mode");
+      setLoading(false);
+    }
   }, []);
 
   const fetchUserProfile = async (userId: string) => {
