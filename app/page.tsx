@@ -99,7 +99,7 @@ export default function HomePage() {
       category: "digital-online",
       rating: 4.9,
       reviews: 203,
-      price: language === "ne" ? "रू १२००/घण्���ा" : "Rs 1200/hr",
+      price: language === "ne" ? "���ू १२००/घण्टा" : "Rs 1200/hr",
       location: language === "ne" ? "भक्तपुर" : "Bhaktapur",
       image: "👨‍💻",
       badge: language === "ne" ? "प्रमाणित प्रो" : "Verified Pro",
@@ -246,15 +246,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Service Categories - Vibrant Grid */}
-      <section className="py-20 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      {/* Service Categories */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">{t("home.categories")}</span>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              {t("home.categories")}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t("home.categoriesDesc")} 🎯
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              {t("home.categoriesDesc")}
             </p>
           </div>
 
@@ -266,24 +266,16 @@ export default function HomePage() {
                 <Link
                   key={category.id}
                   href={`/categories/${category.id}`}
-                  className="category-card group"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="block group"
                 >
-                  <div
-                    className={`card-vibrant ${colors?.bg} border-2 border-transparent hover:border-white group-hover:shadow-xl`}
-                  >
-                    <div
-                      className={`text-5xl mb-4 text-center floating-animation`}
-                      style={{ animationDelay: `${index * 0.2}s` }}
-                    >
+                  <div className="bg-white rounded-lg p-6 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div className="text-3xl mb-4 text-center">
                       {category.icon}
                     </div>
-                    <h3
-                      className={`font-bold text-center mb-2 ${colors?.text} text-lg`}
-                    >
+                    <h3 className="font-semibold text-center mb-2 text-gray-900 text-base">
                       {category.name}
                     </h3>
-                    <p className="text-center text-gray-600 text-sm mb-3">
+                    <p className="text-center text-gray-500 text-sm mb-3">
                       {category.subcategories.length}+ {t("common.services")}
                     </p>
                     <div className="flex flex-wrap gap-1 justify-center">
@@ -292,7 +284,7 @@ export default function HomePage() {
                         .map((sub, subIndex) => (
                           <span
                             key={sub.id}
-                            className={`service-badge ${colors?.bg} ${colors?.text} text-xs`}
+                            className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
                           >
                             {sub.name.length > 15
                               ? sub.name.substring(0, 15) + "..."
@@ -300,9 +292,7 @@ export default function HomePage() {
                           </span>
                         ))}
                       {category.subcategories.length > 3 && (
-                        <span
-                          className={`service-badge ${colors?.bg} ${colors?.text} text-xs font-bold`}
-                        >
+                        <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-medium">
                           +{category.subcategories.length - 3}{" "}
                           {t("common.more")}
                         </span>
@@ -316,21 +306,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Providers - Enhanced */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Featured Providers */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-16">
+          <div className="flex justify-between items-center mb-12">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                <span className="gradient-text">{t("home.topProviders")}</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+                {t("home.topProviders")}
               </h2>
-              <p className="text-xl text-gray-600">
-                {t("home.topProvidersDesc")} ⭐
+              <p className="text-lg text-gray-600">
+                {t("home.topProvidersDesc")}
               </p>
             </div>
             <Link href="/find-services">
-              <Button className="btn-vibrant hidden md:flex items-center">
-                {t("home.viewAll")} <ArrowRight className="ml-2 h-5 w-5" />
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white hidden md:flex items-center px-4 py-2 rounded-lg">
+                {t("home.viewAll")} <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -344,19 +334,15 @@ export default function HomePage() {
               return (
                 <Card
                   key={index}
-                  className="group hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 overflow-hidden"
+                  className="group hover:shadow-lg transition-shadow border border-gray-200"
                 >
                   <div className="relative">
-                    <div
-                      className={`absolute top-0 right-0 px-3 py-1 rounded-bl-lg text-white text-xs font-bold ${categoryColors?.accent}`}
-                    >
+                    <div className="absolute top-0 right-0 px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-bl-lg">
                       {provider.badge}
                     </div>
 
                     <div className="flex items-center mb-6">
-                      <div className="text-6xl mr-4 floating-animation">
-                        {provider.image}
-                      </div>
+                      <div className="text-4xl mr-4">{provider.image}</div>
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-1">
                           {provider.name}
@@ -398,7 +384,7 @@ export default function HomePage() {
                       {provider.specialties.map((specialty, i) => (
                         <span
                           key={i}
-                          className={`service-badge ${categoryColors?.bg} ${categoryColors?.text}`}
+                          className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm"
                         >
                           {specialty}
                         </span>
@@ -415,8 +401,8 @@ export default function HomePage() {
                         href={`/booking/new?provider=${index + 1}`}
                         className="flex-1"
                       >
-                        <Button className="w-full btn-vibrant">
-                          {t("home.bookNow")} ⚡
+                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                          {t("home.bookNow")}
                         </Button>
                       </Link>
                     </div>
@@ -428,75 +414,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Features Section - Enhanced */}
-      <section className="py-20 bg-gradient-to-r from-purple-600 to-blue-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              {t("home.features")} <span className="text-yellow-300">🌟</span>
+      {/* Features Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+              {t("home.features")}
             </h2>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              {t("home.featuresDesc")} 🌟
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              {t("home.featuresDesc")}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center group">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl mb-6 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Shield className="h-12 w-12 text-green-300" />
+            <div className="text-center">
+              <div className="bg-white p-6 rounded-lg mb-6 mx-auto w-20 h-20 flex items-center justify-center border border-gray-200">
+                <Shield className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">
-                🛡️ {t("home.verifiedProviders")}
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                {t("home.verifiedProviders")}
               </h3>
-              <p className="text-blue-100 text-lg">{t("home.verifiedDesc")}</p>
+              <p className="text-gray-600">{t("home.verifiedDesc")}</p>
             </div>
 
-            <div className="text-center group">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl mb-6 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Clock className="h-12 w-12 text-yellow-300" />
+            <div className="text-center">
+              <div className="bg-white p-6 rounded-lg mb-6 mx-auto w-20 h-20 flex items-center justify-center border border-gray-200">
+                <Clock className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">
-                ⚡ {t("home.instantBooking")}
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                {t("home.instantBooking")}
               </h3>
-              <p className="text-blue-100 text-lg">{t("home.instantDesc")}</p>
+              <p className="text-gray-600">{t("home.instantDesc")}</p>
             </div>
 
-            <div className="text-center group">
-              <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl mb-6 mx-auto w-24 h-24 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="h-12 w-12 text-pink-300" />
+            <div className="text-center">
+              <div className="bg-white p-6 rounded-lg mb-6 mx-auto w-20 h-20 flex items-center justify-center border border-gray-200">
+                <TrendingUp className="h-8 w-8 text-purple-600" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">
-                💯 {t("home.qualityGuarantee")}
+              <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                {t("home.qualityGuarantee")}
               </h3>
-              <p className="text-blue-100 text-lg">{t("home.qualityDesc")}</p>
+              <p className="text-gray-600">{t("home.qualityDesc")}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Vibrant */}
-      <section className="py-20 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
+      {/* CTA Section */}
+      <section className="py-16 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <div className="floating-animation inline-block mb-6">
-            <span className="text-6xl">🇳🇵</span>
+          <div className="mb-6">
+            <span className="text-4xl">🇳🇵</span>
           </div>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            {t("home.readyTitle")} 🚀
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            {t("home.readyTitle")}
           </h2>
-          <p className="text-xl md:text-2xl mb-12 text-pink-100 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto">
             {t("home.readyDesc")}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/find-services">
-              <Button className="bg-white text-purple-600 font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 text-lg">
-                🔍 {t("home.findServices")}
+              <Button className="bg-white text-blue-600 font-medium py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors">
+                {t("home.findServices")}
               </Button>
             </Link>
             <Link href="/become-provider">
-              <Button className="bg-gradient-to-r from-purple-600 to-blue-600 font-bold py-4 px-8 rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 text-lg">
-                💼 {t("home.becomeProvider")}
+              <Button className="bg-blue-700 hover:bg-blue-800 font-medium py-3 px-6 rounded-lg transition-colors">
+                {t("home.becomeProvider")}
               </Button>
             </Link>
           </div>
