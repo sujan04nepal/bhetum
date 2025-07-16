@@ -32,6 +32,22 @@ interface SubcategoryPageProps {
   };
 }
 
+// Generate static paths for all category/subcategory combinations
+export function generateStaticParams() {
+  const params: { categoryId: string; subcategoryId: string }[] = [];
+
+  SERVICE_CATEGORIES.forEach((category) => {
+    category.subcategories.forEach((subcategory) => {
+      params.push({
+        categoryId: category.id,
+        subcategoryId: subcategory.id,
+      });
+    });
+  });
+
+  return params;
+}
+
 export default function SubcategoryDetailPage({
   params,
 }: SubcategoryPageProps) {
@@ -53,7 +69,7 @@ export default function SubcategoryDetailPage({
       viewAllProviders: "सबै प्रदायकहरू हेर्नुहोस्",
       topRated: "उच्च रेटिङ",
       mostActive: "सबैभन्दा सक्रिय",
-      quickest: "सबैभन्दा छिटो",
+      quickest: "सबै��न्दा छिटो",
       affordable: "किफायती",
       verified: "प्रमाणित",
       recentBookings: "हालका बुकिङहरू",
