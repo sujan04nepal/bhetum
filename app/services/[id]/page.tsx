@@ -32,6 +32,18 @@ interface ServiceDetailPageProps {
   };
 }
 
+// Generate static paths for sample service IDs
+export function generateStaticParams() {
+  // Generate sample service IDs for static generation
+  const sampleServiceIds = Array.from({ length: 100 }, (_, i) =>
+    (i + 1).toString(),
+  );
+
+  return sampleServiceIds.map((id) => ({
+    id,
+  }));
+}
+
 export default function ServiceDetailPage({ params }: ServiceDetailPageProps) {
   const { t, language } = useLanguage();
   const [selectedDate, setSelectedDate] = useState("");
