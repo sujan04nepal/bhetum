@@ -6,6 +6,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Disable static optimization for pages using React Context
+  output: "standalone",
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
