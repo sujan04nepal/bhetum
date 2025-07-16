@@ -1,5 +1,8 @@
 "use client";
 
+// Prevent static generation
+export const dynamic = "force-dynamic";
+
 import { useState } from "react";
 import {
   Search,
@@ -34,7 +37,7 @@ export default function HelpPage() {
       topics: [
         {
           title: "सेवा बुक गर्ने तरिका",
-          description: "कसरी सेवा खोज्ने र बुक गर्ने",
+          description: "कसरी सेव��� खोज्ने र बुक गर्ने",
           icon: "📅",
         },
         {
@@ -67,7 +70,7 @@ export default function HelpPage() {
         {
           question: "सेवा बुक गर्न कस्तो शुल्क लाग्छ?",
           answer:
-            "सेवा खोज्न र बुक गर्न कुनै शुल्क लाग्दैन। तपाईंले सेवाको मूल्य मात्र भुक्तानी गर्नुहुन्छ। हाम्रो प्लेटफर्म निःशुल्क छ।",
+            "से���ा खोज्न र बुक गर्न कुनै शुल्क लाग्दैन। तपाईंले सेवाको मूल्य मात्र भुक्तानी गर्नुहुन्छ। हाम्रो प्लेटफर्म निःशुल्क छ।",
         },
         {
           question: "सेवाप्रदायकहरू कत्तिको भरपर्दो छन्?",
