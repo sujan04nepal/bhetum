@@ -99,7 +99,7 @@ export default function HomePage() {
       category: "digital-online",
       rating: 4.9,
       reviews: 203,
-      price: language === "ne" ? "रू १२००/घण्टा" : "Rs 1200/hr",
+      price: language === "ne" ? "रू १२००/घण्���ा" : "Rs 1200/hr",
       location: language === "ne" ? "भक्तपुर" : "Bhaktapur",
       image: "👨‍💻",
       badge: language === "ne" ? "प्रमाणित प्रो" : "Verified Pro",
@@ -169,57 +169,47 @@ export default function HomePage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">
-        <div className="absolute inset-0 bg-black/20"></div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center text-white">
-            <div className="floating-animation inline-block mb-6">
-              <span className="text-6xl">🇳🇵</span>
+      <section className="relative bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="text-center">
+            <div className="mb-6">
+              <span className="text-4xl">🇳🇵</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-              <span className="block text-white mb-2">{t("home.title")}</span>
-              <span className="block bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
-                {t("home.subtitle")}
-              </span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+              <span className="block mb-2">{t("home.title")}</span>
+              <span className="block text-blue-600">{t("home.subtitle")}</span>
             </h1>
 
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto animate-slide-up">
-              {t("home.description")} 🚀
+            <p className="text-lg md:text-xl mb-8 text-gray-600 max-w-3xl mx-auto">
+              {t("home.description")}
             </p>
 
-            {/* Enhanced Search Bar */}
-            <div className="max-w-4xl mx-auto mb-12 animate-bounce-in">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            {/* Search Bar */}
+            <div className="max-w-4xl mx-auto mb-12">
+              <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="relative">
-                    <Search className="absolute left-4 top-4 h-5 w-5 text-white/70" />
+                    <Search className="absolute left-4 top-4 h-5 w-5 text-gray-400" />
                     <input
                       type="text"
                       placeholder={t("home.searchPlaceholder")}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onKeyPress={handleKeyPress}
-                      className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all backdrop-blur-sm"
+                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                   </div>
                   <div className="relative">
-                    <MapPin className="absolute left-4 top-4 h-5 w-5 text-white/70" />
+                    <MapPin className="absolute left-4 top-4 h-5 w-5 text-gray-400" />
                     <select
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
-                      className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/30 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent transition-all backdrop-blur-sm"
+                      className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      <option value="" className="text-gray-900">
-                        {t("home.locationPlaceholder")}
-                      </option>
+                      <option value="">{t("home.locationPlaceholder")}</option>
                       {MAJOR_CITIES.map((city) => (
-                        <option
-                          key={city}
-                          value={city}
-                          className="text-gray-900"
-                        >
+                        <option key={city} value={city}>
                           {city}
                         </option>
                       ))}
@@ -227,10 +217,10 @@ export default function HomePage() {
                   </div>
                   <Button
                     onClick={handleSearch}
-                    className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
                   >
                     <Search className="h-5 w-5 mr-2" />
-                    {t("home.searchButton")} ✨
+                    {t("home.searchButton")}
                   </Button>
                 </div>
               </div>
@@ -239,19 +229,15 @@ export default function HomePage() {
             {/* Quick Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="text-center animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                <div key={index} className="text-center">
+                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
                     <stat.icon
-                      className={`h-8 w-8 mx-auto mb-2 ${stat.color}`}
+                      className={`h-6 w-6 mx-auto mb-2 ${stat.color}`}
                     />
-                    <div className="text-2xl font-bold text-white">
+                    <div className="text-2xl font-bold text-gray-900">
                       {stat.value}
                     </div>
-                    <div className="text-white/80 text-sm">{stat.label}</div>
+                    <div className="text-gray-600 text-sm">{stat.label}</div>
                   </div>
                 </div>
               ))}
