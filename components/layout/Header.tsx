@@ -331,7 +331,7 @@ export function Header() {
                   </Button>
                 </Link>
                 <Link
-                  href="/auth/signup"
+                  href="/auth/register"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Button size="sm" className="w-full">
