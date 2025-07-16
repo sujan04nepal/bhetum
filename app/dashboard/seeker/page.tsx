@@ -1,628 +1,606 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Search,
-  Filter,
-  MapPin,
-  Star,
   Calendar,
+  Star,
   Clock,
-  MessageCircle,
-  Settings,
-  User,
-  Bell,
-  ChevronDown,
-  Grid,
-  List,
   Plus,
   Eye,
-  CheckCircle,
-  AlertCircle,
-  XCircle,
+  MessageSquare,
+  MapPin,
+  Edit,
+  Settings,
+  Heart,
+  DollarSign,
+  User,
 } from "lucide-react";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
-import { SERVICE_CATEGORIES, CATEGORY_COLORS } from "@/lib/constants";
+import { Card } from "@/components/ui/Card";
+import { useAuth, withAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
-export default function SeekerDashboard() {
-  const [activeTab, setActiveTab] = useState("home");
-  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
+interface DashboardStats {
+  totalBookings: number;
+  activeBookings: number;
+  completedBookings: number;
+  totalSpent: number;
+  activeRequests: number;
+  savedProviders: number;
+}
 
-  // Mock data based on research of successful platforms
-  const recentBookings = [
-    {
-      id: "1",
-      service: "House Deep Cleaning",
-      provider: {
-        name: "Sarah Johnson",
-        image: "👩‍💼",
-        rating: 4.9,
-      },
-      date: "2024-01-15",
-      time: "10:00 AM",
-      status: "confirmed",
-      price: "$85",
-    },
-    {
-      id: "2",
-      service: "Math Tutoring Session",
-      provider: {
-        name: "Mike Chen",
-        image: "👨‍🏫",
-        rating: 4.8,
-      },
-      date: "2024-01-18",
-      time: "2:00 PM",
-      status: "pending",
-      price: "$35",
-    },
-    {
-      id: "3",
-      service: "Logo Design",
-      provider: {
-        name: "Emma Davis",
-        image: "👩‍🎨",
-        rating: 5.0,
-      },
-      date: "2024-01-12",
-      time: "Completed",
-      status: "completed",
-      price: "$150",
-    },
-  ];
+interface RecentBooking {
+  id: string;
+  booking_reference: string;
+  service_title: string;
+  provider_name: string;
+  scheduled_date: string;
+  scheduled_time: string;
+  quoted_price: number;
+  status: string;
+  service_location: string;
+  provider_rating: number;
+}
 
-  const featuredProviders = [
-    {
-      id: "1",
-      name: "Alex Rivera",
-      service: "Web Development",
-      category: "digital-online",
-      rating: 4.9,
-      reviews: 203,
-      price: 75,
-      image: "👨‍💻",
-      badges: ["Top Rated", "Fast Response"],
-      location: "Tech Hub",
-      responseTime: "< 1 hour",
-      completedJobs: 150,
-    },
-    {
-      id: "2",
-      name: "Lisa Wang",
-      service: "Personal Training",
-      category: "personal-care",
-      rating: 4.8,
-      reviews: 156,
-      price: 45,
-      image: "👩‍⚕️",
-      badges: ["Certified", "Available Today"],
-      location: "Fitness District",
-      responseTime: "< 30 min",
-      completedJobs: 89,
-    },
-    {
-      id: "3",
-      name: "David Kumar",
-      service: "Photography",
-      category: "events-hospitality",
-      rating: 5.0,
-      reviews: 78,
-      price: 200,
-      image: "📸",
-      badges: ["Premium", "Wedding Expert"],
-      location: "Studio District",
-      responseTime: "< 2 hours",
-      completedJobs: 45,
-    },
-    {
-      id: "4",
-      name: "Maria Garcia",
-      service: "Home Cleaning",
-      category: "trade-skilled",
-      rating: 4.9,
-      reviews: 234,
-      price: 30,
-      image: "🧹",
-      badges: ["Eco-Friendly", "Insured"],
-      location: "Downtown",
-      responseTime: "< 15 min",
-      completedJobs: 180,
-    },
-  ];
+interface RecentRequest {
+  id: string;
+  title: string;
+  description: string;
+  budget_max: number;
+  urgency: string;
+  created_at: string;
+  proposals_count: number;
+  is_active: boolean;
+}
+
+interface FavoriteProvider {
+  id: string;
+  business_name: string;
+  full_name: string;
+  average_rating: number;
+  total_reviews: number;
+  specialties: string[];
+  base_hourly_rate: number;
+}
+
+function SeekerDashboardPage() {
+  const { user } = useAuth();
+  const { language } = useLanguage();
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState<DashboardStats>({
+    totalBookings: 0,
+    activeBookings: 0,
+    completedBookings: 0,
+    totalSpent: 0,
+    activeRequests: 0,
+    savedProviders: 0,
+  });
+  const [recentBookings, setRecentBookings] = useState<RecentBooking[]>([]);
+  const [recentRequests, setRecentRequests] = useState<RecentRequest[]>([]);
+  const [favoriteProviders, setFavoriteProviders] = useState<
+    FavoriteProvider[]
+  >([]);
+
+  useEffect(() => {
+    if (user) {
+      fetchDashboardData();
+    }
+  }, [user]);
+
+  const fetchDashboardData = async () => {
+    if (!user) return;
+
+    try {
+      setLoading(true);
+
+      // Fetch user's bookings
+      const { data: bookings } = await supabase
+        .from("bookings")
+        .select(
+          `
+          *,
+          provider_profiles!provider_id(
+            business_name,
+            average_rating,
+            users!user_id(full_name)
+          )
+        `,
+        )
+        .eq("customer_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (bookings) {
+        const totalBookings = bookings.length;
+        const activeBookings = bookings.filter((b) =>
+          ["pending", "confirmed", "in_progress"].includes(b.status),
+        ).length;
+        const completedBookings = bookings.filter(
+          (b) => b.status === "completed",
+        ).length;
+        const totalSpent = bookings
+          .filter((b) => b.status === "completed")
+          .reduce((sum, b) => sum + (b.final_price || b.quoted_price), 0);
+
+        setStats((prev) => ({
+          ...prev,
+          totalBookings,
+          activeBookings,
+          completedBookings,
+          totalSpent,
+        }));
+
+        // Set recent bookings
+        setRecentBookings(
+          bookings.slice(0, 5).map((booking) => ({
+            id: booking.id,
+            booking_reference: booking.booking_reference,
+            service_title: booking.service_title,
+            provider_name:
+              booking.provider_profiles?.business_name ||
+              booking.provider_profiles?.users?.full_name ||
+              "Unknown Provider",
+            scheduled_date: booking.scheduled_date,
+            scheduled_time: booking.scheduled_time,
+            quoted_price: booking.quoted_price,
+            status: booking.status,
+            service_location: booking.service_location,
+            provider_rating: booking.provider_profiles?.average_rating || 0,
+          })),
+        );
+      }
+
+      // Fetch user's service requests
+      const { data: requests } = await supabase
+        .from("service_requests")
+        .select(
+          `
+          *,
+          service_proposals(count)
+        `,
+        )
+        .eq("requester_id", user.id)
+        .order("created_at", { ascending: false });
+
+      if (requests) {
+        const activeRequests = requests.filter((r) => r.is_active).length;
+        setStats((prev) => ({ ...prev, activeRequests }));
+
+        // Set recent requests
+        setRecentRequests(
+          requests.slice(0, 5).map((request) => ({
+            id: request.id,
+            title: request.title,
+            description: request.description,
+            budget_max: request.budget_max || 0,
+            urgency: request.urgency,
+            created_at: request.created_at,
+            proposals_count: 0, // Would need to count proposals separately
+            is_active: request.is_active,
+          })),
+        );
+      }
+
+      // Mock favorite providers (in real app, would have a favorites table)
+      setFavoriteProviders([]);
+      setStats((prev) => ({ ...prev, savedProviders: 0 }));
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "confirmed":
-        return "text-green-600 bg-green-50";
       case "pending":
-        return "text-yellow-600 bg-yellow-50";
+        return "bg-yellow-100 text-yellow-800";
+      case "confirmed":
+        return "bg-blue-100 text-blue-800";
+      case "in_progress":
+        return "bg-purple-100 text-purple-800";
       case "completed":
-        return "text-blue-600 bg-blue-50";
+        return "bg-green-100 text-green-800";
+      case "cancelled":
+        return "bg-red-100 text-red-800";
       default:
-        return "text-gray-600 bg-gray-50";
+        return "bg-gray-100 text-gray-800";
     }
   };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "confirmed":
-        return <CheckCircle className="h-4 w-4" />;
-      case "pending":
-        return <AlertCircle className="h-4 w-4" />;
-      case "completed":
-        return <CheckCircle className="h-4 w-4" />;
+  const getStatusLabel = (status: string) => {
+    const labels: Record<string, { en: string; ne: string }> = {
+      pending: { en: "Pending", ne: "बाँकी" },
+      confirmed: { en: "Confirmed", ne: "पुष्टि भएको" },
+      in_progress: { en: "In Progress", ne: "प्रगतिमा" },
+      completed: { en: "Completed", ne: "सम्पन्न" },
+      cancelled: { en: "Cancelled", ne: "रद्द" },
+    };
+    return labels[status]?.[language] || status;
+  };
+
+  const getUrgencyColor = (urgency: string) => {
+    switch (urgency) {
+      case "urgent":
+        return "bg-red-100 text-red-800";
+      case "high":
+        return "bg-orange-100 text-orange-800";
+      case "medium":
+        return "bg-yellow-100 text-yellow-800";
+      case "low":
+        return "bg-green-100 text-green-800";
       default:
-        return <XCircle className="h-4 w-4" />;
+        return "bg-gray-100 text-gray-800";
     }
   };
 
-  const navigationTabs = [
-    { id: "home", label: "Home", icon: Grid },
-    { id: "bookings", label: "My Bookings", icon: Calendar },
-    { id: "messages", label: "Messages", icon: MessageCircle },
-    { id: "more", label: "More", icon: ChevronDown },
-  ];
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Header Navigation */}
-      <header className="bg-white/80 backdrop-blur-lg border-b border-white/20 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold gradient-text">
-                ServiceConnect
-              </h1>
-              <span className="ml-2 text-sm text-gray-500">
-                Seeker Dashboard
-              </span>
-            </div>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              {navigationTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
-                    activeTab === tab.id
-                      ? "bg-primary-100 text-primary-700"
-                      : "text-gray-600 hover:text-primary-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <tab.icon className="h-5 w-5" />
-                  <span>{tab.label}</span>
-                </button>
-              ))}
-            </nav>
-
-            {/* User Actions */}
-            <div className="flex items-center space-x-4">
-              <button className="relative p-2 text-gray-600 hover:text-primary-600 transition-colors">
-                <Bell className="h-5 w-5" />
-                <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
-              </button>
-
-              <div className="relative">
-                <button className="flex items-center space-x-2 p-2 text-gray-600 hover:text-primary-600 transition-colors">
-                  <User className="h-5 w-5" />
-                  <span className="hidden sm:block">John Doe</span>
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </div>
-
-              {/* Mobile Menu Toggle */}
-              <button
-                className="md:hidden p-2"
-                onClick={() => setShowMobileMenu(!showMobileMenu)}
-              >
-                <Grid className="h-5 w-5" />
-              </button>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header Section */}
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">
+              {language === "ne" ? "ग्राहक ड्यासबोर्ड" : "Customer Dashboard"}
+            </h1>
+            <p className="text-gray-600">
+              {language === "ne"
+                ? `स्वागत छ, ${user?.full_name}`
+                : `Welcome back, ${user?.full_name}`}
+            </p>
           </div>
-
-          {/* Mobile Navigation */}
-          {showMobileMenu && (
-            <div className="md:hidden py-4 border-t border-gray-200">
-              <div className="grid grid-cols-2 gap-2">
-                {navigationTabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => {
-                      setActiveTab(tab.id);
-                      setShowMobileMenu(false);
-                    }}
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all ${
-                      activeTab === tab.id
-                        ? "bg-primary-100 text-primary-700"
-                        : "text-gray-600 hover:text-primary-600"
-                    }`}
-                  >
-                    <tab.icon className="h-5 w-5" />
-                    <span>{tab.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="flex space-x-3">
+            <Link href="/find-services">
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                <Search className="h-4 w-4 mr-2" />
+                {language === "ne" ? "सेवा खोज्नुहोस्" : "Find Services"}
+              </Button>
+            </Link>
+            <Link href="/post-request">
+              <Button variant="outline">
+                <Plus className="h-4 w-4 mr-2" />
+                {language === "ne" ? "अनुरोध पोस्ट गर्नुहोस्" : "Post Request"}
+              </Button>
+            </Link>
+          </div>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === "home" && (
-          <div className="space-y-8">
-            {/* Welcome Section */}
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-white">
-              <div className="relative z-10">
-                <h2 className="text-3xl font-bold mb-2">
-                  Welcome back, John! 👋
-                </h2>
-                <p className="text-blue-100 text-lg mb-6">
-                  Ready to find amazing services today?
+        {/* Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <Card className="p-6">
+            <div className="flex items-center">
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <Calendar className="h-6 w-6 text-blue-600" />
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-600">
+                  {language === "ne" ? "कुल बुकिङहरू" : "Total Bookings"}
                 </p>
-                <Button className="bg-white text-purple-600 hover:bg-gray-100 font-semibold">
-                  <Plus className="h-5 w-5 mr-2" />
-                  Post a New Request
-                </Button>
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.totalBookings}
+                </p>
               </div>
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 h-32 w-32 rounded-full bg-white/10"></div>
-              <div className="absolute bottom-0 left-0 -mb-8 -ml-8 h-24 w-24 rounded-full bg-white/5"></div>
             </div>
+          </Card>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <Card className="text-center p-6">
-                <div className="text-3xl font-bold text-blue-600 mb-2">12</div>
-                <div className="text-gray-600">Total Bookings</div>
-              </Card>
-              <Card className="text-center p-6">
-                <div className="text-3xl font-bold text-green-600 mb-2">8</div>
-                <div className="text-gray-600">Completed</div>
-              </Card>
-              <Card className="text-center p-6">
-                <div className="text-3xl font-bold text-yellow-600 mb-2">2</div>
-                <div className="text-gray-600">Pending</div>
-              </Card>
-              <Card className="text-center p-6">
-                <div className="text-3xl font-bold text-purple-600 mb-2">
-                  4.8
-                </div>
-                <div className="text-gray-600">Avg Rating Given</div>
-              </Card>
-            </div>
-
-            {/* Search & Filters */}
-            <Card className="p-6">
-              <div className="flex flex-col lg:flex-row gap-4 mb-6">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                  <Input
-                    placeholder="Search for services or providers..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                >
-                  <option value="all">All Categories</option>
-                  {SERVICE_CATEGORIES.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.icon} {category.name}
-                    </option>
-                  ))}
-                </select>
-                <Button variant="outline" className="flex items-center">
-                  <Filter className="h-5 w-5 mr-2" />
-                  Filters
-                </Button>
-                <div className="flex bg-gray-100 rounded-lg p-1">
-                  <button
-                    onClick={() => setViewMode("grid")}
-                    className={`p-2 rounded ${viewMode === "grid" ? "bg-white shadow" : ""}`}
-                  >
-                    <Grid className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode("list")}
-                    className={`p-2 rounded ${viewMode === "list" ? "bg-white shadow" : ""}`}
-                  >
-                    <List className="h-4 w-4" />
-                  </button>
-                </div>
+          <Card className="p-6">
+            <div className="flex items-center">
+              <div className="p-2 bg-purple-100 rounded-lg">
+                <Clock className="h-6 w-6 text-purple-600" />
               </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-600">
+                  {language === "ne" ? "सक्रिय बुकिङहरू" : "Active Bookings"}
+                </p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.activeBookings}
+                </p>
+              </div>
+            </div>
+          </Card>
 
-              {/* Featured Providers */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-4">
-                  Featured Providers Near You
-                </h3>
+          <Card className="p-6">
+            <div className="flex items-center">
+              <div className="p-2 bg-green-100 rounded-lg">
+                <Star className="h-6 w-6 text-green-600" />
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-600">
+                  {language === "ne" ? "पूरा भएका" : "Completed"}
+                </p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {stats.completedBookings}
+                </p>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="p-6">
+            <div className="flex items-center">
+              <div className="p-2 bg-yellow-100 rounded-lg">
+                <DollarSign className="h-6 w-6 text-yellow-600" />
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-600">
+                  {language === "ne" ? "कुल खर्च" : "Total Spent"}
+                </p>
+                <p className="text-2xl font-bold text-gray-900">
+                  Rs {stats.totalSpent.toLocaleString()}
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Activity Overview */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <Card className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              {language === "ne" ? "गतिविधि सिंहावलोकन" : "Activity Overview"}
+            </h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">
+                  {language === "ne" ? "सक्रिय अनुरोधहरू" : "Active Requests"}
+                </span>
+                <span className="font-semibold">{stats.activeRequests}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">
+                  {language === "ne" ? "मनपर्ने प्रदायकहरू" : "Saved Providers"}
+                </span>
+                <span className="font-semibold">{stats.savedProviders}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600">
+                  {language === "ne" ? "पूरा भएका" : "Completed Services"}
+                </span>
+                <span className="font-semibold">{stats.completedBookings}</span>
+              </div>
+            </div>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              {language === "ne" ? "द्रुत कार्यहरू" : "Quick Actions"}
+            </h3>
+            <div className="space-y-3">
+              <Link href="/find-services" className="block">
+                <Button variant="outline" className="w-full justify-start">
+                  <Search className="h-4 w-4 mr-2" />
+                  {language === "ne" ? "सेवा खोज्नुहोस्" : "Find Services"}
+                </Button>
+              </Link>
+              <Link href="/post-request" className="block">
+                <Button variant="outline" className="w-full justify-start">
+                  <Plus className="h-4 w-4 mr-2" />
+                  {language === "ne"
+                    ? "अनुरोध पोस्ट गर्नुहोस्"
+                    : "Post Request"}
+                </Button>
+              </Link>
+              <Link href="/dashboard/seeker/bookings" className="block">
+                <Button variant="outline" className="w-full justify-start">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  {language === "ne" ? "मेरा बुकिङहरू" : "My Bookings"}
+                </Button>
+              </Link>
+              <Link href="/messages" className="block">
+                <Button variant="outline" className="w-full justify-start">
+                  <MessageSquare className="h-4 w-4 mr-2" />
+                  {language === "ne" ? "सन्देशहरू" : "Messages"}
+                </Button>
+              </Link>
+            </div>
+          </Card>
+
+          {/* Account Status */}
+          <Card className="p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              {language === "ne" ? "खाता स्थिति" : "Account Status"}
+            </h3>
+            <div className="space-y-3">
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full bg-green-500 mr-3"></div>
+                <span className="text-sm">
+                  {language === "ne" ? "खाता सक्रिय" : "Account Active"}
+                </span>
+              </div>
+              <div className="flex items-center">
                 <div
-                  className={`grid gap-6 ${viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" : "grid-cols-1"}`}
-                >
-                  {featuredProviders.map((provider) => {
-                    const categoryColors =
-                      CATEGORY_COLORS[
-                        provider.category as keyof typeof CATEGORY_COLORS
-                      ];
-                    return (
-                      <Card
-                        key={provider.id}
-                        className="group hover:shadow-xl transition-all duration-300 hover:scale-105"
-                      >
-                        <div className="p-6">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="flex items-center">
-                              <div className="text-3xl mr-3">
-                                {provider.image}
-                              </div>
-                              <div>
-                                <h4 className="font-semibold text-gray-900">
-                                  {provider.name}
-                                </h4>
-                                <p className="text-sm text-gray-600">
-                                  {provider.service}
-                                </p>
-                              </div>
-                            </div>
-                            <div className="flex items-center text-yellow-400">
-                              <Star className="h-4 w-4 fill-current" />
-                              <span className="ml-1 text-sm font-medium text-gray-900">
-                                {provider.rating}
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="flex flex-wrap gap-1 mb-4">
-                            {provider.badges.map((badge, index) => (
-                              <span
-                                key={index}
-                                className={`text-xs px-2 py-1 rounded-full ${categoryColors?.bg} ${categoryColors?.text}`}
-                              >
-                                {badge}
-                              </span>
-                            ))}
-                          </div>
-
-                          <div className="space-y-2 mb-4 text-sm text-gray-600">
-                            <div className="flex items-center">
-                              <MapPin className="h-4 w-4 mr-2" />
-                              {provider.location}
-                            </div>
-                            <div className="flex items-center">
-                              <Clock className="h-4 w-4 mr-2" />
-                              Responds {provider.responseTime}
-                            </div>
-                            <div className="flex items-center">
-                              <CheckCircle className="h-4 w-4 mr-2" />
-                              {provider.completedJobs} jobs completed
-                            </div>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <div className="text-xl font-bold text-primary-600">
-                              ${provider.price}/hr
-                            </div>
-                            <div className="space-x-2">
-                              <Button variant="outline" size="sm">
-                                <Eye className="h-4 w-4 mr-1" />
-                                View
-                              </Button>
-                              <Button size="sm" className="btn-vibrant">
-                                Book Now
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </Card>
-                    );
-                  })}
-                </div>
+                  className={`w-3 h-3 rounded-full mr-3 ${
+                    user?.email_verified_at ? "bg-green-500" : "bg-yellow-500"
+                  }`}
+                ></div>
+                <span className="text-sm">
+                  {user?.email_verified_at
+                    ? language === "ne"
+                      ? "इमेल प्रमाणित"
+                      : "Email Verified"
+                    : language === "ne"
+                      ? "इमेल प्रमाणीकरण बाँकी"
+                      : "Email Pending"}
+                </span>
               </div>
-            </Card>
+              <Link href="/dashboard/seeker/profile">
+                <Button size="sm" variant="outline" className="w-full mt-3">
+                  <Edit className="h-4 w-4 mr-2" />
+                  {language === "ne" ? "प्रोफाइल सम्पादन" : "Edit Profile"}
+                </Button>
+              </Link>
+            </div>
+          </Card>
+        </div>
 
-            {/* Recent Bookings */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                  <span>Recent Bookings</span>
-                  <Button variant="outline" size="sm">
-                    View All
-                  </Button>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {recentBookings.map((booking) => (
-                    <div
-                      key={booking.id}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                    >
-                      <div className="flex items-center space-x-4">
-                        <div className="text-2xl">{booking.provider.image}</div>
-                        <div>
-                          <h4 className="font-semibold">{booking.service}</h4>
-                          <p className="text-sm text-gray-600">
-                            with {booking.provider.name}
-                          </p>
-                          <div className="flex items-center text-sm text-gray-500">
-                            <Calendar className="h-4 w-4 mr-1" />
-                            {booking.date} at {booking.time}
-                          </div>
+        {/* Recent Activity */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Recent Bookings */}
+          <Card className="p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {language === "ne" ? "हालका बुकिङहरू" : "Recent Bookings"}
+              </h3>
+              <Link
+                href="/dashboard/seeker/bookings"
+                className="text-blue-600 hover:text-blue-500 text-sm"
+              >
+                {language === "ne" ? "सबै हेर्नुहोस्" : "View All"}
+              </Link>
+            </div>
+            <div className="space-y-4">
+              {recentBookings.length > 0 ? (
+                recentBookings.map((booking) => (
+                  <div
+                    key={booking.id}
+                    className="border-l-4 border-blue-500 pl-4"
+                  >
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-medium text-gray-900">
+                          {booking.service_title}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {booking.provider_name}
+                        </p>
+                        <div className="flex items-center text-xs text-gray-500 mt-1">
+                          <Calendar className="h-3 w-3 mr-1" />
+                          {booking.scheduled_date} at {booking.scheduled_time}
                         </div>
+                        <div className="flex items-center text-xs text-gray-500">
+                          <MapPin className="h-3 w-3 mr-1" />
+                          {booking.service_location}
+                        </div>
+                        {booking.provider_rating > 0 && (
+                          <div className="flex items-center text-xs text-gray-500">
+                            <Star className="h-3 w-3 mr-1 text-yellow-400" />
+                            {booking.provider_rating.toFixed(1)}
+                          </div>
+                        )}
                       </div>
                       <div className="text-right">
-                        <div
-                          className={`inline-flex items-center px-2 py-1 rounded-full text-sm font-medium ${getStatusColor(booking.status)}`}
+                        <div className="text-lg font-bold text-gray-900">
+                          Rs {booking.quoted_price.toLocaleString()}
+                        </div>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${getStatusColor(booking.status)}`}
                         >
-                          {getStatusIcon(booking.status)}
-                          <span className="ml-1 capitalize">
-                            {booking.status}
-                          </span>
-                        </div>
-                        <div className="text-lg font-bold text-gray-900 mt-1">
-                          {booking.price}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        {activeTab === "bookings" && (
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-3xl font-bold gradient-text">My Bookings</h2>
-              <Button className="btn-vibrant">
-                <Plus className="h-5 w-5 mr-2" />
-                New Booking
-              </Button>
-            </div>
-
-            {/* Booking Filters */}
-            <Card className="p-6">
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  variant="outline"
-                  className="bg-blue-50 text-blue-700 border-blue-200"
-                >
-                  All
-                </Button>
-                <Button variant="outline">Pending</Button>
-                <Button variant="outline">Confirmed</Button>
-                <Button variant="outline">Completed</Button>
-                <Button variant="outline">Cancelled</Button>
-              </div>
-            </Card>
-
-            {/* Detailed Bookings List */}
-            <div className="space-y-4">
-              {recentBookings.map((booking) => (
-                <Card
-                  key={booking.id}
-                  className="p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-                    <div className="flex items-center space-x-4 mb-4 lg:mb-0">
-                      <div className="text-4xl">{booking.provider.image}</div>
-                      <div>
-                        <h3 className="text-xl font-semibold">
-                          {booking.service}
-                        </h3>
-                        <p className="text-gray-600">
-                          Provider: {booking.provider.name}
-                        </p>
-                        <div className="flex items-center mt-2">
-                          <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                          <span className="ml-1 text-sm">
-                            {booking.provider.rating}
-                          </span>
-                          <span className="mx-2">•</span>
-                          <Calendar className="h-4 w-4 text-gray-400" />
-                          <span className="ml-1 text-sm">
-                            {booking.date} at {booking.time}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div
-                        className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-2 ${getStatusColor(booking.status)}`}
-                      >
-                        {getStatusIcon(booking.status)}
-                        <span className="ml-1 capitalize">
-                          {booking.status}
+                          {getStatusLabel(booking.status)}
                         </span>
-                      </div>
-                      <div className="text-2xl font-bold text-gray-900 mb-2">
-                        {booking.price}
-                      </div>
-                      <div className="space-x-2">
-                        <Button variant="outline" size="sm">
-                          <MessageCircle className="h-4 w-4 mr-1" />
-                          Message
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          Details
-                        </Button>
                       </div>
                     </div>
                   </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === "messages" && (
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold gradient-text">Messages</h2>
-            <Card className="p-8 text-center">
-              <MessageCircle className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">No messages yet</h3>
-              <p className="text-gray-600 mb-4">
-                Start a conversation with a service provider to see messages
-                here.
-              </p>
-              <Button className="btn-vibrant">Browse Providers</Button>
-            </Card>
-          </div>
-        )}
-
-        {activeTab === "more" && (
-          <div className="space-y-6">
-            <h2 className="text-3xl font-bold gradient-text">
-              Settings & More
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Account Settings</h3>
-                <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
-                    <User className="h-5 w-5 mr-2" />
-                    Profile Settings
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Bell className="h-5 w-5 mr-2" />
-                    Notifications
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Settings className="h-5 w-5 mr-2" />
-                    Preferences
-                  </Button>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">
+                    {language === "ne"
+                      ? "कुनै बुकिङ फेला परेन"
+                      : "No bookings found"}
+                  </p>
+                  <Link href="/find-services" className="mt-2 inline-block">
+                    <Button size="sm">
+                      {language === "ne" ? "सेवा खोज्नुहोस्" : "Find Services"}
+                    </Button>
+                  </Link>
                 </div>
-              </Card>
-              <Card className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Support</h3>
-                <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start">
-                    Help Center
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    Contact Support
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start">
-                    Terms of Service
-                  </Button>
-                </div>
-              </Card>
+              )}
             </div>
-          </div>
-        )}
-      </main>
+          </Card>
+
+          {/* Recent Requests */}
+          <Card className="p-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {language === "ne" ? "हालका अनुरोधहरू" : "Recent Requests"}
+              </h3>
+              <Link
+                href="/dashboard/seeker/requests"
+                className="text-blue-600 hover:text-blue-500 text-sm"
+              >
+                {language === "ne" ? "सबै हेर्नुहोस्" : "View All"}
+              </Link>
+            </div>
+            <div className="space-y-4">
+              {recentRequests.length > 0 ? (
+                recentRequests.map((request) => (
+                  <div
+                    key={request.id}
+                    className="border-l-4 border-green-500 pl-4"
+                  >
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="font-medium text-gray-900">
+                          {request.title}
+                        </h4>
+                        <p className="text-sm text-gray-600 line-clamp-2">
+                          {request.description}
+                        </p>
+                        <div className="flex items-center text-xs text-gray-500 mt-1 space-x-3">
+                          <span>
+                            {new Date(request.created_at).toLocaleDateString()}
+                          </span>
+                          <span
+                            className={`px-2 py-1 rounded ${getUrgencyColor(request.urgency)}`}
+                          >
+                            {request.urgency}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-gray-900">
+                          Rs {request.budget_max?.toLocaleString() || "N/A"}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {request.proposals_count} proposals
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8">
+                  <Plus className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <p className="text-gray-500">
+                    {language === "ne"
+                      ? "कुनै अनुरोध फेला परेन"
+                      : "No requests found"}
+                  </p>
+                  <Link href="/post-request" className="mt-2 inline-block">
+                    <Button size="sm">
+                      {language === "ne"
+                        ? "अनुरोध पोस्ट गर्नुहोस्"
+                        : "Post Request"}
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 }
+
+export default withAuth(SeekerDashboardPage, ["seeker"]);
