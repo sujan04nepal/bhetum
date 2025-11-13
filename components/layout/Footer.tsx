@@ -20,7 +20,7 @@ export function Footer() {
     [t("footer.providers")]: [
       { name: t("footer.becomeProvider"), href: "/become-provider" },
       {
-        name: t("footer.browseRequests") || (language === "ne" ? "अनुरोध ब्राउज गर्नुहोस्" : "Browse Requests"),
+        name: t("footer.browseRequests"),
         href: "/browse-requests",
       },
       { name: t("footer.providerResources"), href: "/provider/resources" },
