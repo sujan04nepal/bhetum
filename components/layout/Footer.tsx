@@ -44,14 +44,14 @@ export function Footer() {
   const brandName = language === "ne" ? "सेवा खोज" : "ServiceConnect";
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-950 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="md:col-span-1">
-            <Link href="/" className="flex items-center mb-4">
-              <span className="text-2xl mr-2">🇳🇵</span>
-              <h3 className="text-lg font-semibold">{brandName}</h3>
+            <Link href="/" className="flex items-center mb-4 hover:opacity-80 transition-opacity">
+              <span className="text-3xl mr-2">🇳🇵</span>
+              <h3 className="text-xl font-bold text-white">{brandName}</h3>
             </Link>
             <p className="text-gray-400 text-sm mb-4">
               {t("footer.description")}
@@ -134,13 +134,13 @@ export function Footer() {
           {/* Footer Links */}
           {Object.entries(footerSections).map(([section, links]) => (
             <div key={section}>
-              <h4 className="font-semibold mb-3">{section}</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
+              <h4 className="font-bold text-white mb-4 text-lg">{section}</h4>
+              <ul className="space-y-3 text-gray-400 text-sm">
                 {links.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="hover:text-white transition-colors"
+                      className="hover:text-white hover:translate-x-1 transition-all duration-200 font-medium"
                     >
                       {link.name}
                     </Link>
@@ -152,27 +152,27 @@ export function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-800 mt-8 pt-8">
+        <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">{t("footer.copyright")}</p>
+            <p className="text-gray-400 text-sm font-medium">{t("footer.copyright")}</p>
 
             {/* Quick Links */}
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            <div className="flex space-x-8 mt-4 md:mt-0">
               <Link
                 href="/terms"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
+                className="text-gray-400 hover:text-white text-sm font-medium transition-all duration-200 hover:translate-x-1"
               >
                 {language === "ne" ? "सेवाका सर्तहरू" : "Terms"}
               </Link>
               <Link
                 href="/privacy"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
+                className="text-gray-400 hover:text-white text-sm font-medium transition-all duration-200 hover:translate-x-1"
               >
                 {language === "ne" ? "गोपनीयता" : "Privacy"}
               </Link>
               <Link
                 href="/support"
-                className="text-gray-400 hover:text-white text-sm transition-colors"
+                className="text-gray-400 hover:text-white text-sm font-medium transition-all duration-200 hover:translate-x-1"
               >
                 {language === "ne" ? "सहयोग" : "Support"}
               </Link>
