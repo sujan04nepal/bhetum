@@ -35,7 +35,7 @@ export default function HelpPage() {
       popularTopics: "लोकप्रिय विषयहरू",
       faqs: "बारम्बार सोधिने प्रश्नहरू",
       stillNeedHelp: "अझै सहायता चाहिन्छ?",
-      contactSupport: "सपोर्ट टिमलाई सम्पर्क गर्नुहोस्",
+      contactSupport: "सपोर्ट ��िमलाई सम्पर्क गर्नुहोस्",
       topics: [
         {
           title: "सेवा बुक गर्ने तरिका",
@@ -58,7 +58,7 @@ export default function HelpPage() {
           icon: "🔒",
         },
         {
-          title: "सेवाप्रदायक ब���्ने",
+          title: "सेवाप्रदायक बन्ने",
           description: "कसरी सेवाप्रदायक बन्ने",
           icon: "💼",
         },
@@ -77,12 +77,12 @@ export default function HelpPage() {
         {
           question: "सेवाप्रदायकहरू कत्तिको भरपर्दो छन्?",
           answer:
-            "सबै सेवाप्रदायकहरू पूर्ण रूपमा जाँच गरिएका छन्। हामी तिनीहरूको नागरिकता, अनुभव र पृष्ठभूमि जाँच गर्छौं। ग्राहकको स���ीक्षा प्रणाली पनि छ।",
+            "सबै सेवाप्रदायकहरू पूर्ण रूपमा जाँच गरिएका छन्। हामी तिनीहरूको नागरिकता, अनुभव र पृष्ठभूमि जाँच गर्छौं। ग्राहकको समीक्षा प्रणाली पनि छ।",
         },
         {
           question: "भुक्तानी कसरी गर्ने?",
           answer:
-            "तपाईं नगद, eSewa, Khalti, बैंक ट्रान्सफर वा अन्य डिजिटल माध्यमबाट ���ुक्तानी गर्न सक्नुहुन्छ। सुरक्षित भुक्तानी ग्यारेन्टी छ।",
+            "तपाईं नगद, eSewa, Khalti, बैंक ट्रान्सफर वा अन्य ���िजिटल माध्यमबाट ���ुक्तानी गर्न सक्नुहुन्छ। सुरक्षित भुक्तानी ग्यारेन्टी छ।",
         },
         {
           question: "सेवामा समस्या भएमा के गर्ने?",
@@ -97,7 +97,7 @@ export default function HelpPage() {
         {
           question: "रद्द गर्ने नीति के हो?",
           answer:
-            "सेवा सुरु हुनुभन्दा २४ घण्टा अगाडि रद्द गर्न सकिन्छ। रद्द गरेपछि पूर्ण रकम फिर्ता हुन्छ।",
+            "सेवा सुरु हु��ुभन्दा २४ घण्टा अगाडि रद्द गर्न सकिन्छ। रद्द गरेपछि पूर्ण रकम फिर्ता हुन्छ।",
         },
       ],
     },
@@ -200,13 +200,15 @@ export default function HelpPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 py-20">
+      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-          <HelpCircle className="h-16 w-16 mx-auto mb-6" />
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          <div className="inline-block p-4 bg-white/20 rounded-2xl mb-6 backdrop-blur-sm">
+            <HelpCircle className="h-12 w-12 mx-auto" />
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
             {currentContent.title}
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto font-medium">
             {currentContent.subtitle}
           </p>
 
@@ -230,22 +232,25 @@ export default function HelpPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 gradient-text">
+            <h2 className="heading-md gradient-text mb-4">
               {currentContent.popularTopics}
             </h2>
+            <p className="text-gray-600 text-lg font-medium">
+              {language === "ne" ? "सामान्य सवालहरूको उत्तर पाउनुहोस्" : "Find answers to common questions"}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {currentContent.topics.map((topic, index) => (
               <Card
                 key={index}
-                className="text-center p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+                className="text-center p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer border-t-4 border-t-primary-600"
               >
-                <div className="text-4xl mb-4">{topic.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                <div className="text-6xl mb-6">{topic.icon}</div>
+                <h3 className="text-2xl font-bold mb-3 gradient-text">
                   {topic.title}
                 </h3>
-                <p className="text-gray-600">{topic.description}</p>
+                <p className="text-gray-600 font-medium leading-relaxed">{topic.description}</p>
               </Card>
             ))}
           </div>
@@ -263,24 +268,24 @@ export default function HelpPage() {
 
           <div className="space-y-4">
             {currentContent.faqList.map((faq, index) => (
-              <Card key={index} className="overflow-hidden">
+              <Card key={index} className="overflow-hidden border-l-4 border-l-primary-600">
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                  className="w-full p-8 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                  <h3 className="text-lg font-bold text-gray-900 pr-4">
                     {faq.question}
                   </h3>
                   {expandedFaq === index ? (
-                    <ChevronUp className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                    <ChevronUp className="h-6 w-6 text-primary-600 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                    <ChevronDown className="h-6 w-6 text-primary-600 flex-shrink-0" />
                   )}
                 </button>
 
                 {expandedFaq === index && (
-                  <div className="px-6 pb-6">
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="px-8 pb-8 border-t border-gray-100">
+                    <p className="text-gray-700 leading-relaxed font-medium">
                       {faq.answer}
                     </p>
                   </div>
@@ -294,11 +299,11 @@ export default function HelpPage() {
       {/* Contact Support */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 gradient-text">
+          <div className="text-center mb-16">
+            <h2 className="heading-md gradient-text mb-4">
               {currentContent.stillNeedHelp}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 font-medium">
               {currentContent.contactSupport}
             </p>
           </div>
