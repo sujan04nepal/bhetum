@@ -12,7 +12,9 @@ import {
   Phone,
   Mail,
   HelpCircle,
+  ArrowLeft,
 } from "lucide-react";
+import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
@@ -56,7 +58,7 @@ export default function HelpPage() {
           icon: "🔒",
         },
         {
-          title: "सेवाप्रदायक बन्ने",
+          title: "सेवाप्रदायक ब���्ने",
           description: "कसरी सेवाप्रदायक बन्ने",
           icon: "💼",
         },
@@ -75,7 +77,7 @@ export default function HelpPage() {
         {
           question: "सेवाप्रदायकहरू कत्तिको भरपर्दो छन्?",
           answer:
-            "सबै सेवाप्रदायकहरू पूर्ण रूपमा जाँच गरिएका छन्। हामी तिनीहरूको नागरिकता, अनुभव र पृष्ठभूमि जाँच गर्छौं। ग्राहकको समीक्षा प्रणाली पनि छ।",
+            "सबै सेवाप्रदायकहरू पूर्ण रूपमा जाँच गरिएका छन्। हामी तिनीहरूको नागरिकता, अनुभव र पृष्ठभूमि जाँच गर्छौं। ग्राहकको स���ीक्षा प्रणाली पनि छ।",
         },
         {
           question: "भुक्तानी कसरी गर्ने?",
@@ -183,6 +185,19 @@ export default function HelpPage() {
   return (
     <div className="min-h-screen">
       <Header />
+
+      {/* Back Link */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <Link
+          href="/"
+          className="inline-flex items-center space-x-2 text-gray-600 hover:text-primary-600 transition-colors mb-6 group"
+        >
+          <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+          <span className="font-medium">
+            {language === "ne" ? "घर पृष्ठमा फर्किनुहोस्" : "Back to Home"}
+          </span>
+        </Link>
+      </div>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 py-20">
