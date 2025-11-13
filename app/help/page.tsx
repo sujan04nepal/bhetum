@@ -64,7 +64,7 @@ export default function HelpPage() {
         },
         {
           title: "समस्या समाधान",
-          description: "सामान���य समस्याहरू",
+          description: "सामान����य समस्याहरू",
           icon: "🔧",
         },
       ],
@@ -82,7 +82,7 @@ export default function HelpPage() {
         {
           question: "भुक्तानी कसरी गर्ने?",
           answer:
-            "तपाईं नगद, eSewa, Khalti, बैंक ट्रान्सफर वा अन्य ���िजिटल माध्यमबाट ���ुक्तानी गर्न सक्नुहुन्छ। सुरक्षित भुक्तानी ग्यारेन्टी छ।",
+            "तपाईं नगद, eSewa, Khalti, बैंक ट्र��न्सफर वा अन्य ���िजिटल माध्यमबाट ���ुक्तानी गर्न सक्नुहुन्छ। सुरक्षित भुक्तानी ग्यारेन्टी छ।",
         },
         {
           question: "सेवामा समस्या भएमा के गर्ने?",
@@ -309,30 +309,37 @@ export default function HelpPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-              <MessageCircle className="h-12 w-12 text-primary-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Live Chat</h3>
-              <p className="text-gray-600 mb-4">
+            <Card className="text-center p-8 hover:shadow-xl transition-all duration-300 hover:scale-105 border-t-4 border-t-blue-600">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
+                <MessageCircle className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Live Chat</h3>
+              <p className="text-gray-600 mb-6 font-medium">
                 {language === "ne" ? "तुरुन्त सहायता" : "Instant help"}
               </p>
               <Button className="w-full">
-                {language === "ne" ? "च्याट सुरु गर्नुहोस्" : "Start Chat"}
+                {language === "ne" ? "च्याट सुरु ग��्नुहोस्" : "Start Chat"}
               </Button>
             </Card>
 
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-              <Phone className="h-12 w-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Phone</h3>
-              <p className="text-gray-600 mb-4">+977-1-4567890</p>
+            <Card className="text-center p-8 hover:shadow-xl transition-all duration-300 hover:scale-105 border-t-4 border-t-green-600">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-6">
+                <Phone className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Phone</h3>
+              <p className="text-gray-600 mb-2 font-semibold">+977-1-4567890</p>
+              <p className="text-gray-500 text-sm mb-6 font-medium">{language === "ne" ? "२४/७ उपलब्ध" : "Available 24/7"}</p>
               <Button variant="outline" className="w-full">
                 {language === "ne" ? "फोन गर्नुह��स्" : "Call Now"}
               </Button>
             </Card>
 
-            <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-              <Mail className="h-12 w-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Email</h3>
-              <p className="text-gray-600 mb-4">support@sevakhoj.com</p>
+            <Card className="text-center p-8 hover:shadow-xl transition-all duration-300 hover:scale-105 border-t-4 border-t-purple-600">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6">
+                <Mail className="h-8 w-8 text-purple-600" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Email</h3>
+              <p className="text-gray-600 mb-6 font-medium break-all">support@sevakhoj.com</p>
               <Button variant="outline" className="w-full">
                 {language === "ne" ? "इमेल गर्नुहोस्" : "Send Email"}
               </Button>
