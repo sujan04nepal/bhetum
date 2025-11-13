@@ -39,7 +39,7 @@ const translations = {
     "home.title": "नेपालको नम्बर १",
     "home.subtitle": "सेवा खोज्ने प्लेटफर्म",
     "home.description":
-      "घर सरसफाइदेखि ट्यूशन, डिजिटल सेवादेखि रचनात्मक कामसम्म - विश्वसनीय सेवा प्रदायकहरू फेला पार्नुहोस्!",
+      "घर सरस��ाइदेखि ट्यूशन, डिजिटल सेवादेखि रचनात्मक कामसम्म - विश्वसनीय सेवा प्रदायकहरू फेला पार्नुहोस्!",
     "home.searchPlaceholder": "कुन सेवा चाहिन्छ?",
     "home.locationPlaceholder": "तपाईंको स्थान चयन गर्नुहोस्",
     "home.searchButton": "खोज्नुहोस्",
@@ -64,7 +64,7 @@ const translations = {
     "home.qualityDesc": "१००% सन्तु��्टि ग्यारेन्टी र उत्कृष्ट ग्राहक सेवा।",
     "home.readyTitle": "सुरु गर्न तयार हुनुहुन्छ?",
     "home.readyDesc": "हजारौं खुसी ग्राहक र सेवा प्रदायकहरूसँग जोडिनुहोस्!",
-    "home.findServices": "सेवा खोज्नुहोस्",
+    "home.findServices": "सेवा खोज्नुहो���्",
     "home.becomeProvider": "सेवाप्रदायक बन्नुहोस्",
 
     // Stats
@@ -114,6 +114,7 @@ const translations = {
     "footer.safety": "सुरक्षा",
     "footer.customerSupport": "ग्राहक सेवा",
     "footer.becomeProvider": "सेवाप्रदायक बन्नुहोस्",
+    "footer.browseRequests": "अनुरो��� ब्राउज गर्नुहोस्",
     "footer.providerResources": "सेवाप्रदायक स्रोतहरू",
     "footer.earnings": "��म्दानी",
     "footer.providerSupport": "सेवाप्रदायक सहयोग",
@@ -147,7 +148,7 @@ const translations = {
     "auth.signup.subtitle": "आफ्नो खाता सिर्जन��� गर्नुहोस्",
     "auth.signup.chooseRole": "तपाईं के गर्न चाहनुहुन्छ?",
     "auth.signup.findServices": "सेवा खोज्न चाहन्छु",
-    "auth.signup.provideServices": "सेवा प्रदान गर्न चाहन्छु",
+    "auth.signup.provideServices": "सेवा प्रदान गर���न चाहन्छु",
     "auth.signup.roleSeeker": "सेवा खोज्ने",
     "auth.signup.roleProvider": "सेवा प्रदायक",
     "auth.signup.seekerDesc":
@@ -212,7 +213,7 @@ const translations = {
     "form.booking.serviceType": "सेवाको प्रकार",
     "form.booking.dateTime": "मिति र समय",
     "form.booking.selectDate": "मिति चयन गर्नुहोस्",
-    "form.booking.selectTime": "समय चयन गर्नुहोस्",
+    "form.booking.selectTime": "स���य चयन गर्नुहोस्",
     "form.booking.duration": "अवधि",
     "form.booking.contactInfo": "सम्पर्क जानकारी",
     "form.booking.location": "स्थान",
@@ -236,7 +237,7 @@ const translations = {
 
     // Booking Page
     "booking.newBooking": "नयाँ बुकिङ",
-    "booking.serviceDetails": "सेवा विवरण",
+    "booking.serviceDetails": "से��ा विवरण",
     "booking.whatService": "तपाईंलाई कस्तो सेवा चाहिएको छ?",
     "booking.serviceDetailsPlaceholder":
       "कृपया आफ्ना आवश्यकताहरू विस्तारमा लेख्नुहोस्...",
@@ -253,7 +254,7 @@ const translations = {
     "booking.phone": "फोन नम्बर",
     "booking.phonePlaceholder": "तपाईंको फोन नम्बर",
     "booking.address": "ठेगाना",
-    "booking.addressPlaceholder": "तपाईंको पूरा ठेगाना",
+    "booking.addressPlaceholder": "तपाईंको पूरा ठेग��ना",
     "booking.specialInstructions": "विशेष निर्देशनहरू",
     "booking.specialInstructionsPlaceholder":
       "कुनै विशेष निर्देशन वा टिप्पणी...",
@@ -377,7 +378,7 @@ const translations = {
     "status.completed": "सम्पन्न",
     "status.cancelled": "रद्द भएको",
     "status.active": "सक्रिय",
-    "status.inactive": "निष्क्रिय",
+    "status.inactive": "निष्क��रिय",
     "status.available": "उपलब्ध",
     "status.unavailable": "अनुपलब्ध",
 
@@ -407,7 +408,7 @@ const translations = {
     "admin.dashboard": "प्रशासक ड्यासबोर्ड",
     "admin.totalUsers": "कुल प्रयोगकर्ताहरू",
     "admin.activeProviders": "सक्रिय प्रदायकहरू",
-    "admin.totalBookings": "कुल बुकिङहरू",
+    "admin.totalBookings": "कुल बुकिङहर���",
     "admin.totalRevenue": "कुल आम्दानी",
     "admin.userManagement": "प्रयोगकर्ता व्यवस्थापन",
     "admin.serviceManagement": "सेवा व्यवस्थापन",
@@ -479,7 +480,7 @@ const translations = {
     "howItWorks.step2": "तुलना गर्नुहोस्",
     "howItWorks.step2Desc": "सेवा प्रदायकहरूको तुलना गर्नुहोस्",
     "howItWorks.step3": "बुक गर्नुहोस्",
-    "howItWorks.step3Desc": "मनपर्ने प्रदायकलाई बुक गर्नुहोस्",
+    "howItWorks.step3Desc": "मनपर्ने प्रदाय��लाई बुक गर्नुहोस्",
     "howItWorks.step4": "आनन्द लिनुहोस्",
     "howItWorks.step4Desc": "गुणस्तरीय सेवाको आनन्द लिनुहोस्",
 
