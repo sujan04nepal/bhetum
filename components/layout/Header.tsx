@@ -74,14 +74,14 @@ export function Header() {
   const brandName = language === "ne" ? "सेवा खोज" : "ServiceConnect";
 
   return (
-    <header className="bg-white shadow-sm border-b sticky top-0 z-50">
+    <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link
               href="/"
-              className="text-2xl font-bold text-primary-600 flex items-center hover:text-primary-700 transition-colors"
+              className="text-2xl font-bold gradient-text flex items-center hover:opacity-80 transition-opacity"
             >
               <span className="mr-2">🇳🇵</span>
               {brandName}
@@ -98,7 +98,7 @@ export function Header() {
                     onMouseEnter={() => setIsServicesMenuOpen(true)}
                     onMouseLeave={() => setIsServicesMenuOpen(false)}
                   >
-                    <button className="flex items-center text-gray-600 hover:text-primary-600 transition-colors">
+                    <button className="flex items-center text-gray-700 font-medium hover:text-primary-600 transition-colors">
                       {item.name}
                       <ChevronDown className="ml-1 h-4 w-4" />
                     </button>
@@ -111,7 +111,7 @@ export function Header() {
                             <Link
                               key={dropdownItem.name}
                               href={dropdownItem.href}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary-600"
+                              className="block px-4 py-2 text-sm text-gray-700 font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors"
                               onClick={() => setIsServicesMenuOpen(false)}
                             >
                               {dropdownItem.name}
@@ -124,7 +124,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-gray-600 hover:text-primary-600 transition-colors"
+                    className="text-gray-700 font-medium hover:text-primary-600 transition-colors"
                   >
                     {item.name}
                   </Link>
@@ -138,7 +138,7 @@ export function Header() {
             {/* Post Request Button for logged in users */}
             {isLoggedIn && (
               <Link href="/post-request">
-                <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                <Button size="sm" className="bg-gradient-to-br from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-semibold">
                   <Plus className="h-4 w-4 mr-2" />
                   {language === "ne" ? "अनुरोध पोस्ट" : "Post Request"}
                 </Button>
@@ -291,7 +291,7 @@ export function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Plus className="h-4 w-4 mr-2" />
-                {language === "ne" ? "अनुरोध पोस्ट गर्नुहोस्" : "Post Request"}
+                {language === "ne" ? "अनुरोध पोस्ट ग��्नुहोस्" : "Post Request"}
               </Link>
             )}
 
